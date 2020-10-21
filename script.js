@@ -1115,6 +1115,8 @@ function typeWord() {
     wordInput.value = "";
     clearInterval(timeLeft);
 
+    //----- NOTE TO SELF: REPLACE RANDOM VARIATION WITH WORD LENGTH -----
+    //----- NOTE TO SELF: HIGHLIGHT WORD LETTERS AS THEY'RE TYPED   -----
     //calculate random variation
     let randomVariation = Math.random() * 2;
     let variation = 0;
