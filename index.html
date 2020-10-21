@@ -9,38 +9,67 @@
 
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,500;1,700&display=swap" rel="stylesheet">
 
     <!-- import the webpage's javascript file -->
     <script src="./script.js" defer></script>
   </head>
   <body>
-    <div id="header">
-      <h2>
-        iTyping
-      </h2>
-    </div>
-    <div id="content">
-      <div id="trackSelection">
-        <select name="trackSel" id="trackSel"></select>
-        <button id="startBtn">
-          Start
-        </button>
-        <button id="restartBtn">
-          Restart
-        </button>
+    <div class="mc">
+      <div id="header">
+
+        <div class="hs-40"></div>
+
+        <div class="logo-c">
+          <div class="flag"></div>
+          <div class="txt">iType</div>
+        </div>
       </div>
-      <div id="gameArea">
-        <div id="randomWord"></div>
-        <input
-          id="wordInput"
-          name="wordInput"
-          autocomplete="off"
-          type="text"
-        />
-        <div id="timeLeft"></div>
-        <div id="lapTime"></div>
-        <div id="score"></div>
+
+      <div class="hs-40"></div><div class="hs-40"></div>
+
+      <div id="content" class="mc">
+        
+        <div id="trackSelection" class="c-50 go-c">
+          <div class="c-100">
+            <select name="trackSel" id="trackSel"></select><span class="s-arrow"></span>
+          </div>
+          
+          <div class="hs-40"></div>
+          
+          <button id="startBtn" class="g-btn go-c">
+            Start
+          </button>
+          <button id="restartBtn" class="g-btn go-c">
+            Restart
+          </button>
+
+          <div class="hs-20"></div>
+
+          <div id="gameArea">
+            <div id="randomWord" class="c-100 a-c"></div>
+            <input id="wordInput" name="wordInput" autocomplete="off" type="text" class="a-c txt-b" />
+            <div class="hs-40"></div>
+            <div id="timeLeft" class="c-33 a-c"></div>
+            <div id="lapTime" class="c-33 a-c"></div>
+            <div id="score" class="c-33 a-c"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="hs-40"></div>
+
+
+    <div class="mc" style="overflow: hidden;">
+      <div class="car-c red go-c">
+        <div class="side-windows"></div>
+        <div class="front-back-windows"><div class="side-bar"></div></div>
       </div>
     </div>
+
   </body>
 </html>
