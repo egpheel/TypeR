@@ -1,0 +1,7 @@
+body {
+  font-family: verdana, helvetica, arial, sans-serif;
+}
+
+#wordInput {
+  text-transform: lowercase;
+}

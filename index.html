@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>iTyping</title>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <div id="header">
+      <h2>
+        iTyping
+      </h2>
+    </div>
+    <div id="content">
+      <div id="trackSelection">
+        <select name="trackSel" id="trackSel"></select>
+        <button id="startBtn">
+          Start
+        </button>
+        <button id="restartBtn">
+          Restart
+        </button>
+      </div>
+      <div id="gameArea">
+        <div id="randomWord"></div>
+        <input
+          id="wordInput"
+          name="wordInput"
+          autocomplete="off"
+          type="text"
+        />
+        <div id="timeLeft"></div>
+        <div id="lapTime"></div>
+        <div id="score"></div>
+      </div>
+    </div>
+  </body>
+</html>
