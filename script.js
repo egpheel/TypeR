@@ -1138,6 +1138,8 @@ function typeWord() {
 }
 
 function startGame() {
+  currentDistance = 0;
+  
   selectedTrack = tracks[trackSelector.value];
   //calculate distance per word
   distancePerWord = Math.ceil(
