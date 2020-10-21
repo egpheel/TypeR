@@ -1094,7 +1094,7 @@ function updateWord() {
       date = new Date();
       now = date.getTime();
 
-      let time = Math.round((origTime - now) / 1000);
+      let time = Math.floor((origTime - now) / 1000);
 
       timeLeftDiv.textContent = `Time left: ${time} seconds`;
 
@@ -1104,7 +1104,7 @@ function updateWord() {
     }, 1000);
   }
 
-  let percentage = Math.round(
+  let percentage = Math.floor(
     (currentDistance * 100) / selectedTrack.circuitLength
   );
   scoreDiv.textContent = `${percentage}% completed`;
@@ -1127,7 +1127,7 @@ function typeWord() {
       variation -= Math.random() * distanceVariation;
     }
 
-    currentDistance += Math.round(distancePerWord + variation);
+    currentDistance += Math.floor(distancePerWord + variation);
 
     if (currentDistance > selectedTrack.circuitLength) {
       currentDistance = selectedTrack.circuitLength;
