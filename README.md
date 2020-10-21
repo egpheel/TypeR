@@ -1,1 +1,1 @@
-# ityping
+# iTyping
