@@ -17,22 +17,22 @@
   <body>
     <div class="mc">
 
-      <div class="modal-c show a-c">
+      <div id="gameOverModal" class="modal-c a-c">
         <div class="icon-c"></div>
         <div class="hs-40"></div>
         <div class="c-100">
           <strong>
-            <span class="txt-b txt-hl">Big 4x!</span>
+            <span id="gameOverReasonTitle" class="txt-b txt-hl">Big 4x!</span>
             <br />
-            <span class="txt-b">You've got wheel damage!<span>
+            <span id="gameOverReason" class="txt-b">You've got wheel damage!<span>
           </strong>
         </div>
         <div class="hs-40"></div>
         <div class="c-50">
-            <strong><span class="txt-hl">Lap time:</span><br /><span class="txt-b">00:02.995</span></strong>
+            <strong><span class="txt-hl">Lap time</span><br /><span id="gameOverLapTime" class="txt-b">00:02.995</span></strong>
         </div>
         <div class="c-50">
-            <strong><span class="txt-hl">Completed</span><br /><span class="txt-b">2</span><span class="txt-b">%</span></strong>
+            <strong><span class="txt-hl">Completed</span><br /><span id="gameOverPercentage" class="txt-b">2</span><span class="txt-b">%</span></strong>
         </div>
         <div class="hs-40"></div>
         <div class="c-100">
@@ -87,9 +87,6 @@
           
           <button id="startBtn" class="g-btn go-c">
             Start
-          </button>
-          <button id="restartBtn" class="g-btn go-c">
-            Restart
           </button>
 
           <div class="hs-20"></div>
