@@ -37,7 +37,7 @@ let tracks = [
     trackmap: "./svg/spa.svg"
   },
   { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428, flag: "./svg/flag-germany.svg", trackmap: "./svg/nordschleife.svg" },
-  { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "./svg/flag-usa.svg", trackmap: "./svg/silverstone.svg" },
+  { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "./svg/flag-uk.svg", trackmap: "./svg/silverstone.svg" },
   { name: "Lime Rock Park", circuitLength: 2410, intendedLapTime: 58, flag: "./svg/flag-usa.svg", trackmap: "./svg/limerockpark.svg" },
   {
     name: "Circuit 24 Hours of Le Mans",

@@ -15,10 +15,14 @@
     <script src="./script.js" defer></script>
   </head>
   <body>
-    <div class="mc">
+    <div class="mc main">
 
       <div id="gameOverModal" class="modal-c a-c">
-        <div class="icon-c"></div>
+        <div class="icon-c">
+          <object type="image/svg+xml" data="image.svg">
+              <img width="80" src="svg/icon-crash.svg" />
+          </object>
+        </div>
         <div class="hs-40"></div>
         <div class="c-100">
           <strong>
@@ -48,7 +52,7 @@
 
         <div class="logo-c">
           <div class="flag"></div>
-          <div class="txt">iType</div>
+          <div class="txt">iTyping</div>
         </div>
       </div>
       
@@ -65,7 +69,7 @@
 
           <div id="trackInfo" class="c-100">
             <div class="c-50">
-              <div class="hs-40"></div>
+              <div class="hs-40 hidde-mob"></div>
               <object type="image/svg+xml" data="image.svg">
                   <img id="trackFlag" width="48" src="" />
               </object>
@@ -74,7 +78,7 @@
                 <span id="trackName" class="txt-m txt-case"></span>
                 <br />
                 <span id="trackLength" class="txt-m txt-case txt-hl"></span><span class="txt-m txt-case txt-hl">m</span>
-              <strong>
+              </strong>
             </div>
             <div class="c-50">
               <object type="image/svg+xml" data="image.svg">
@@ -83,7 +87,7 @@
             </div>
           </div>
           
-          <div class="hs-40 hidde-mob"></div>
+          <div class="hs-20 hidde-mob"></div>
           
           <button id="startBtn" class="g-btn go-c">
             Start
@@ -112,38 +116,34 @@
 
     </div>
 
-    <div class="hs-20"></div>
-
-    <div class="mc">
-      <div class="track-c">
-        <div class="finish"></div>
-        <div class="track-edge"></div>
-        <div class="p-lane-c">
-          <div class="car-c red go-c">
-            <div class="side-windows"></div>
-            <div class="front-back-windows"><div class="side-bar"></div></div>
-            <div class="front-wheels"></div>
-            <div class="back-wheels"></div>
-          </div>
+    <div class="track-c">
+      <div class="finish"></div>
+      <div class="track-edge"></div>
+      <div class="p-lane-c">
+        <div class="car-c red go-c">
+          <div class="side-windows"></div>
+          <div class="front-back-windows"><div class="side-bar"></div></div>
+          <div class="front-wheels"></div>
+          <div class="back-wheels"></div>
         </div>
-        <div class="p-lane-c">
-          <div class="car-c blue go-c">
-            <div class="side-windows"></div>
-            <div class="front-back-windows"><div class="side-bar"></div></div>
-            <div class="front-wheels"></div>
-            <div class="back-wheels"></div>
-          </div>
-        </div>
-        <div class="p-lane-c">
-          <div class="car-c white go-c">
-            <div class="side-windows"></div>
-            <div class="front-back-windows"><div class="side-bar"></div></div>
-            <div class="front-wheels"></div>
-            <div class="back-wheels"></div>
-          </div>
-        </div>
-        <div class="track-edge"></div>
       </div>
+      <div class="p-lane-c">
+        <div class="car-c blue go-c">
+          <div class="side-windows"></div>
+          <div class="front-back-windows"><div class="side-bar"></div></div>
+          <div class="front-wheels"></div>
+          <div class="back-wheels"></div>
+        </div>
+      </div>
+      <div class="p-lane-c">
+        <div class="car-c white go-c">
+          <div class="side-windows"></div>
+          <div class="front-back-windows"><div class="side-bar"></div></div>
+          <div class="front-wheels"></div>
+          <div class="back-wheels"></div>
+        </div>
+      </div>
+      <div class="track-edge"></div>
     </div>
 
   </body>
