@@ -46,6 +46,10 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 .txt-b {font-size: 2rem;}
 .txt-m {font-size: 1.5rem;}
 
+.txt-hl {color: rgba(200, 40, 40, 1.00);}
+
+strong {font-weight: 700;}
+
 /* HEADER */
 #header {width: 100%}
 
