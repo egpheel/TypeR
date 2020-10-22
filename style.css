@@ -5,12 +5,12 @@ div {position: relative; float: left;}
 
 /* INPUTS */
 input {width: 100%; height: 50px; background-color: rgba(255, 255, 255, 1.00); padding: 0 24px; font-size: 1rem; color: rgba(40, 40, 40, 1.00); box-shadow: inset 0 0 0 2px rgba(200, 40, 40, 1.00), 0 0 0 0 rgba(240, 100, 10, 0.00); transition: all 0.3s linear;}
-input:hover {box-shadow: inset 0 0 0 2px rgba(200, 40, 40, 1.00), 0 0 10px 0 rgba(200, 40, 40, 1.00);}
+input:hover {box-shadow: inset 0 0 0 2px rgba(200, 40, 40, 1.00), 0 10px 25px 0 rgba(200, 40, 40, 0.50);}
 input:focus {background-color: rgba(255, 255, 255, 0.75); color: rgba(20, 20, 70, 1.00); box-shadow: inset 0 0 0 2px rgba(40, 40, 40, 1.00), 0 0 0 0 rgba(240, 100, 10, 0.00);}
 
 /* SELCTS */
 select {width: 100%; height: 50px; background-color: rgba(255, 255, 255, 1.00); padding: 0 24px; font-size: 1rem; color: rgba(40, 40, 40, 1.00); box-shadow: inset 0 0 0 2px rgba(200, 40, 40, 1.00), 0 0 0 0 rgba(240, 100, 10, 0.00); transition: all 0.3s linear;}
-select:hover {box-shadow: inset 0 0 0 2px rgba(200, 40, 40, 1.00), 0 0 10px 0 rgba(200, 40, 40, 1.00);}
+select:hover {box-shadow: inset 0 0 0 2px rgba(200, 40, 40, 1.00), 0 10px 25px 0 rgba(200, 40, 40, 0.50);}
 select:focus {background-color: rgba(255, 255, 255, 0.75); color: rgba(20, 20, 70, 1.00); box-shadow: inset 0 0 0 2px rgba(40, 40, 40, 1.00), 0 0 0 0 rgba(240, 100, 10, 0.00);}
 
 select + .s-arrow {display: block; width: 38px; height: 38px; background-color: rgba(200, 40, 40, 1.00); position: absolute; top: 6px; right: 6px; z-index: 0; box-shadow: inset 0 0 0 0 rgba(250, 170, 0, 0.00); cursor: pointer; transition: all 0.3s;}
@@ -69,7 +69,10 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 #wordInput {text-transform: lowercase;}
 
 .red {background-color: rgba(200, 40, 40, 1.00);}
-.car-c {width: 160px; height: 80px; border-radius: 5px 10px 10px 5px; z-index: 5; transform: scale(0.5); box-shadow: -20px 20px 0 0 rgba(0, 0, 0, 0.10); animation: 10s CARANIME ease-in infinite;}
+.blue {background-color: rgba(50, 150, 240, 1.00);}
+.white {background-color: rgba(250, 250, 250, 1.00);}
+
+.car-c {width: 180px; height: 80px; border-radius: 5px 10px 10px 5px; z-index: 5; top: 50%; transform: translateY(-50%) scale(0.5); box-shadow: -20px 20px 0 0 rgba(0, 0, 0, 0.10), inset 0 5px 2px 0 rgba(0, 0, 0, 0.30),  inset 0 -5px 2px 0 rgba(0, 0, 0, 0.10); animation: 10s CARANIME ease-in infinite;}
 .car-c .side-windows {width: 4px; height: 80px; background-color: inherit; position: absolute; left: 60px; top: 0px;}
 .car-c .side-windows:before,
 .car-c .side-windows:after {content: ''; width: 40px; height: 0; border-bottom: 10px solid rgba(40, 40, 40, 1.00); border-left: 25px solid transparent; border-right: 25px solid transparent; position: absolute; top: 5px; left: -30px; transform: rotate(180deg); z-index: -1;}
@@ -79,13 +82,38 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 .car-c .front-back-windows:before,
 .car-c .front-back-windows:after {content: ''; width: 0; height: 46px; border-left: 20px solid rgba(40, 40, 40, 1.00); border-top: 10px solid transparent; border-bottom: 10px solid transparent; position: absolute; top: 7px; left: calc(100% - 16px); transform: rotate(180deg); z-index: -1;}
 .car-c .front-back-windows:after {border-left: 26px solid rgba(40, 40, 40, 1.00); left: -5px; transform: rotate(0deg);}
-.car-c:before,
-.car-c:after {content: ''; width: 30px; height: calc(100% + 6px); background-color: inherit; border-radius: 3px; position: absolute; top: -3px; right: 20px; box-shadow: inset 0 3px 0 0 rgba(0, 0, 0, 0.10),  inset 0 -3px 0 0 rgba(0, 0, 0, 0.10); z-index: -5;}
-.car-c:after {left: 20px; right: initial;}
+.car-c .front-wheels,
+.car-c .back-wheels {content: ''; width: 30px; height: calc(100% + 4px); background-color: inherit; border-radius: 2px; position: absolute; top: -2px; right: 20px; box-shadow: inset 0 2px 0 0 rgba(0, 0, 0, 0.10),  inset 0 -3px 0 0 rgba(0, 0, 0, 0.10); z-index: -5;}
+.car-c .back-wheels {left: 20px; right: initial;}
+
+.car-c .front-wheels:before,
+.car-c .front-wheels:after,
+.car-c .back-wheels:before,
+.car-c .back-wheels:after {content: ''; width: 26px; height: 4px; position: absolute; left: 2px; top: -1px; box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 1.00), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.15);}
+
+.car-c .front-wheels:after,
+.car-c .back-wheels:after {top: initial; bottom: -1px; transform: rotate(180deg);}
+
+.track-c {width: 100%; background-color: rgba(40, 40, 40, 1.00); overflow: hidden;}
+.track-c:before {content: ''; width: 40px; height: 100%; background-color: #eee; background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black); background-size: 10px 10px; background-position: 0 0, 5px 5px; position: absolute; top: 0px; right: 20px;}
+.track-edge {width: 100%; height: 40px;  box-shadow: inset 0 -4px 0 0 rgba(255, 255, 255, 0.75);}
+.track-edge:before {content: ''; width: 100%; height: 10px; background-image: linear-gradient(90deg, rgba(200, 40, 40, 1.00) 20px, white 20px), linear-gradient(90deg, white 20px, rgba(200, 40, 40, 1.00) 20px), linear-gradient(90deg, rgba(200, 40, 40, 1.00) 20px, white 20px); background-position: 0 0, 0 20px, 0 40px; background-repeat: repeat-x; background-size: 40px 20px, 40px 20px, 40px 20px; position: absolute; left: 0px; top: 40%; transform: translateY(-50%); opacity: 0.75;}
+.track-edge:last-child {transform: rotate(180deg);}
+
+.p-lane-c {width: 100%; height: 70px; }
+
+.p-lane-c:before,
+.p-lane-c:after {content: ''; width: 100%; height: 2px; background-image: linear-gradient(90deg, transparent 20px, white 20px), linear-gradient(90deg, white 20px, transparent 20px), linear-gradient(90deg, transparent 20px, white 20px); background-position: 0 0, 0 20px, 0 40px; background-repeat: repeat-x; background-size: 40px 20px, 40px 20px, 40px 20px; position: absolute; left: 0px; top: 0px; opacity: 0.10;}
+.p-lane-c:after {top: initial; bottom: 0px;}
 
 @keyframes CARANIME {
-  0% {left: 0%; opacity: 0.00;}
-  25% {opacity: 1.00;}
-  50% {left: 100%; opacity: 0.00;}
-  100% {left: 100%; opacity: 0.00;}
+	0% {left: 0%; opacity: 0.00;}
+	25% {opacity: 1.00;}
+	50% {left: 100%; opacity: 1.00;}
+	100% {left: 100%; opacity: 1.00;}
+}
+
+@media only screen and (max-width: 600px) {
+  	.c-50 {width: calc(100% - 20px); margin: 0 10px 20px 10px;}
+	.c-33 {width: calc(100% - 20px); margin: 0 10px 20px 10px;}
 }
