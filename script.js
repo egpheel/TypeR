@@ -29,8 +29,8 @@ let tracks = [
     name: "Circuit de Spa-Francorchamps",
     circuitLength: 7004,
     intendedLapTime: 137,
-    flag: "./svg/flag-italy.svg",
-    trackmap: "./svg/monza.svg"
+    flag: "",
+    trackmap: ""
   },
   { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428, flag: "", trackmap: "" },
   { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "", trackmap: "" },
@@ -54,8 +54,8 @@ let tracks = [
     name: "Autodromo Nazionale di Monza",
     circuitLength: 5793,
     intendedLapTime: 110,
-    flag: "",
-    trackmap: ""
+    flag: "./svg/flag-italy.svg",
+    trackmap: "./svg/monza.svg"
   },
   { name: "Circuit Zolder", circuitLength: 4011, intendedLapTime: 91, flag: "", trackmap: "" },
   { name: "Circuit de Monaco", circuitLength: 3337, intendedLapTime: 100, flag: "", trackmap: "" },
