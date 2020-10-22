@@ -1,5 +1,6 @@
 const trackSelectionDiv = document.querySelector("#trackSelection");
 const trackSelector = document.querySelector("#trackSel");
+const trackSelectorItem = document.querySelector("#trackSelectorItem");
 const randomWordDiv = document.querySelector("#randomWord");
 const timeLeftDiv = document.querySelector("#timeLeft");
 const scoreDiv = document.querySelector("#score");
@@ -17,6 +18,7 @@ const gameOverReasonTitle = document.querySelector("#gameOverReasonTitle");
 const gameOverReason = document.querySelector("#gameOverReason");
 const gameOverLapTime = document.querySelector("#gameOverLapTime");
 const gameOverPercentage = document.querySelector("#gameOverPercentage");
+const seedInput = document.querySelector("#seed");
 
 let currentDistance = 0;
 let currentWord;
@@ -26,6 +28,8 @@ let lapTimeTimer;
 let lapTime = 0;
 let selectedTrack;
 let distancePerWord = 0;
+let lapTimeScale = 1;
+let seededRng;
 
 let tracks = [
   { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg" },
@@ -80,7 +84,6 @@ const words = [
   "of",
   "to",
   "and",
-  "a",
   "in",
   "is",
   "it",
@@ -93,7 +96,6 @@ const words = [
   "are",
   "with",
   "as",
-  "I",
   "his",
   "they",
   "be",
@@ -1088,10 +1090,10 @@ restartBtn.addEventListener("click", preGame);
 trackSelector.addEventListener("change", updateCircuitInfo);
 
 function updateCircuitInfo() {
-    trackFlag.src = tracks[trackSelector.value].flag;
-    trackMap.src = tracks[trackSelector.value].trackmap;
-    trackName.textContent = tracks[trackSelector.value].name;
-    trackLength.textContent = tracks[trackSelector.value].circuitLength;
+  trackFlag.src = tracks[trackSelector.value].flag;
+  trackMap.src = tracks[trackSelector.value].trackmap;
+  trackName.textContent = tracks[trackSelector.value].name;
+  trackLength.textContent = tracks[trackSelector.value].circuitLength;
 }
 
 function generateTrackSelection() {
@@ -1099,7 +1101,7 @@ function generateTrackSelection() {
   tracks.sort((a, b) => (a.name > b.name ? 1 : -1));
   trackSelector.innerHTML = "";
 
-  tracks.forEach(function(track, index) {
+  tracks.forEach(function (track, index) {
     trackSelector.innerHTML += `<option value="${index}">${track.name}: ${track.circuitLength}m</option>`;
   });
 
@@ -1110,7 +1112,7 @@ function updateWord() {
   if (currentDistance >= selectedTrack.circuitLength) {
     finish();
   } else {
-    let randomWordIndex = Math.random() * words.length;
+    let randomWordIndex = seededRng() * words.length;
     currentWord = words[Math.floor(randomWordIndex)];
     randomWordDiv.textContent = currentWord;
 
@@ -1120,7 +1122,7 @@ function updateWord() {
 
     timeLeftDiv.textContent = maxTime / 1000;
 
-    timeLeft = setInterval(function() {
+    timeLeft = setInterval(function () {
       date = new Date();
       now = date.getTime();
 
@@ -1158,14 +1160,25 @@ function typeWord() {
   }
 }
 
+function generateRandomWithSeed() {
+  if (seedInput.value) {
+    seededRng = new Math.seedrandom(seedInput.value);
+  } else {
+    seededRng = new Math.seedrandom(Math.random());
+  }
+}
+
 function startGame() {
+  generateRandomWithSeed();
+
   currentDistance = 0;
-  
+
   selectedTrack = tracks[trackSelector.value];
   //calculate distance per word
   distancePerWord = Math.ceil(
-    (1.5 * selectedTrack.circuitLength) / selectedTrack.intendedLapTime
+    (lapTimeScale * selectedTrack.circuitLength) / selectedTrack.intendedLapTime
   );
+  trackSelectorItem.hidden = true;
   startBtn.hidden = true;
   gameArea.hidden = false;
   wordInput.disabled = false;
@@ -1179,7 +1192,7 @@ function startGame() {
 
   let start = new Date().getTime();
 
-  lapTimeTimer = setInterval(function() {
+  lapTimeTimer = setInterval(function () {
     let now = new Date().getTime();
     let lapTime = now - start;
     let currentLapTime = new Date(lapTime).toISOString().slice(14, -1);
@@ -1198,7 +1211,7 @@ function finish() {
   randomWordDiv.hidden = true;
   gameOverReasonTitle.textContent = "Congratulations!";
   gameOverReason.textContent = "You have completed the lap!";
-  setTimeout(function() {
+  setTimeout(function () {
     restartBtn.hidden = false;
   }, 3000);
 }
@@ -1212,13 +1225,13 @@ function gameOver() {
   randomWordDiv.hidden = true;
   gameOverReasonTitle.textContent = "Big 4x!";
   gameOverReason.textContent = "You've got wheel damage!";
-  setTimeout(function() {
+  setTimeout(function () {
     restartBtn.hidden = false;
   }, 3000);
 }
 
 function preGame() {
-  // wordInput.type = "text";
+  trackSelectorItem.hidden = false;
   restartBtn.hidden = true;
   startBtn.hidden = false;
   trackSelector.disabled = false;
