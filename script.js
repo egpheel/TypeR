@@ -29,8 +29,8 @@ let tracks = [
     name: "Circuit de Spa-Francorchamps",
     circuitLength: 7004,
     intendedLapTime: 137,
-    flag: "svg/flag-italy.svg",
-    trackmap: "svg/monza.svg"
+    flag: "./svg/flag-italy.svg",
+    trackmap: "./svg/monza.svg"
   },
   { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428, flag: "", trackmap: "" },
   { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "", trackmap: "" },
