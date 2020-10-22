@@ -29,7 +29,7 @@ let distancePerWord = 0;
 let distanceVariation = 5;
 
 let tracks = [
-  { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "", trackmap: "" },
+  { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "", trackmap: "./svg/testtrack.svg" },
   {
     name: "Circuit de Spa-Francorchamps",
     circuitLength: 7004,
