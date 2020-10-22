@@ -13,7 +13,6 @@ const trackMap = document.querySelector("#trackMap");
 const trackName = document.querySelector("#trackName");
 const trackLength = document.querySelector("#trackLength");
 
-const svgFolder = "svg/"
 
 let currentDistance = 0;
 let currentWord;
@@ -30,8 +29,8 @@ let tracks = [
     name: "Circuit de Spa-Francorchamps",
     circuitLength: 7004,
     intendedLapTime: 137,
-    flag: "flag-italy.svg",
-    trackmap: "monza.svg"
+    flag: "svg/flag-italy.svg",
+    trackmap: "svg/monza.svg"
   },
   { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428, flag: "", trackmap: "" },
   { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "", trackmap: "" },
@@ -1083,8 +1082,8 @@ restartBtn.addEventListener("click", preGame);
 trackSelector.addEventListener("change", updateCircuitInfo);
 
 function updateCircuitInfo() {
-    trackFlag.src = svgFolder + tracks[trackSelector.value].flag;
-    trackMap.src = svgFolder + tracks[trackSelector.value].trackmap;
+    trackFlag.src = tracks[trackSelector.value].flag;
+    trackMap.src = tracks[trackSelector.value].trackmap;
     trackName.textContent = tracks[trackSelector.value].name;
     trackLength.textContent = tracks[trackSelector.value].circuitLength;
 }
