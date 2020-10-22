@@ -1148,6 +1148,9 @@ function updateWord() {
 }
 
 function typeWord() {
+  let str = wordInput.value.replace(/\s/g, '');
+  wordInput.value = str;
+
   if (wordInput.value.toLowerCase() === currentWord) {
     wordInput.value = "";
     clearInterval(timeLeft);
