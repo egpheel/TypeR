@@ -16,6 +16,32 @@
   </head>
   <body>
     <div class="mc">
+
+      <div class="modal-c show a-c">
+        <div class="icon-c"></div>
+        <div class="hs-40"></div>
+        <div class="c-100">
+          <strong>
+            <span class="txt-b txt-hl">Big 4x!</span>
+            <br />
+            <span class="txt-b">You've got wheel damage!<span>
+          </strong>
+        </div>
+        <div class="hs-40"></div>
+        <div class="c-50">
+            <strong><span class="txt-hl">Lap time:</span><br /><span class="txt-b">00:02.995</span></strong>
+        </div>
+        <div class="c-50">
+            <strong><span class="txt-hl">Completed</span><br /><span class="txt-b">2</span><span class="txt-b">%</span></strong>
+        </div>
+        <div class="hs-40"></div>
+        <div class="c-100">
+          <button id="restartBtn" class="g-btn go-c" style="display: block;">
+            Restart
+          </button>
+        </div>
+      </div>
+
       <div id="header">
 
         <div class="hs-20"></div>
@@ -30,7 +56,7 @@
 
       <div id="content" class="mc">
         
-        <div id="trackSelection" class="c-50 go-c">
+        <div id="trackSelection" class="mic go-c">
           <div class="c-100">
             <select name="trackSel" id="trackSel"></select><span class="s-arrow"></span>
           </div>
@@ -39,24 +65,25 @@
 
           <div id="trackInfo" class="c-100">
             <div class="c-50">
+              <div class="hs-40"></div>
               <object type="image/svg+xml" data="image.svg">
                   <img width="48" src="svg/flag-italy.svg" />
               </object>
-              <br /><br />
+              <br />
               <strong>
-                <span class="txt-m txt-case">Autodromo Nazionale di Monza</span>
+                <span class="txt-m txt-case">Autodromo <br />Nazionale di Monza</span>
                 <br />
                 <span class="txt-m txt-case txt-hl">5793m</span>
               <strong>
             </div>
             <div class="c-50">
               <object type="image/svg+xml" data="image.svg">
-                  <img width="50%" src="svg/monza.svg" />
+                  <img width="200" src="svg/monza.svg" />
               </object>
             </div>
           </div>
           
-          <div class="hs-40"></div>
+          <div class="hs-40 hidde-mob"></div>
           
           <button id="startBtn" class="g-btn go-c">
             Start
