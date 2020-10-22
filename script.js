@@ -1181,6 +1181,7 @@ function startGame() {
   wordInput.hidden = false;
   wordInput.value = "";
   randomWordDiv.hidden = false;
+  gameArea.scrollIntoView(false);
   updateWord();
   wordInput.focus();
   trackSelector.disabled = true;
