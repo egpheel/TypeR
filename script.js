@@ -1,3 +1,7 @@
+const originalURL = window.location.href;
+const urlQueryString = window.location.search;
+const seedFromURL = new URLSearchParams(urlQueryString);
+
 const trackSelectionDiv = document.querySelector("#trackSelection");
 const trackSelector = document.querySelector("#trackSel");
 const trackSelectorItem = document.querySelector("#trackSelectorItem");
@@ -1163,8 +1167,10 @@ function typeWord() {
 function generateRandomWithSeed() {
   if (seedInput.value) {
     seededRng = new Math.seedrandom(seedInput.value);
+    history.pushState({ id: 'ityping' }, 'iTyping', originalURL + '?seed=' + seedInput.value )
   } else {
     seededRng = new Math.seedrandom(Math.random());
+    history.pushState({ id: 'ityping' }, 'iTyping', originalURL )
   }
 }
 
@@ -1231,6 +1237,10 @@ function gameOver() {
 }
 
 function preGame() {
+  if (seedFromURL.has("seed")) {
+    seedInput.value = seedFromURL.get("seed");
+  }
+
   trackSelectorItem.hidden = false;
   restartBtn.hidden = true;
   startBtn.hidden = false;
