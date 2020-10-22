@@ -24,7 +24,7 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 .g-btn:hover {background-color: rgba(200, 40, 40, 1.00); color: rgba(255, 255, 255, 1.00); box-shadow: 0 5px 25px 0 rgba(200, 40, 40, 1.00);}
 .g-btn:active {background-color: rgba(40, 40, 40, 1.00); box-shadow: 0 0 0 0 rgba(40, 40, 40, 0.00); transition: all 0.0s;}
 
-/* CONATINERS */
+/* CONATINERS  */
 
 .mc {width: 100%;}
 .mc.main {padding-bottom: 290px;}
