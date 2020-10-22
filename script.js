@@ -1088,15 +1088,15 @@ function updateWord() {
     let now = date.getTime();
     let origTime = now + maxTime;
 
-    timeLeftDiv.textContent = `Time left: ${maxTime / 1000} seconds`;
+    timeLeftDiv.textContent = maxTime / 1000;
 
     timeLeft = setInterval(function() {
       date = new Date();
       now = date.getTime();
 
-      let time = Math.floor((origTime - now) / 1000);
+      let time = Math.round((origTime - now) / 1000);
 
-      timeLeftDiv.textContent = `Time left: ${time} seconds`;
+      timeLeftDiv.textContent = time;
 
       if (time <= 0) {
         gameOver();
@@ -1107,7 +1107,7 @@ function updateWord() {
   let percentage = Math.floor(
     (currentDistance * 100) / selectedTrack.circuitLength
   );
-  scoreDiv.textContent = `${percentage}% completed`;
+  scoreDiv.textContent = percentage;
 }
 
 function typeWord() {
@@ -1162,7 +1162,7 @@ function startGame() {
     let lapTime = now - start;
     let currentLapTime = new Date(lapTime).toISOString().slice(14, -1);
 
-    lapTimeDiv.textContent = `Lap time: ${currentLapTime}`;
+    lapTimeDiv.textContent = currentLapTime;
   }, 1);
 }
 
