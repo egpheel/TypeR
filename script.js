@@ -1,4 +1,4 @@
-const originalURL = window.location.href;
+const originalURL = window.location.href.split('?')[0];
 const urlQueryString = window.location.search;
 const seedFromURL = new URLSearchParams(urlQueryString);
 
