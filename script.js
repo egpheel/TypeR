@@ -8,6 +8,12 @@ const wordInput = document.querySelector("#wordInput");
 const startBtn = document.querySelector("#startBtn");
 const restartBtn = document.querySelector("#restartBtn");
 const gameArea = document.querySelector("#gameArea");
+const trackFlag = document.querySelector("#trackFlag");
+const trackMap = document.querySelector("#trackMap");
+const trackName = document.querySelector("#trackName");
+const trackLength = document.querySelector("#trackLength");
+
+const svgFolder = "svg/"
 
 let currentDistance = 0;
 let currentWord;
@@ -23,35 +29,45 @@ let tracks = [
   {
     name: "Circuit de Spa-Francorchamps",
     circuitLength: 7004,
-    intendedLapTime: 137
+    intendedLapTime: 137,
+    flag: "flag-italy.svg",
+    trackmap: "monza.svg"
   },
-  { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428 },
-  { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120 },
-  { name: "Lime Rock Park", circuitLength: 2410, intendedLapTime: 58 },
+  { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428, flag: "", trackmap: "" },
+  { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "", trackmap: "" },
+  { name: "Lime Rock Park", circuitLength: 2410, intendedLapTime: 58, flag: "", trackmap: "" },
   {
     name: "Circuit 24 Hours of Le Mans",
     circuitLength: 13626,
-    intendedLapTime: 173
+    intendedLapTime: 173,
+    flag: "",
+    trackmap: ""
   },
   {
     name: "Circuit Gilles Villeneuve",
     circuitLength: 4361,
-    intendedLapTime: 97
+    intendedLapTime: 97,
+    flag: "",
+    trackmap: ""
   },
-  { name: "Hockenheimring", circuitLength: 4574, intendedLapTime: 105 },
+  { name: "Hockenheimring", circuitLength: 4574, intendedLapTime: 105, flag: "", trackmap: "" },
   {
     name: "Autodromo Nazionale di Monza",
     circuitLength: 5793,
-    intendedLapTime: 110
+    intendedLapTime: 110,
+    flag: "",
+    trackmap: ""
   },
-  { name: "Circuit Zolder", circuitLength: 4011, intendedLapTime: 91 },
-  { name: "Circuit de Monaco", circuitLength: 3337, intendedLapTime: 100 },
+  { name: "Circuit Zolder", circuitLength: 4011, intendedLapTime: 91, flag: "", trackmap: "" },
+  { name: "Circuit de Monaco", circuitLength: 3337, intendedLapTime: 100, flag: "", trackmap: "" },
   {
     name: "Suzuka International Racing Course",
     circuitLength: 5807,
-    intendedLapTime: 125
+    intendedLapTime: 125,
+    flag: "",
+    trackmap: ""
   },
-  { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107 }
+  { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107, flag: "", trackmap: "" }
 ];
 
 const words = [
@@ -1059,10 +1075,19 @@ const words = [
 
 generateTrackSelection();
 preGame();
+updateCircuitInfo();
 
 wordInput.addEventListener("input", typeWord);
 startBtn.addEventListener("click", startGame);
 restartBtn.addEventListener("click", preGame);
+trackSelector.addEventListener("change", updateCircuitInfo);
+
+function updateCircuitInfo() {
+    trackFlag.src = svgFolder + tracks[trackSelector.value].flag;
+    trackMap.src = svgFolder + tracks[trackSelector.value].trackmap;
+    trackName.textContent = tracks[trackSelector.value].name;
+    trackLength.textContent = tracks[trackSelector.value].circuitLength;
+}
 
 function generateTrackSelection() {
   //sort tracks array
