@@ -35,26 +35,26 @@ let tracks = [
     circuitLength: 7004,
     intendedLapTime: 137,
     flag: "",
-    trackmap: ""
+    trackmap: "./svg/spa.svg"
   },
-  { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428, flag: "", trackmap: "" },
-  { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "", trackmap: "" },
-  { name: "Lime Rock Park", circuitLength: 2410, intendedLapTime: 58, flag: "", trackmap: "" },
+  { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428, flag: "", trackmap: "./svg/nordschleife.svg" },
+  { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "", trackmap: "./svg/silverstone.svg" },
+  { name: "Lime Rock Park", circuitLength: 2410, intendedLapTime: 58, flag: "", trackmap: "./svg/limerockpark.svg" },
   {
     name: "Circuit 24 Hours of Le Mans",
     circuitLength: 13626,
     intendedLapTime: 173,
     flag: "",
-    trackmap: ""
+    trackmap: "./svg/lemans.svg"
   },
   {
     name: "Circuit Gilles Villeneuve",
     circuitLength: 4361,
     intendedLapTime: 97,
     flag: "",
-    trackmap: ""
+    trackmap: "./svg/gillesvilleneuve.svg"
   },
-  { name: "Hockenheimring", circuitLength: 4574, intendedLapTime: 105, flag: "", trackmap: "" },
+  { name: "Hockenheimring", circuitLength: 4574, intendedLapTime: 105, flag: "", trackmap: "./svg/hockenheimring.svg" },
   {
     name: "Autodromo Nazionale di Monza",
     circuitLength: 5793,
@@ -62,18 +62,18 @@ let tracks = [
     flag: "./svg/flag-italy.svg",
     trackmap: "./svg/monza.svg"
   },
-  { name: "Circuit Zolder", circuitLength: 4011, intendedLapTime: 91, flag: "", trackmap: "" },
-  { name: "Circuit de Monaco", circuitLength: 3337, intendedLapTime: 100, flag: "", trackmap: "" },
+  { name: "Circuit Zolder", circuitLength: 4011, intendedLapTime: 91, flag: "", trackmap: "./svg/zolder.svg" },
+  { name: "Circuit de Monaco", circuitLength: 3337, intendedLapTime: 100, flag: "", trackmap: "./svg/monaco.svg" },
   {
     name: "Suzuka International Racing Course",
     circuitLength: 5807,
     intendedLapTime: 125,
     flag: "",
-    trackmap: ""
+    trackmap: "./svg/suzuka.svg"
   },
-  { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107, flag: "", trackmap: "" },
-  { name: "Autódromo Internacional do Algarve (Portimao)", circuitLength: 4692, intendedLapTime: 115, flag: "", trackmap: "" },
-  { name: "Autódromo do Estoril", circuitLength: 4182, intendedLapTime: 110, flag: "", trackmap: "" }
+  { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107, flag: "", trackmap: "./svg/fujispeedway.svg" },
+  { name: "Autódromo Internacional do Algarve (Portimao)", circuitLength: 4692, intendedLapTime: 115, flag: "", trackmap: "./svg/portimao.svg" },
+  { name: "Autódromo do Estoril", circuitLength: 4182, intendedLapTime: 110, flag: "", trackmap: "./svg/estoril.svg" }
 ];
 
 const words = [
