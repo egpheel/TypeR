@@ -71,7 +71,9 @@ let tracks = [
     flag: "",
     trackmap: ""
   },
-  { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107, flag: "", trackmap: "" }
+  { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107, flag: "", trackmap: "" },
+  { name: "Autódromo Internacional do Algarve (Portimao)", circuitLength: 4692, intendedLapTime: 115, flag: "", trackmap: "" },
+  { name: "Autódromo do Estoril", circuitLength: 4182, intendedLapTime: 110, flag: "", trackmap: "" }
 ];
 
 const words = [
