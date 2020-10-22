@@ -1166,11 +1166,12 @@ function typeWord() {
 
 function generateRandomWithSeed() {
   if (seedInput.value) {
-    seededRng = new Math.seedrandom(seedInput.value);
-    history.pushState({ id: 'ityping' }, 'iTyping', originalURL + '?seed=' + seedInput.value )
+    let rndSeed = seedInput.value + trackSelector.value;
+    seededRng = new Math.seedrandom(rndSeed);
+    history.pushState({ id: 'ityping' }, 'iTyping', originalURL + '?seed=' + seedInput.value + '&track=' + trackSelector.value)
   } else {
     seededRng = new Math.seedrandom(Math.random());
-    history.pushState({ id: 'ityping' }, 'iTyping', originalURL )
+    history.pushState({ id: 'ityping' }, 'iTyping', originalURL)
   }
 }
 
@@ -1239,6 +1240,10 @@ function gameOver() {
 function preGame() {
   if (seedFromURL.has("seed")) {
     seedInput.value = seedFromURL.get("seed");
+  }
+
+  if (seedFromURL.has("track")) {
+    trackSelector.value = seedFromURL.get("track");
   }
 
   trackSelectorItem.hidden = false;
