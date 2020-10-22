@@ -47,6 +47,7 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 .txt-m {font-size: 1.5rem;}
 
 .txt-hl {color: rgba(200, 40, 40, 1.00);}
+.txt-case {text-transform: uppercase;}
 
 strong {font-weight: 700;}
 
@@ -68,6 +69,12 @@ strong {font-weight: 700;}
   25% {opacity: 0.00;}
   100% {opacity: 1.00;}
 }
+
+#trackInfo .c-50:first-child {text-align: right; padding: 0 40px 0 0;}
+#trackInfo .c-50:last-child {text-align: left; padding: 0 0 0 40px;}
+#trackInfo .c-50:last-child:before {content: ''; width: 2px; height: 100%; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: -19px;}
+
+
 
 #randomWord {padding: 0 0 20px; font-size: 3rem; font-weight: 700; opacity: 0.50;}
 #wordInput {text-transform: lowercase;}
@@ -118,6 +125,6 @@ strong {font-weight: 700;}
 }
 
 @media only screen and (max-width: 600px) {
-  	.c-50 {width: calc(100% - 20px); margin: 0 10px 20px 10px;}
+  .c-50 {width: calc(100% - 20px); margin: 0 10px 20px 10px;}
 	.c-33 {width: calc(100% - 20px); margin: 0 10px 20px 10px;}
 }
