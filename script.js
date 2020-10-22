@@ -12,7 +12,11 @@ const trackFlag = document.querySelector("#trackFlag");
 const trackMap = document.querySelector("#trackMap");
 const trackName = document.querySelector("#trackName");
 const trackLength = document.querySelector("#trackLength");
-
+const gameOverModal = document.querySelector("#gameOverModal");
+const gameOverReasonTitle = document.querySelector("#gameOverReasonTitle");
+const gameOverReason = document.querySelector("#gameOverReason");
+const gameOverLapTime = document.querySelector("#gameOverLapTime");
+const gameOverPercentage = document.querySelector("#gameOverPercentage");
 
 let currentDistance = 0;
 let currentWord;
@@ -25,6 +29,7 @@ let distancePerWord = 0;
 let distanceVariation = 5;
 
 let tracks = [
+  { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "", trackmap: "" },
   {
     name: "Circuit de Spa-Francorchamps",
     circuitLength: 7004,
@@ -1132,6 +1137,7 @@ function updateWord() {
     (currentDistance * 100) / selectedTrack.circuitLength
   );
   scoreDiv.textContent = percentage;
+  gameOverPercentage.textContent = percentage;
 }
 
 function typeWord() {
@@ -1187,16 +1193,19 @@ function startGame() {
     let currentLapTime = new Date(lapTime).toISOString().slice(14, -1);
 
     lapTimeDiv.textContent = currentLapTime;
+    gameOverLapTime.textContent = currentLapTime;
   }, 1);
 }
 
 function finish() {
   clearInterval(timeLeft);
   clearInterval(lapTimeTimer);
+  gameOverModal.classList.add("show");
   wordInput.disabled = true;
   wordInput.hidden = true;
   randomWordDiv.hidden = true;
-  timeLeftDiv.textContent = "You finished the lap!";
+  gameOverReasonTitle.textContent = "Congratulations!";
+  gameOverReason.textContent = "You have completed the lap!";
   setTimeout(function() {
     restartBtn.hidden = false;
   }, 3000);
@@ -1205,10 +1214,12 @@ function finish() {
 function gameOver() {
   clearInterval(timeLeft);
   clearInterval(lapTimeTimer);
+  gameOverModal.classList.add("show");
   wordInput.disabled = true;
   wordInput.hidden = true;
   randomWordDiv.hidden = true;
-  timeLeftDiv.textContent = "Big 4x! You've got wheel damage!";
+  gameOverReasonTitle.textContent = "Big 4x!";
+  gameOverReason.textContent = "You've got wheel damage!";
   setTimeout(function() {
     restartBtn.hidden = false;
   }, 3000);
@@ -1220,4 +1231,5 @@ function preGame() {
   startBtn.hidden = false;
   trackSelector.disabled = false;
   gameArea.hidden = true;
+  gameOverModal.classList.remove("show");
 }
