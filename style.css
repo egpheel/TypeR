@@ -83,24 +83,27 @@ strong {font-weight: 700;}
 .modal-c .icon-c img {position: relative; float: left; top: 50%; transform: translateY(-50%);}
 .modal-c.show {top: 120px; transform: translateX(-50%); opacity: 1.00;}
 
-#trackSelection {transition: all 0.3s;}
-#trackSelection.show {top: -200px;}
+#trackSelectorItem {max-height: 0; transition: all 2s; overflow-y: hidden;}
+#trackSelectorItem.show {max-height: 500px;}
+
 .track-select-c {width: calc(70% - 10px);}
 .seed-input-c {width: calc(30% - 10px); float: right;}
 .seed-input-c input {text-align: center;}
 .seed-input-c:before {content: 'leave empty for random seed'; width: 100%; position: absolute; left: 0; bottom: -15px; font-size: 12px; text-align: center;}
 
-#trackInfo .c-50:first-child {text-align: right; padding: 0 40px 0 0;}
-#trackInfo .c-50:last-child {text-align: left; padding: 0 0 0 40px;}
-#trackInfo .c-50:last-child:before {content: ''; width: 2px; height: 100%; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: -12px;}
+#trackInfo .c-50.info {text-align: right; padding: 0 40px 0 0;}
+#trackInfo .c-50.circuit {text-align: left; padding: 0 0 0 40px;}
+#trackInfo .c-50.circuit:before {content: ''; width: 2px; height: 100%; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: -12px;}
 #trackFlag {box-shadow: 0 0 0 1px rgba(40, 40, 40, 0.15);}
 
 
 #randomWord {padding: 0 0 20px; font-size: 3rem; font-weight: 700; opacity: 0.50;}
 #wordInput {text-transform: lowercase;}
 
-.start-lights-c {width: 240px; background-color: rgba(40, 40, 40, 1.00); padding: 20px; border-radius: 10px; position: absolute; left: 50%; top: -300px; transform: translateX(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00); transition: all 0.5s; z-index: 10;}
-.start-lights-c.show {top: 120px; box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00);}
+
+
+.start-lights-c {width: 240px; background-color: rgba(40, 40, 40, 1.00); padding: 20px; border-radius: 10px; position: absolute; left: 50%; top: -300px; transform: translateX(-50%) translateY(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00); transition: all 0.5s; z-index: 10; opacity: 0.00;}
+.start-lights-c.show {top: 50%; box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00); opacity: 1.0;}
 .start-lights-c .green-row, 
 .start-lights-c .red-row {width: 100%; height: 40px;}
 .start-lights-c.show .green-row div {width: 30px; height: 30px; border-radius: 30px; margin: 5px; animation: GREELIGHTS 6s linear; background-color: rgba(255, 255, 255, 0.90); box-shadow: 0 0 25px 0 rgba(40, 200, 40, 1.00), 0 0 0 2px rgba(40, 200, 40, 0.75), inset 0 0 15px 5px rgba(40, 200, 40, 1.00);}
@@ -110,6 +113,7 @@ strong {font-weight: 700;}
 .start-lights-c.show .red-row div:nth-child(3) {animation: REDLIGHTC 6s linear;}
 .start-lights-c.show .red-row div:nth-child(4) {animation: REDLIGHTD 6s linear;}
 .start-lights-c.show .red-row div:nth-child(5) {animation: REDLIGHTE 6s linear;}
+
 
 @keyframes GREELIGHTS {
   0% {background-color: rgba(255, 255, 255, 0.10); box-shadow: 0 0 40px 5px rgba(40, 200, 40, 0.00), 0 0 0 2px rgba(40, 200, 40, 0.25), inset 0 0 15px 5px rgba(40, 200, 40, 0.30);}
@@ -215,9 +219,9 @@ strong {font-weight: 700;}
   .seed-input-c {width: 100%;}
 
   .track-c {margin: 40px 0 0 0; position: relative; left: initial; bottom: initial;}
-  #trackInfo .c-50:first-child {text-align: center; padding: 0 0 0 0;}
-  #trackInfo .c-50:last-child {text-align: center; padding: 0 0 0 0; transform: translateY(-20px);}
-  #trackInfo .c-50:last-child:before {content: ''; width: 50%; height: 2px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: 50%; top: 12px; transform: translateX(-50%);}
+  #trackInfo .c-50.info {text-align: center; padding: 0 0 0 0;}
+  #trackInfo .c-50.circuit {text-align: center; padding: 0 0 0 0; transform: translateY(-20px);}
+  #trackInfo .c-50.circuit:before {content: ''; width: 50%; height: 2px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: 50%; top: 12px; transform: translateX(-50%);}
 }
 
 ::-webkit-scrollbar {
