@@ -28,6 +28,7 @@ const modalSeed = document.querySelector("#modalSeed");
 const seedInput = document.querySelector("#seed");
 
 let startLightsTime = 7000;
+let startTime = 6000;
 let currentDistance = 0;
 let currentWord;
 let maxTime = 3000;
@@ -35,6 +36,7 @@ let timeLeft;
 let lapTimeTimer;
 let lapTime = 0;
 let lightsTimer;
+let lightsStartTimer;
 let selectedTrack;
 let distancePerWord = 0;
 let lapTimeScale = 1;
@@ -1192,7 +1194,7 @@ function generateRandomWithSeed() {
 
 function startLightsSequence() {
     generateRandomWithSeed();
-    
+
     startLights.classList.add("show");
     randomWordDiv.hidden = false;
     randomWordDiv.textContent = "Get ready!";
@@ -1207,16 +1209,18 @@ function startLightsSequence() {
     wordInput.focus();
     trackSelector.disabled = true;
 
-    let lightsTimer = setTimeout(function () {
+    lightsTimer = setTimeout(function () {
         startLights.classList.remove("show");
-
-        startGame();
+        clearTimeout(lightsTimer);
     }, startLightsTime);
+
+    lightsStartTimer = setTimeout(function() {
+        startGame();
+        clearTimeout(lightsStartTimer);
+    }, startTime);
 }
 
 function startGame() {
-  clearTimeout(lightsTimer);
-
   currentDistance = 0;
 
   selectedTrack = tracks[trackSelector.value];
