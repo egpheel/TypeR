@@ -64,7 +64,7 @@
 
         <div class="logo-c">
           <div class="flag"></div>
-          <div class="txt">iTyping</div>
+          <div class="txt">Type<span>R</span></div>
         </div>
       </div>
       
@@ -74,8 +74,8 @@
         
         <div id="trackSelection" class="mic go-c">
           <div id="trackSelectorItem" class="c-100 show">
-            <select name="trackSel" id="trackSel"></select><span class="s-arrow"></span>
-            <input name="seed" id="seed" autocomplete="off" type="text" maxlength="15" placeholder="Seed (leave empty for random seed)" />
+            <div class="track-select-c"><select name="trackSel" id="trackSel"></select><span class="s-arrow"></span></div>
+            <div class="seed-input-c"><input name="seed" id="seed" autocomplete="off" type="text" maxlength="15" placeholder="Seed" /></div>
           </div>
 
           <div class="hs-40"></div>
@@ -118,15 +118,15 @@
           <div id="gameArea" class="c-100">
             <div id="randomWord" class="c-100 a-c"></div>
             <input id="wordInput" name="wordInput" autocomplete="off" type="text" class="a-c txt-b" />
-            <div class="hs-40"></div>
-            <div class="c-33 a-c">
+            <div class="bar-c">
+              <div class="bar-value" style="width: 60%"></div>
+              <strong><span id="score" class="txt-b"></span><span class="txt-b">%</span></strong>
+            </div>
+            <div class="timer-c">
                 <strong><span class="txt-hl">Time left:</span><br /><span id="timeLeft" class="txt-b"></span><span>seconds</span></strong>
             </div>
-            <div class="c-33 a-c">
+            <div class="timer-l-c">
                 <strong><span class="txt-hl">Lap time:</span><br /><span id="lapTime" class="txt-b"></span></strong>
-            </div>
-            <div class="c-33 a-c">
-                <strong><span class="txt-hl">Completed</span><br /><span id="score" class="txt-b"></span><span class="txt-b">%</span></strong>
             </div>
           </div>
 
