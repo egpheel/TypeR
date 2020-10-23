@@ -2,6 +2,7 @@ const originalURL = window.location.href.split('?')[0];
 const urlQueryString = window.location.search;
 const seedFromURL = new URLSearchParams(urlQueryString);
 
+const startLights = document.querySelector("#startLights");
 const trackSelectionDiv = document.querySelector("#trackSelection");
 const trackSelector = document.querySelector("#trackSel");
 const trackSelectorItem = document.querySelector("#trackSelectorItem");
@@ -24,12 +25,14 @@ const gameOverLapTime = document.querySelector("#gameOverLapTime");
 const gameOverPercentage = document.querySelector("#gameOverPercentage");
 const seedInput = document.querySelector("#seed");
 
+let startLightsTime = 7000;
 let currentDistance = 0;
 let currentWord;
 let maxTime = 3000;
 let timeLeft;
 let lapTimeTimer;
 let lapTime = 0;
+let lightsTimer;
 let selectedTrack;
 let distancePerWord = 0;
 let lapTimeScale = 1;
@@ -1089,7 +1092,7 @@ preGame();
 updateCircuitInfo();
 
 wordInput.addEventListener("input", typeWord);
-startBtn.addEventListener("click", startGame);
+startBtn.addEventListener("click", startLightsSequence);
 restartBtn.addEventListener("click", preGame);
 trackSelector.addEventListener("change", updateCircuitInfo);
 
@@ -1178,8 +1181,30 @@ function generateRandomWithSeed() {
   }
 }
 
+function startLightsSequence() {
+    startLights.classList.add("show");
+    randomWordDiv.hidden = false;
+    randomWordDiv.textContent = "Get ready!";
+    gameArea.scrollIntoView(false);
+    trackSelectorItem.hidden = true;
+    startBtn.hidden = true;
+    gameArea.hidden = false;
+    wordInput.disabled = false;
+    wordInput.hidden = false;
+    wordInput.value = "";
+    wordInput.focus();
+    trackSelector.disabled = true;
+
+    let lightsTimer = setTimeout(function () {
+        startLights.classList.remove("show");
+
+        startGame();
+    }, startLightsTime);
+}
+
 function startGame() {
   generateRandomWithSeed();
+  clearTimeout(lightsTimer);
 
   currentDistance = 0;
 
@@ -1188,17 +1213,8 @@ function startGame() {
   distancePerWord = Math.ceil(
     (lapTimeScale * selectedTrack.circuitLength) / selectedTrack.intendedLapTime
   );
-  trackSelectorItem.hidden = true;
-  startBtn.hidden = true;
-  gameArea.hidden = false;
-  wordInput.disabled = false;
-  wordInput.hidden = false;
-  wordInput.value = "";
-  randomWordDiv.hidden = false;
-  gameArea.scrollIntoView(false);
+  
   updateWord();
-  wordInput.focus();
-  trackSelector.disabled = true;
 
   let start = new Date().getTime();
 
@@ -1248,6 +1264,10 @@ function preGame() {
   if (seedFromURL.has("track")) {
     trackSelector.value = seedFromURL.get("track");
   }
+
+  lapTimeDiv.textContent = "00:00.000";
+  timeLeftDiv.textContent = "3";
+  scoreDiv.textContent = "0";
 
   trackSelectorItem.hidden = false;
   restartBtn.hidden = true;
