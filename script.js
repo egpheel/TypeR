@@ -42,6 +42,17 @@ let selectedTrack;
 let distancePerWord = 0;
 let lapTimeScale = 1;
 let seededRng;
+let finishLapTime;
+
+let key = "asdkjHKjBAdkhbKJ12o1823)msaco!";
+let data = {
+  seed: null,
+  track: null,
+  laptime: null
+}
+
+// console.log(data.encrypt(key)['encrypted-data']);
+// console.log(Object.decrypt(data.encrypt(key)['encrypted-data'], key));
 
 let tracks = [
   { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg" },
@@ -1181,14 +1192,18 @@ function generateRandomWithSeed() {
   if (seedInput.value) {
     let rndSeed = seedInput.value + trackSelector.value;
     seededRng = new Math.seedrandom(rndSeed);
-    history.pushState({ id: 'ityping' }, 'iTyping', originalURL + '?s=' + seedInput.value + '&t=' + trackSelector.value)
+
+    data.seed = seedInput.value;
+    data.track = trackSelector.value;
+
+    //history.pushState({ id: 'ityping' }, 'iTyping', originalURL + '?s=' + seedInput.value + '&t=' + trackSelector.value)
 
     modalSeed.textContent = seedInput.value;
   } else {
     let rndNum = Math.round(Math.random() * 999999999999999);
     let rndSeed = rndNum + trackSelector.value;
     seededRng = new Math.seedrandom(rndSeed);
-    history.pushState({ id: 'ityping' }, 'iTyping', originalURL)
+    //history.pushState({ id: 'ityping' }, 'iTyping', originalURL)
 
     modalSeed.textContent = rndNum;
   }
@@ -1243,6 +1258,8 @@ function startGame() {
 
     lapTimeDiv.textContent = currentLapTime;
     gameOverLapTime.textContent = currentLapTime;
+
+    finishLapTime = lapTime;
   }, 1);
 }
 
@@ -1271,10 +1288,16 @@ function gameOver(isWin) {
   if (isWin) {
     gameOverReasonTitle.textContent = "Congratulations!";
     gameOverReason.textContent = "You have completed the lap!";
+
+    data.laptime = finishLapTime;
   } else {
     gameOverReasonTitle.textContent = "Big 4x!";
     gameOverReason.textContent = "You've got wheel damage!";
   }
+
+  let encryptedDataString = data.encrypt(key)['encrypted-data'];
+
+  history.pushState({ id: 'ityping' }, 'iTyping', "?s=" + encodeURIComponent(encryptedDataString))
 
   setTimeout(function () {
     restartBtn.hidden = false;
@@ -1283,11 +1306,10 @@ function gameOver(isWin) {
 
 function preGame() {
   if (seedFromURL.has("s")) {
-    seedInput.value = seedFromURL.get("s");
-  }
-
-  if (seedFromURL.has("t")) {
-    trackSelector.value = seedFromURL.get("t");
+    let encryptedDataString = decodeURIComponent(urlQueryString.substring(3));
+    data = Object.decrypt(encryptedDataString, key);
+    seedInput.value = data.seed;
+    trackSelector.value = data.track;
   }
 
   lapTimeDiv.textContent = "00:00.000";
