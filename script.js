@@ -1205,8 +1205,14 @@ function generateRandomWithSeed() {
     seededRng = new Math.seedrandom(rndSeed);
     //history.pushState({ id: 'ityping' }, 'iTyping', originalURL)
 
+    data.seed = rndNum;
+    data.track = trackSelector.value;
+
     modalSeed.textContent = rndNum;
   }
+
+  let encryptedDataString = data.encrypt(key)['encrypted-data'];
+  history.pushState({ id: 'ityping' }, 'iTyping', "?s=" + encodeURIComponent(encryptedDataString))
 }
 
 function startLightsSequence() {
@@ -1294,10 +1300,6 @@ function gameOver(isWin) {
     gameOverReasonTitle.textContent = "Big 4x!";
     gameOverReason.textContent = "You've got wheel damage!";
   }
-
-  let encryptedDataString = data.encrypt(key)['encrypted-data'];
-
-  history.pushState({ id: 'ityping' }, 'iTyping', "?s=" + encodeURIComponent(encryptedDataString))
 
   setTimeout(function () {
     restartBtn.hidden = false;
