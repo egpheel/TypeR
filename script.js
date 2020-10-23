@@ -1185,11 +1185,11 @@ function startLightsSequence() {
     startLights.classList.add("show");
     randomWordDiv.hidden = false;
     randomWordDiv.textContent = "Get ready!";
-    gameArea.scrollIntoView(false);
     trackSelectorItem.classList.remove("show");
     //trackSelectorItem.hidden = true;
     startBtn.hidden = true;
     gameArea.hidden = false;
+    gameArea.scrollIntoView(false);
     wordInput.disabled = false;
     wordInput.hidden = false;
     wordInput.value = "";
