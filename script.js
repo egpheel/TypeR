@@ -1210,6 +1210,7 @@ function startLightsSequence() {
   wordInput.value = "";
   wordInput.focus();
   trackSelector.disabled = true;
+  seedInput.disabled = true;
 
   lightsTimer = setTimeout(function () {
     startLights.classList.remove("show");
@@ -1298,6 +1299,7 @@ function preGame() {
   restartBtn.hidden = true;
   startBtn.hidden = false;
   trackSelector.disabled = false;
+  seedInput.disabled = false;
   gameArea.hidden = true;
   gameOverModal.classList.remove("show");
 }
