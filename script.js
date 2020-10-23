@@ -1174,7 +1174,7 @@ function generateRandomWithSeed() {
   if (seedInput.value) {
     let rndSeed = seedInput.value + trackSelector.value;
     seededRng = new Math.seedrandom(rndSeed);
-    history.pushState({ id: 'ityping' }, 'iTyping', originalURL + '?seed=' + seedInput.value + '&track=' + trackSelector.value)
+    history.pushState({ id: 'ityping' }, 'iTyping', originalURL + '?s=' + seedInput.value + '&t=' + trackSelector.value)
   } else {
     seededRng = new Math.seedrandom(Math.random());
     history.pushState({ id: 'ityping' }, 'iTyping', originalURL)
@@ -1186,7 +1186,8 @@ function startLightsSequence() {
     randomWordDiv.hidden = false;
     randomWordDiv.textContent = "Get ready!";
     gameArea.scrollIntoView(false);
-    trackSelectorItem.hidden = true;
+    trackSelectorItem.classList.remove("show");
+    //trackSelectorItem.hidden = true;
     startBtn.hidden = true;
     gameArea.hidden = false;
     wordInput.disabled = false;
@@ -1257,19 +1258,20 @@ function gameOver() {
 }
 
 function preGame() {
-  if (seedFromURL.has("seed")) {
-    seedInput.value = seedFromURL.get("seed");
+  if (seedFromURL.has("s")) {
+    seedInput.value = seedFromURL.get("s");
   }
 
-  if (seedFromURL.has("track")) {
-    trackSelector.value = seedFromURL.get("track");
+  if (seedFromURL.has("t")) {
+    trackSelector.value = seedFromURL.get("t");
   }
 
   lapTimeDiv.textContent = "00:00.000";
   timeLeftDiv.textContent = "3";
   scoreDiv.textContent = "0";
 
-  trackSelectorItem.hidden = false;
+  trackSelectorItem.classList.add("show");
+  //trackSelectorItem.hidden = false;
   restartBtn.hidden = true;
   startBtn.hidden = false;
   trackSelector.disabled = false;
