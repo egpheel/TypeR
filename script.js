@@ -1183,7 +1183,7 @@ function generateRandomWithSeed() {
     modalTrack.textContent = selectedTrack.name;
     modalSeed.textContent = seedInput.value;
   } else {
-    let rndNum = Math.random() * 999999999999999;
+    let rndNum = Math.round(Math.random() * 999999999999999);
     let rndSeed = rndNum + trackSelector.value;
     seededRng = new Math.seedrandom(rndSeed);
     history.pushState({ id: 'ityping' }, 'iTyping', originalURL)
