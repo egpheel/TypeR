@@ -1212,7 +1212,7 @@ function generateRandomWithSeed() {
   }
 
   let encryptedDataString = data.encrypt(key)['encrypted-data'];
-  history.pushState({ id: 'ityping' }, 'iTyping', "?s=" + encodeURIComponent(encryptedDataString))
+  history.pushState({ id: 'ityping' }, 'iTyping', originalURL + "?s=" + encodeURIComponent(encryptedDataString))
 }
 
 function startLightsSequence() {
@@ -1313,7 +1313,8 @@ function preGame() {
     seedInput.value = data.seed;
     trackSelector.value = data.track;
   }
-
+  
+  history.pushState({ id: 'ityping' }, 'iTyping', originalURL);
   lapTimeDiv.textContent = "00:00.000";
   timeLeftDiv.textContent = "3";
   scoreDiv.textContent = "0";
