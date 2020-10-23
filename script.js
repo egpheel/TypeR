@@ -1105,6 +1105,7 @@ function updateCircuitInfo() {
   trackMap.src = tracks[trackSelector.value].trackmap;
   trackName.textContent = tracks[trackSelector.value].name;
   trackLength.textContent = tracks[trackSelector.value].circuitLength;
+  modalTrack.textContent = tracks[trackSelector.value].name;
 }
 
 function generateTrackSelection() {
@@ -1121,7 +1122,7 @@ function generateTrackSelection() {
 
 function updateWord() {
   if (currentDistance >= selectedTrack.circuitLength) {
-    finish();
+    gameOver(true);
   } else {
     let randomWordIndex = seededRng() * words.length;
     currentWord = words[Math.floor(randomWordIndex)];
@@ -1142,7 +1143,7 @@ function updateWord() {
       timeLeftDiv.textContent = time;
 
       if (time <= 0) {
-        gameOver();
+        gameOver(false);
       }
     }, 1000);
   }
@@ -1180,7 +1181,6 @@ function generateRandomWithSeed() {
     seededRng = new Math.seedrandom(rndSeed);
     history.pushState({ id: 'ityping' }, 'iTyping', originalURL + '?s=' + seedInput.value + '&t=' + trackSelector.value)
 
-    modalTrack.textContent = selectedTrack.name;
     modalSeed.textContent = seedInput.value;
   } else {
     let rndNum = Math.round(Math.random() * 999999999999999);
@@ -1188,7 +1188,6 @@ function generateRandomWithSeed() {
     seededRng = new Math.seedrandom(rndSeed);
     history.pushState({ id: 'ityping' }, 'iTyping', originalURL)
 
-    modalTrack.textContent = selectedTrack.name;
     modalSeed.textContent = rndNum;
   }
 }
@@ -1244,29 +1243,36 @@ function startGame() {
   }, 1);
 }
 
-function finish() {
-  clearInterval(timeLeft);
-  clearInterval(lapTimeTimer);
-  gameOverModal.classList.add("show");
-  wordInput.disabled = true;
-  wordInput.hidden = true;
-  randomWordDiv.hidden = true;
-  gameOverReasonTitle.textContent = "Congratulations!";
-  gameOverReason.textContent = "You have completed the lap!";
-  setTimeout(function () {
-    restartBtn.hidden = false;
-  }, 3000);
-}
+// function finish() {
+//   clearInterval(timeLeft);
+//   clearInterval(lapTimeTimer);
+//   gameOverModal.classList.add("show");
+//   wordInput.disabled = true;
+//   wordInput.hidden = true;
+//   randomWordDiv.hidden = true;
+//   gameOverReasonTitle.textContent = "Congratulations!";
+//   gameOverReason.textContent = "You have completed the lap!";
+//   setTimeout(function () {
+//     restartBtn.hidden = false;
+//   }, 3000);
+// }
 
-function gameOver() {
+function gameOver(isWin) {
   clearInterval(timeLeft);
   clearInterval(lapTimeTimer);
   gameOverModal.classList.add("show");
   wordInput.disabled = true;
   wordInput.hidden = true;
   randomWordDiv.hidden = true;
-  gameOverReasonTitle.textContent = "Big 4x!";
-  gameOverReason.textContent = "You've got wheel damage!";
+
+  if (isWin) {
+    gameOverReasonTitle.textContent = "Congratulations!";
+    gameOverReason.textContent = "You have completed the lap!";
+  } else {
+    gameOverReasonTitle.textContent = "Big 4x!";
+    gameOverReason.textContent = "You've got wheel damage!";
+  }
+
   setTimeout(function () {
     restartBtn.hidden = false;
   }, 3000);
