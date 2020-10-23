@@ -1183,12 +1183,13 @@ function generateRandomWithSeed() {
     modalTrack.textContent = selectedTrack.name;
     modalSeed.textContent = seedInput.value;
   } else {
-    let rndSeed = Math.random() + trackSelector.value;
+    let rndNum = Math.random();
+    let rndSeed = rndNum + trackSelector.value;
     seededRng = new Math.seedrandom(rndSeed);
     history.pushState({ id: 'ityping' }, 'iTyping', originalURL)
 
     modalTrack.textContent = selectedTrack.name;
-    modalSeed.textContent = rndSeed;
+    modalSeed.textContent = rndNum;
   }
 }
 
