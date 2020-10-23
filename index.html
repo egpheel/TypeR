@@ -65,14 +65,14 @@
       <div id="content" class="mc">
         
         <div id="trackSelection" class="mic go-c">
-          <div id="trackSelectorItem" class="c-100">
+          <div id="trackSelectorItem" class="c-100 show">
             <select name="trackSel" id="trackSel"></select><span class="s-arrow"></span>
             <input name="seed" id="seed" autocomplete="off" type="text" maxlength="15" placeholder="Seed (leave empty for random seed)" />
           </div>
 
           <div class="hs-40"></div>
 
-          <div class="start-lights-c show">
+          <div id="startLights" class="start-lights-c">
             <div class="green-row"><div></div><div></div><div></div><div></div><div></div></div>
             <div class="red-row"><div></div><div></div><div></div><div></div><div></div></div>
             <div class="red-row"><div></div><div></div><div></div><div></div><div></div></div>
@@ -128,7 +128,7 @@
 
     </div>
 
-    <div class="track-c">
+    <div class="track-c" style="display: none;">
       <div class="finish"></div>
       <div class="track-edge"></div>
       <div class="p-lane-c">
