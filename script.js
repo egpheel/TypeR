@@ -23,6 +23,8 @@ const gameOverReasonTitle = document.querySelector("#gameOverReasonTitle");
 const gameOverReason = document.querySelector("#gameOverReason");
 const gameOverLapTime = document.querySelector("#gameOverLapTime");
 const gameOverPercentage = document.querySelector("#gameOverPercentage");
+const modalTrack = document.querySelector("#modalTrack");
+const modalSeed = document.querySelector("#modalSeed");
 const seedInput = document.querySelector("#seed");
 
 let startLightsTime = 7000;
@@ -1175,9 +1177,16 @@ function generateRandomWithSeed() {
     let rndSeed = seedInput.value + trackSelector.value;
     seededRng = new Math.seedrandom(rndSeed);
     history.pushState({ id: 'ityping' }, 'iTyping', originalURL + '?s=' + seedInput.value + '&t=' + trackSelector.value)
+
+    modalTrack.textContent = selectedTrack.name;
+    modalSeed.textContent = seedInput.value;
   } else {
-    seededRng = new Math.seedrandom(Math.random());
+    let rndSeed = Math.random();
+    seededRng = new Math.seedrandom(rndSeed);
     history.pushState({ id: 'ityping' }, 'iTyping', originalURL)
+
+    modalTrack.textContent = selectedTrack.name;
+    modalSeed.textContent = rndSeed;
   }
 }
 
