@@ -27,6 +27,8 @@ const modalTrack = document.querySelector("#modalTrack");
 const modalSeed = document.querySelector("#modalSeed");
 const seedInput = document.querySelector("#seed");
 const percentageBar = document.querySelector("#percentageBar");
+const copyBtn = document.querySelector("#copyBtn");
+const textToCopy = document.querySelector("#textToCopy");
 
 let startLightsTime = 7000;
 let startTime = 6000;
@@ -43,16 +45,14 @@ let distancePerWord = 0;
 let lapTimeScale = 1;
 let seededRng;
 let finishLapTime;
+let URLString;
 
-let key = "asdkjHKjBAdkhbKJ12o1823)msaco!";
+let msg = "Big 4x!";
 let data = {
   seed: null,
   track: null,
   laptime: null
 }
-
-// console.log(data.encrypt(key)['encrypted-data']);
-// console.log(Object.decrypt(data.encrypt(key)['encrypted-data'], key));
 
 let tracks = [
   { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg" },
@@ -1110,6 +1110,7 @@ updateCircuitInfo();
 wordInput.addEventListener("input", typeWord);
 startBtn.addEventListener("click", startLightsSequence);
 restartBtn.addEventListener("click", preGame);
+copyBtn.addEventListener("click", copyUrlToClipboard);
 trackSelector.addEventListener("change", updateCircuitInfo);
 
 function updateCircuitInfo() {
@@ -1130,6 +1131,13 @@ function generateTrackSelection() {
   });
 
   selectedTrack = tracks[trackSelector.value];
+}
+
+function copyUrlToClipboard() {
+  textToCopy.select();
+  document.execCommand("copy");
+  copyBtn.disabled = true;
+  copyBtn.textContent = "Copied!";
 }
 
 function updateWord() {
@@ -1196,14 +1204,14 @@ function generateRandomWithSeed() {
     data.seed = seedInput.value;
     data.track = trackSelector.value;
 
-    //history.pushState({ id: 'ityping' }, 'iTyping', originalURL + '?s=' + seedInput.value + '&t=' + trackSelector.value)
+    //history.pushState({ id: 'typer' }, 'TypeR', originalURL + '?s=' + seedInput.value + '&t=' + trackSelector.value)
 
     modalSeed.textContent = seedInput.value;
   } else {
     let rndNum = Math.round(Math.random() * 999999999999999);
     let rndSeed = rndNum + trackSelector.value;
     seededRng = new Math.seedrandom(rndSeed);
-    //history.pushState({ id: 'ityping' }, 'iTyping', originalURL)
+    //history.pushState({ id: 'typer' }, 'TypeR', originalURL)
 
     data.seed = rndNum;
     data.track = trackSelector.value;
@@ -1211,8 +1219,9 @@ function generateRandomWithSeed() {
     modalSeed.textContent = rndNum;
   }
 
-  let encryptedDataString = data.encrypt(key)['encrypted-data'];
-  history.pushState({ id: 'ityping' }, 'iTyping', originalURL + "?s=" + encodeURIComponent(encryptedDataString))
+  let encryptedDataString = data.encrypt(msg)['encrypted-data'];
+  URLString = originalURL + "?s=" + encodeURIComponent(encryptedDataString);
+  //history.pushState({ id: 'typer' }, 'TypeR', URLString);
 }
 
 function startLightsSequence() {
@@ -1287,6 +1296,9 @@ function gameOver(isWin) {
   clearInterval(timeLeft);
   clearInterval(lapTimeTimer);
   gameOverModal.classList.add("show");
+  textToCopy.value = URLString;
+  copyBtn.textContent = "Copy to clipboard";
+  copyBtn.disabled = false;
   wordInput.disabled = true;
   wordInput.hidden = true;
   randomWordDiv.hidden = true;
@@ -1309,12 +1321,12 @@ function gameOver(isWin) {
 function preGame() {
   if (seedFromURL.has("s")) {
     let encryptedDataString = decodeURIComponent(urlQueryString.substring(3));
-    data = Object.decrypt(encryptedDataString, key);
+    data = Object.decrypt(encryptedDataString, msg);
     seedInput.value = data.seed;
     trackSelector.value = data.track;
   }
   
-  history.pushState({ id: 'ityping' }, 'iTyping', originalURL);
+  history.pushState({ id: 'typer' }, 'TyoeR', originalURL);
   lapTimeDiv.textContent = "00:00.000";
   timeLeftDiv.textContent = "3";
   scoreDiv.textContent = "0";
