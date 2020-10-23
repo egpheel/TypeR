@@ -1191,6 +1191,8 @@ function generateRandomWithSeed() {
 }
 
 function startLightsSequence() {
+    generateRandomWithSeed();
+    
     startLights.classList.add("show");
     randomWordDiv.hidden = false;
     randomWordDiv.textContent = "Get ready!";
@@ -1213,7 +1215,6 @@ function startLightsSequence() {
 }
 
 function startGame() {
-  generateRandomWithSeed();
   clearTimeout(lightsTimer);
 
   currentDistance = 0;
