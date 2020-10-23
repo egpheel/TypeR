@@ -1,9 +1,10 @@
-<!DOCTYPE html translate="no">
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" translate="no">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google" content="notranslate" />
 
     <title>iTyping</title>
 
@@ -11,6 +12,9 @@
     <link rel="stylesheet" href="./style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,500;1,700&display=swap" rel="stylesheet">
 
+    <!-- script that allows for seeding random numbers -> https://github.com/davidbau/seedrandom -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    
     <!-- import the webpage's javascript file -->
     <script src="./script.js" defer></script>
   </head>
@@ -20,23 +24,23 @@
       <div id="gameOverModal" class="modal-c a-c">
         <div class="icon-c">
           <object type="image/svg+xml" data="image.svg">
-              <img width="80" src="svg/icon-crash.svg" />
+              <img width="80" src="./svg/icon-crash.svg" />
           </object>
         </div>
         <div class="hs-20"></div>
         <div class="c-100">
           <strong>
-            <span id="gameOverReasonTitle" class="txt-b txt-hl">Big 4x!</span>
+            <span id="gameOverReasonTitle" class="txt-b txt-hl"></span>
             <br />
-            <span id="gameOverReason" class="txt-b">You've got wheel damage!<span>
+            <span id="gameOverReason" class="txt-b"><span>
           </strong>
         </div>
         <div class="hs-20"></div>
         <div class="c-50">
-            <strong><span class="txt-hl">Lap time</span><br /><span id="gameOverLapTime" class="txt-b">00:02.995</span></strong>
+            <strong><span class="txt-hl">Lap time</span><br /><span id="gameOverLapTime" class="txt-b"></span></strong>
         </div>
         <div class="c-50">
-            <strong><span class="txt-hl">Completed</span><br /><span id="gameOverPercentage" class="txt-b">2</span><span class="txt-b">%</span></strong>
+            <strong><span class="txt-hl">Completed</span><br /><span id="gameOverPercentage" class="txt-b"></span><span class="txt-b">%</span></strong>
         </div>
         <div class="hs-20"></div>
         <div class="c-100">
@@ -61,8 +65,9 @@
       <div id="content" class="mc">
         
         <div id="trackSelection" class="mic go-c">
-          <div class="c-100">
+          <div id="trackSelectorItem" class="c-100">
             <select name="trackSel" id="trackSel"></select><span class="s-arrow"></span>
+            <input name="seed" id="seed" autocomplete="off" type="text" maxlength="15" placeholder="Seed (leave empty for random seed)" />
           </div>
 
           <div class="hs-40"></div>
