@@ -26,6 +26,7 @@ const gameOverPercentage = document.querySelector("#gameOverPercentage");
 const modalTrack = document.querySelector("#modalTrack");
 const modalSeed = document.querySelector("#modalSeed");
 const seedInput = document.querySelector("#seed");
+const percentageBar = document.querySelector("#percentageBar");
 
 let startLightsTime = 7000;
 let startTime = 6000;
@@ -1153,6 +1154,7 @@ function updateWord() {
   );
   scoreDiv.textContent = percentage;
   gameOverPercentage.textContent = percentage;
+  percentageBar.style["width"] = percentage + "%";
 }
 
 function typeWord() {
@@ -1193,31 +1195,31 @@ function generateRandomWithSeed() {
 }
 
 function startLightsSequence() {
-    generateRandomWithSeed();
+  generateRandomWithSeed();
 
-    startLights.classList.add("show");
-    randomWordDiv.hidden = false;
-    randomWordDiv.textContent = "Get ready!";
-    trackSelectorItem.classList.remove("show");
-    //trackSelectorItem.hidden = true;
-    startBtn.hidden = true;
-    gameArea.hidden = false;
-    gameArea.scrollIntoView(false);
-    wordInput.disabled = false;
-    wordInput.hidden = false;
-    wordInput.value = "";
-    wordInput.focus();
-    trackSelector.disabled = true;
+  startLights.classList.add("show");
+  randomWordDiv.hidden = false;
+  randomWordDiv.textContent = "Get ready!";
+  trackSelectorItem.classList.remove("show");
+  //trackSelectorItem.hidden = true;
+  startBtn.hidden = true;
+  gameArea.hidden = false;
+  gameArea.scrollIntoView(false);
+  wordInput.disabled = false;
+  wordInput.hidden = false;
+  wordInput.value = "";
+  wordInput.focus();
+  trackSelector.disabled = true;
 
-    lightsTimer = setTimeout(function () {
-        startLights.classList.remove("show");
-        clearTimeout(lightsTimer);
-    }, startLightsTime);
+  lightsTimer = setTimeout(function () {
+    startLights.classList.remove("show");
+    clearTimeout(lightsTimer);
+  }, startLightsTime);
 
-    lightsStartTimer = setTimeout(function() {
-        startGame();
-        clearTimeout(lightsStartTimer);
-    }, startTime);
+  lightsStartTimer = setTimeout(function () {
+    startGame();
+    clearTimeout(lightsStartTimer);
+  }, startTime);
 }
 
 function startGame() {
@@ -1228,7 +1230,7 @@ function startGame() {
   distancePerWord = Math.ceil(
     (lapTimeScale * selectedTrack.circuitLength) / selectedTrack.intendedLapTime
   );
-  
+
   updateWord();
 
   let start = new Date().getTime();

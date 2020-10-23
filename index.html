@@ -1,170 +1,200 @@
 <!DOCTYPE html>
 <html lang="en" translate="no">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="google" content="notranslate" />
 
-    <title>iTyping</title>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google" content="notranslate" />
 
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="./style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,500;1,700&display=swap" rel="stylesheet">
+  <title>iTyping</title>
 
-    <!-- script that allows for seeding random numbers -> https://github.com/davidbau/seedrandom -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
-    
-    <!-- import the webpage's javascript file -->
-    <script src="./script.js" defer></script>
-  </head>
-  <body>
-    <div class="mc main">
+  <!-- import the webpage's stylesheet -->
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,500;1,700&display=swap" rel="stylesheet">
 
-      <div id="gameOverModal" class="modal-c a-c">
-        <div class="icon-c">
-          <object type="image/svg+xml" data="image.svg">
-              <img width="80" src="./svg/icon-crash.svg" />
-          </object>
-        </div>
-        <div class="hs-20"></div>
-        <div class="c-100">
-          <strong>
-            <span class="txt-hl">Circuit</span>
-            <br />
-            <span id="modalTrack"></span>
-            <br />
-            <span class="txt-hl">Seed</span>
-            <br />
-            <span id="modalSeed"></span>
-            <br />
-            <span id="gameOverReasonTitle" class="txt-b txt-hl"></span>
-            <br />
-            <span id="gameOverReason" class="txt-b"></span>
-          </strong>
-        </div>
-        <div class="hs-20"></div>
-        <div class="c-50">
-            <strong><span class="txt-hl">Lap time</span><br /><span id="gameOverLapTime" class="txt-b"></span></strong>
-        </div>
-        <div class="c-50">
-            <strong><span class="txt-hl">Completed</span><br /><span id="gameOverPercentage" class="txt-b"></span><span class="txt-b">%</span></strong>
-        </div>
-        <div class="hs-20"></div>
-        <div class="c-100">
-          <button id="restartBtn" class="g-btn go-c" style="display: block;">
-            Restart
-          </button>
-        </div>
+  <!-- script that allows for seeding random numbers -> https://github.com/davidbau/seedrandom -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+
+  <!-- import the webpage's javascript file -->
+  <script src="./script.js" defer></script>
+</head>
+
+<body>
+  <div class="mc main">
+
+    <div id="gameOverModal" class="modal-c a-c">
+      <div class="icon-c">
+        <object type="image/svg+xml" data="image.svg">
+          <img width="80" src="./svg/icon-crash.svg" />
+        </object>
       </div>
-
-      <div id="header">
-
-        <div class="hs-20"></div>
-
-        <div class="logo-c">
-          <div class="flag"></div>
-          <div class="txt">Type<span>R</span></div>
-        </div>
+      <div class="hs-20"></div>
+      <div class="c-100">
+        <strong>
+          <span class="txt-hl">Circuit</span>
+          <br />
+          <span id="modalTrack"></span>
+          <br />
+          <span class="txt-hl">Seed</span>
+          <br />
+          <span id="modalSeed"></span>
+          <br />
+          <span id="gameOverReasonTitle" class="txt-b txt-hl"></span>
+          <br />
+          <span id="gameOverReason" class="txt-b"></span>
+        </strong>
       </div>
-      
-      <div class="hs-40"></div>
+      <div class="hs-20"></div>
+      <div class="c-50">
+        <strong><span class="txt-hl">Lap time</span><br /><span id="gameOverLapTime" class="txt-b"></span></strong>
+      </div>
+      <div class="c-50">
+        <strong><span class="txt-hl">Completed</span><br /><span id="gameOverPercentage" class="txt-b"></span><span
+            class="txt-b">%</span></strong>
+      </div>
+      <div class="hs-20"></div>
+      <div class="c-100">
+        <button id="restartBtn" class="g-btn go-c" style="display: block;">
+          Restart
+        </button>
+      </div>
+    </div>
 
-      <div id="content" class="mc">
-        
-        <div id="trackSelection" class="mic go-c">
-          <div id="trackSelectorItem" class="c-100 show">
-            <div class="track-select-c"><select name="trackSel" id="trackSel"></select><span class="s-arrow"></span></div>
-            <div class="seed-input-c"><input name="seed" id="seed" autocomplete="off" type="text" maxlength="15" placeholder="Seed" /></div>
+    <div id="header">
+
+      <div class="hs-20"></div>
+
+      <div class="logo-c">
+        <div class="flag"></div>
+        <div class="txt">Type<span>R</span></div>
+      </div>
+    </div>
+
+    <div class="hs-40"></div>
+
+    <div id="content" class="mc">
+
+      <div id="trackSelection" class="mic go-c">
+        <div id="trackSelectorItem" class="c-100 show">
+          <div class="track-select-c"><select name="trackSel" id="trackSel"></select><span class="s-arrow"></span></div>
+          <div class="seed-input-c"><input name="seed" id="seed" autocomplete="off" type="text" maxlength="15"
+              placeholder="Seed" /></div>
+        </div>
+
+        <div class="hs-40"></div>
+
+        <div id="startLights" class="start-lights-c">
+          <div class="green-row">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
-
-          <div class="hs-40"></div>
-
-          <div id="startLights" class="start-lights-c">
-            <div class="green-row"><div></div><div></div><div></div><div></div><div></div></div>
-            <div class="red-row"><div></div><div></div><div></div><div></div><div></div></div>
-            <div class="red-row"><div></div><div></div><div></div><div></div><div></div></div>
+          <div class="red-row">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
+          <div class="red-row">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
 
 
-          <div id="trackInfo" class="c-100">            
-            <div class="c-50">
-              <div class="hs-40 hidde-mob"></div>
-              <object type="image/svg+xml" data="image.svg">
-                  <img id="trackFlag" width="48" src="" />
-              </object>
+        <div id="trackInfo" class="c-100">
+          <div class="c-50">
+            <div class="hs-40 hidde-mob"></div>
+            <object type="image/svg+xml" data="image.svg">
+              <img id="trackFlag" width="48" src="" />
+            </object>
+            <br />
+            <strong>
+              <span id="trackName" class="txt-m txt-case"></span>
               <br />
-              <strong>
-                <span id="trackName" class="txt-m txt-case"></span>
-                <br />
-                <span id="trackLength" class="txt-m txt-case txt-hl"></span><span class="txt-m txt-case txt-hl">m</span>
-              </strong>
-            </div>
-            <div class="c-50">
-              <object type="image/svg+xml" data="image.svg">
-                  <img id="trackMap" width="200" src="" />
-              </object>
-            </div>
+              <span id="trackLength" class="txt-m txt-case txt-hl"></span><span class="txt-m txt-case txt-hl">m</span>
+            </strong>
           </div>
-          
-          <div class="hs-20 hidde-mob"></div>
-          
-          <button id="startBtn" class="g-btn go-c">
-            Start
-          </button>
-
-          <div class="hs-20"></div>
-
-          <div id="gameArea" class="c-100">
-            <div id="randomWord" class="c-100 a-c"></div>
-            <input id="wordInput" name="wordInput" autocomplete="off" type="text" class="a-c txt-b" />
-            <div class="bar-c">
-              <div class="bar-value" style="width: 60%"></div>
-              <strong><span id="score" class="txt-b"></span><span class="txt-b">%</span></strong>
-            </div>
-            <div class="timer-c">
-                <strong><span class="txt-hl">Time left:</span><br /><span id="timeLeft" class="txt-b"></span><span>seconds</span></strong>
-            </div>
-            <div class="timer-l-c">
-                <strong><span class="txt-hl">Lap time:</span><br /><span id="lapTime" class="txt-b"></span></strong>
-            </div>
+          <div class="c-50">
+            <object type="image/svg+xml" data="image.svg">
+              <img id="trackMap" width="200" src="" />
+            </object>
           </div>
+        </div>
 
+        <div class="hs-20 hidde-mob"></div>
+
+        <button id="startBtn" class="g-btn go-c">
+          Start
+        </button>
+
+        <div class="hs-20"></div>
+
+        <div id="gameArea" class="c-100">
+          <div id="randomWord" class="c-100 a-c"></div>
+          <input id="wordInput" name="wordInput" autocomplete="off" type="text" class="a-c txt-b" />
+          <div class="bar-c">
+            <div id="percentageBar" class="bar-value" style="width: 0%"></div>
+            <strong><span id="score" class="txt-b"></span><span class="txt-b">%</span></strong>
+          </div>
+          <div class="timer-c">
+            <strong><span class="txt-hl">Time left</span><br /><span id="timeLeft"
+                class="txt-b"></span><span>seconds</span></strong>
+          </div>
+          <div class="timer-l-c">
+            <strong><span class="txt-hl">Lap time</span><br /><span id="lapTime" class="txt-b"></span></strong>
+          </div>
         </div>
 
       </div>
 
     </div>
 
-    <div class="track-c" style="display: none;">
-      <div class="finish"></div>
-      <div class="track-edge"></div>
-      <div class="p-lane-c">
-        <div class="car-c red go-c">
-          <div class="side-windows"></div>
-          <div class="front-back-windows"><div class="side-bar"></div></div>
-          <div class="front-wheels"></div>
-          <div class="back-wheels"></div>
-        </div>
-      </div>
-      <div class="p-lane-c">
-        <div class="car-c blue go-c">
-          <div class="side-windows"></div>
-          <div class="front-back-windows"><div class="side-bar"></div></div>
-          <div class="front-wheels"></div>
-          <div class="back-wheels"></div>
-        </div>
-      </div>
-      <div class="p-lane-c">
-        <div class="car-c white go-c">
-          <div class="side-windows"></div>
-          <div class="front-back-windows"><div class="side-bar"></div></div>
-          <div class="front-wheels"></div>
-          <div class="back-wheels"></div>
-        </div>
-      </div>
-      <div class="track-edge"></div>
-    </div>
+  </div>
 
-  </body>
+  <div class="track-c" style="display: none;">
+    <div class="finish"></div>
+    <div class="track-edge"></div>
+    <div class="p-lane-c">
+      <div class="car-c red go-c">
+        <div class="side-windows"></div>
+        <div class="front-back-windows">
+          <div class="side-bar"></div>
+        </div>
+        <div class="front-wheels"></div>
+        <div class="back-wheels"></div>
+      </div>
+    </div>
+    <div class="p-lane-c">
+      <div class="car-c blue go-c">
+        <div class="side-windows"></div>
+        <div class="front-back-windows">
+          <div class="side-bar"></div>
+        </div>
+        <div class="front-wheels"></div>
+        <div class="back-wheels"></div>
+      </div>
+    </div>
+    <div class="p-lane-c">
+      <div class="car-c white go-c">
+        <div class="side-windows"></div>
+        <div class="front-back-windows">
+          <div class="side-bar"></div>
+        </div>
+        <div class="front-wheels"></div>
+        <div class="back-wheels"></div>
+      </div>
+    </div>
+    <div class="track-edge"></div>
+  </div>
+
+</body>
+
 </html>
