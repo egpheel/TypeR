@@ -92,7 +92,7 @@ strong {font-weight: 700;}
 #randomWord {padding: 0 0 20px; font-size: 3rem; font-weight: 700; opacity: 0.50;}
 #wordInput {text-transform: lowercase;}
 
-.start-lights-c {width: 240px; height: 120px; background-color: rgba(40, 40, 40, 1.00); padding: 20px; border-radius: 10px; position: absolute; left: 50%; top: -300px; transform: translateX(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00); transition: all 0.5s; z-index: 10;}
+.start-lights-c {width: 240px; background-color: rgba(40, 40, 40, 1.00); padding: 20px; border-radius: 10px; position: absolute; left: 50%; top: -300px; transform: translateX(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00); transition: all 0.5s; z-index: 10;}
 .start-lights-c.show {top: 120px; box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00);}
 .start-lights-c .green-row, 
 .start-lights-c .red-row {width: 100%; height: 40px;}
