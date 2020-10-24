@@ -27,7 +27,7 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 /* CONATINERS  */
 
 .mc {width: 100%;}
-.mc.main {padding-bottom: 290px;}
+.mc.main {max-height: calc(100vh - 20px); position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%);}
 .mic {width: calc(100% - 20px); max-width: calc(800px - 20px);}
 
 .c-50 {width: calc(50% - 20px); margin: 0 10px;}
@@ -78,10 +78,10 @@ strong {font-weight: 700;}
   100% {opacity: 1.00;}
 }
 
-.modal-c {width: calc(100% - 20px); max-width: 600px; background-color: rgba(255, 255, 255, 0.80); backdrop-filter: blur(5px); border-radius: 20px; padding: 40px; position: absolute; left: 50%; top: -500px; transform: translateX(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 0.25); z-index: 50; opacity: 0.00; transition: all 0.5s ease-in-out;}
+.modal-c {width: calc(100% - 20px); max-width: 600px; background-color: rgba(255, 255, 255, 0.80); backdrop-filter: blur(5px); border-radius: 20px; padding: 40px; position: fixed; left: 50%; top: -500px; transform: translateX(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 0.25); z-index: 50; opacity: 0.00; transition: all 0.5s ease-in-out;}
 .modal-c .icon-c {width: 80px; height: 80px; left: 50%; transform: translateX(-50%);}
 .modal-c .icon-c img {position: relative; float: left; top: 50%; transform: translateY(-50%);}
-.modal-c.show {top: 120px; transform: translateX(-50%); opacity: 1.00;}
+.modal-c.show {top: 50%; transform: translateX(-50%) translateY(-50%); opacity: 1.00;}
 
 .modal-c .circuit-c {width: 50%; text-align: left;}
 .modal-c .circuit-c span {width: 100%; display: inline-block;}
@@ -107,14 +107,14 @@ strong {font-weight: 700;}
 #trackInfo .c-50.circuit {text-align: left; padding: 0 0 0 40px;}
 #trackInfo .c-50.circuit:before {content: ''; width: 2px; height: 100%; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: -12px;}
 #trackFlag {box-shadow: 0 0 0 1px rgba(40, 40, 40, 0.15);}
-
+#trackInfo .c-50.circuit svg {transform: scale(0.1);}
 
 #randomWord {padding: 0 0 20px; font-size: 3rem; font-weight: 700; opacity: 0.50;}
 #wordInput {text-transform: lowercase;}
 
 
 
-.start-lights-c {width: 240px; background-color: rgba(40, 40, 40, 1.00); padding: 20px; border-radius: 10px; position: absolute; left: 50%; top: -300px; transform: translateX(-50%) translateY(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00); transition: all 0.5s; z-index: 10; opacity: 0.00;}
+.start-lights-c {width: 240px; background-color: rgba(40, 40, 40, 1.00); padding: 20px; border-radius: 10px; position: fixed; left: 50%; top: -300px; transform: translateX(-50%) translateY(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00); transition: all 0.5s; z-index: 10; opacity: 0.00;}
 .start-lights-c.show {top: 50%; box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00); opacity: 1.0;}
 .start-lights-c .green-row, 
 .start-lights-c .red-row {width: 100%; height: 40px;}
@@ -165,12 +165,14 @@ strong {font-weight: 700;}
   100% {background-color: rgba(255, 255, 255, 0.10); box-shadow: 0 0 40px 5px rgba(200, 40, 40, 0.00), 0 0 0 2px rgba(200, 40, 40, 0.25), inset 0 0 15px 5px rgba(200, 40, 40, 0.30);}
 }
 
-.bar-c {width: 100%; height: 20px; background-color: rgba(40, 40, 40, 0.10); margin: 10px 0 0 0;}
-.bar-c .bar-value {height: 20px; background-color: rgba(200, 40, 40, 1.00); position: absolute; left: 0px; top: 0px;}
+.bar-c {width: 100%; height: 10px; background-color: rgba(40, 40, 40, 0.10); margin: 5px 0 50px; 0;}
+.bar-c .bar-value {height: 10px; background-color: rgba(200, 40, 40, 1.00); position: absolute; left: 0px; top: 0px;}
 .bar-c strong {position: absolute; left: 50%; top: 25px; transform: translateX(-50%);}
 
-.timer-c {position: absolute; left: 0px; bottom: -50px; text-align: left; line-height: 1.5rem;}
-.timer-l-c {position: absolute; right: 0px; bottom: -50px; text-align: right; line-height: 1.5rem;}
+.timer-c {position: absolute; left: 0px; bottom: 5px; text-align: left; line-height: 1.5rem;}
+.timer-l-c {position: absolute; right: 0px; bottom: 5px; text-align: right; line-height: 1.5rem;}
+
+#gameArea {background-color: rgba(255, 255, 255, 1.00); transition: all 0.5s;}
 
 .red {background-color: rgba(200, 40, 40, 1.00);}
 .blue {background-color: rgba(50, 150, 240, 1.00);}
@@ -224,11 +226,15 @@ strong {font-weight: 700;}
   .c-50 {width: calc(100% - 20px); margin: 0 10px 10px 10px;}
 	.c-33 {width: calc(100% - 20px); margin: 0 10px 10px 10px;}
 
+  .modal-c {padding: 40px 20px;}
   .modal-c .circuit-c {width: 100%; text-align: center;}
   .modal-c .seed-c {width: 100%; text-align: center;}
 
   .modal-c .url-c {padding: 0;}
-.modal-c .url-c .g-btn {width: 100%; position: initial; right: initial; top: initial;}
+  .modal-c .url-c .g-btn {width: 100%; position: initial; right: initial; top: initial;}
+
+  .modal-c .c-50.time {width: 50%; text-align: right; padding: 0 10px 0 0; margin: 0;}
+  .modal-c .c-50.complete {width: 50%; text-align: left; padding: 0 0 0 10px; margin: 0;}
 
   .hidde-mob {display: none;}
   .hidde-desk {display: block;}
@@ -238,13 +244,15 @@ strong {font-weight: 700;}
 
   .track-c {margin: 40px 0 0 0; position: relative; left: initial; bottom: initial;}
   #trackInfo .c-50.info {text-align: center; padding: 0 0 0 0;}
-  #trackInfo .c-50.circuit {text-align: center; padding: 0 0 0 0; transform: translateY(-20px);}
+  #trackInfo .c-50.circuit {text-align: center; padding: 0 0 0 0;}
   #trackInfo .c-50.circuit:before {content: ''; width: 50%; height: 2px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: 50%; top: 12px; transform: translateX(-50%);}
+
+  /* #gameArea {position: fixed; left: 0px; bottom: 0px; padding: 10px 0 0px 0;} */
 }
 
 ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
+        width: 5px;
+        height: 5px;
         background-color: rgba(255, 255, 255, 1.00);
     }
 
@@ -257,16 +265,16 @@ strong {font-weight: 700;}
     }
 
     ::-webkit-scrollbar-thumb {
-        width: 8px;
+        width: 4px;
         margin: 0 1px;
-        border-radius: 10px;
-        background-color: rgba(200, 40, 40, 0.50);
+        border-radius: 5px;
+        background-color: rgba(200, 40, 40, 1.00);
         transition: all 0.3s;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        width: 10px;
-        height: 10px;
-        background-color: rgba(200, 40, 40, 1.00);
+        width: 4px;
+        height: 4px;
+        background-color: rgba(200, 40, 40, 0.50);
         transition: all 0.3s;
     }
