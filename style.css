@@ -83,6 +83,18 @@ strong {font-weight: 700;}
 .modal-c .icon-c img {position: relative; float: left; top: 50%; transform: translateY(-50%);}
 .modal-c.show {top: 120px; transform: translateX(-50%); opacity: 1.00;}
 
+.modal-c .circuit-c {width: 50%; text-align: left;}
+.modal-c .circuit-c span {width: 100%; display: inline-block;}
+.modal-c .circuit-c span:nth-child(1) {font-size: 0.8rem;}
+.modal-c .seed-c {width: 50%; text-align: right;}
+.modal-c .seed-c span {width: 100%; display: inline-block;}
+.modal-c .seed-c span:nth-child(1) {font-size: 0.8rem;}
+.modal-c .url-c {width: 100%; padding: 0 140px 0 0;}
+.modal-c .url-c input,
+.modal-c .url-c input:hover,
+.modal-c .url-c input:focus {height: 30px; padding: 0 10px; background-color: rgba(40, 40, 40, 0.20); font-size: 0.8rem; line-height: 30px; box-shadow: none;}
+.modal-c .url-c .g-btn {width: 140px; height: 30px; padding: 0; position: absolute; right: 0px; top: 0px; line-height: 30px; font-size: 0.8rem; text-align: center;}
+
 #trackSelectorItem {max-height: 0; transition: all 2s; overflow-y: hidden;}
 #trackSelectorItem.show {max-height: 500px;}
 
@@ -211,6 +223,12 @@ strong {font-weight: 700;}
 
   .c-50 {width: calc(100% - 20px); margin: 0 10px 10px 10px;}
 	.c-33 {width: calc(100% - 20px); margin: 0 10px 10px 10px;}
+
+  .modal-c .circuit-c {width: 100%; text-align: center;}
+  .modal-c .seed-c {width: 100%; text-align: center;}
+
+  .modal-c .url-c {padding: 0;}
+.modal-c .url-c .g-btn {width: 100%; position: initial; right: initial; top: initial;}
 
   .hidde-mob {display: none;}
   .hidde-desk {display: block;}
