@@ -6,12 +6,12 @@ div {position: relative; float: left;}
 /* INPUTS */
 input {width: 100%; height: 50px; background-color: rgba(255, 255, 255, 1.00); padding: 0 24px; font-size: 1rem; color: rgba(40, 40, 40, 1.00); box-shadow: inset 0 0 0 2px rgba(200, 40, 40, 1.00), 0 0 0 0 rgba(240, 100, 10, 0.00); transition: all 0.3s linear;}
 input:hover {box-shadow: inset 0 0 0 2px rgba(200, 40, 40, 1.00), 0 10px 25px 0 rgba(200, 40, 40, 0.50);}
-input:focus {background-color: rgba(255, 255, 255, 0.75); color: rgba(20, 20, 70, 1.00); box-shadow: inset 0 0 0 2px rgba(40, 40, 40, 1.00), 0 0 0 0 rgba(240, 100, 10, 0.00);}
+input:focus {background-color: rgba(255, 255, 255, 0.75); color: rgba(40, 40, 40, 1.00); box-shadow: inset 0 0 0 2px rgba(40, 40, 40, 1.00), 0 0 0 0 rgba(240, 100, 10, 0.00);}
 
 /* SELCTS */
 select {width: 100%; height: 50px; background-color: rgba(255, 255, 255, 0.00); padding: 0 50px 0 24px; font-size: 1rem; color: rgba(40, 40, 40, 1.00); box-shadow: inset 0 0 0 2px rgba(200, 40, 40, 1.00), 0 0 0 0 rgba(240, 100, 10, 0.00); -webkit-appearance: none; -moz-appearance: none; text-indent: 1px; text-overflow: ''; transition: all 0.3s linear;}
 select:hover {box-shadow: inset 0 0 0 2px rgba(200, 40, 40, 1.00), 0 10px 25px 0 rgba(200, 40, 40, 0.50);}
-select:focus {background-color: rgba(255, 255, 255, 0.75); color: rgba(20, 20, 70, 1.00); box-shadow: inset 0 0 0 2px rgba(40, 40, 40, 1.00), 0 0 0 0 rgba(240, 100, 10, 0.00);}
+select:focus {background-color: rgba(255, 255, 255, 0.75); color: rgba(40, 40, 40, 1.00); box-shadow: inset 0 0 0 2px rgba(40, 40, 40, 1.00), 0 0 0 0 rgba(240, 100, 10, 0.00);}
 
 select + .s-arrow {display: block; width: 38px; height: 38px; background-color: rgba(200, 40, 40, 1.00); position: absolute; top: 6px; right: 6px; z-index: -1; box-shadow: inset 0 0 0 0 rgba(250, 170, 0, 0.00); cursor: pointer; transition: all 0.3s;}
 select + .s-arrow:after {content: ''; width: 6px; height: 6px; border-right: 2px solid; border-bottom: 2px solid; border-color: rgba(255, 255, 255, 1.00); position: absolute; right: 15px; top: 13px; transform: rotate(45deg); z-index: 1; transition: all 0.3s;}
@@ -28,7 +28,7 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 
 .mc {width: 100%;}
 .mc.main {max-height: calc(100vh - 20px); position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%);}
-.mic {width: calc(100% - 20px); max-width: calc(800px - 20px);}
+.mic {width: calc(100% - 20px); max-width: calc(800px - 20px); left: 50%; transform: translateX(-50%);}
 
 .c-50 {width: calc(50% - 20px); margin: 0 10px;}
 .c-33 {width: calc(33.333333% - 20px); margin: 0 10px;}
@@ -38,6 +38,7 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 .hs-20 {width: 100%; height: 20px;}
 .hs-40 {width: 100%; height: 40px;}
 
+.hidde {display: none;}
 .hidde-mob {display: block;}
 .hidde-desk {display: none;}
 
@@ -59,7 +60,37 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 strong {font-weight: 700;}
 
 /* HEADER */
-#header {width: 100%}
+#header {width: 100%;  z-index: 200;}
+
+.menu-c {width: 40px; height: 40px; position: absolute; right: 10px; top: 10px;}
+.menu-c .menu-btn {display: block; width: 40px; height: 40px; background-color: rgba(255, 255, 255, 1.00); box-shadow: 0 0 0 0 rgba(200, 40, 40, 0.00); position: absolute; left: 0px; top: 0px;  transition: all 0.3s; cursor: pointer;}
+.menu-c .menu-btn:hover {background-color: rgba(200, 40, 40, 1.00);box-shadow: 0 5px 25px 0 rgba(200, 40, 40, 1.00);}
+.menu-c .menu-ic {width: 100%; min-width: 260px; max-height: 0; padding: 0 20px; border-radius: 10px; position: absolute; right: 0px; top: 50px; overflow: hidden; transition: all 0.5s;}
+
+.menu-c .menu-arrow {content: ''; width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid rgba(40, 40, 40, 1.00); position: absolute; right: 12px; top: 54px; opacity: 0.00; transition: all 0.3s;}
+input[type="checkbox"]:checked ~ .menu-arrow {top: 44px; opacity: 1.00;}
+
+.menu-c .menu-ic input {height: 34px; background-color: rgba(255, 255, 255, 0.10); padding: 0 15px; margin: 0 0 10px 0; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 1.00); color: rgba(255, 255, 255, 1.00) !important;}
+.menu-c .menu-ic input:hover {background-color: rgba(255, 255, 255, 0.50);}
+.menu-c .menu-ic input::placeholder {color: rgba(255, 255, 255, 1.00); opacity: 0.75;}
+.menu-c .menu-ic input:focus {background-color: rgba(255, 255, 255, 0.80); color: rgba(40, 40, 40, 1.00);}
+.menu-c .menu-ic input:focus::placeholder {color: rgba(40, 40, 40, 1.00); opacity: 1;}
+
+.menu-c .menu-ic a {display: block; width: 100%; padding: 10px; color: rgba(255, 255, 255, 1.00); text-transform: uppercase; font-size: 1.1rem; font-weight: 700; transform: skew(-15deg); transition: all 0.3s;}
+.menu-c .menu-ic a:hover {color: rgba(200, 40, 40, 1.00); box-shadow: inset -10px 0 0 0 rgba(200, 40, 40, 1.00), inset -260px 0 0 0 rgba(255, 255, 255, 1.00);}
+input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: rgba(40, 40, 40, 1.00); padding: 20px 20px;}
+
+.menu-c .menu-btn > .mbtn-ic {width: 26px; height: 3px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: 7px; top: 50%; transform: translateY(-50%); transition: all 0.3s;}
+.menu-c .menu-btn > .mbtn-ic:before, .menu-c .menu-btn > .mbtn-ic:after {content:''; width: 26px; height: 3px; background-color: rgba(40, 40, 40, 1.00); position: absolute; right: 0px; top: -9px; transition: all 0.3s;}
+.menu-c .menu-btn > .mbtn-ic:after {top: initial; bottom: -9px;}
+
+.menu-c .menu-btn:hover > .mbtn-ic {background-color: rgba(255, 255, 255, 1.00);}
+.menu-c .menu-btn:hover > .mbtn-ic:before, .menu-c .menu-btn:hover > .mbtn-ic:after {background-color: rgba(255, 255, 255, 1.00);}
+
+  input[type="checkbox"]:checked ~ .menu-btn > .mbtn-ic {background-color: transparent; transform: rotateY(180deg);}
+  input[type="checkbox"]:checked ~ .menu-btn > .mbtn-ic:before, input[type="checkbox"]:checked ~ .menu-btn > .mbtn-ic:after {left: 50%; top: calc(50% - 2px); transform: translateX(-50%) translateY(-50%) rotate(45deg);}
+  input[type="checkbox"]:checked ~ .menu-btn > .mbtn-ic:after {bottom: initial; transform: translateX(-50%) translateY(-50%) rotate(-45deg);}
+
 
 .logo-c {width: 265px; height: 60px; left: 50%; transform: translateX(-50%) skew(-15deg);}
 .logo-c .flag {width: 100px; height: 60px; background-image: linear-gradient(90deg, #333 20px, white 20px), linear-gradient(90deg, white 20px, #333 20px), linear-gradient(90deg, #333 20px, white 20px); background-position: 0 0, 0 20px, 0 40px; background-repeat: repeat-x; background-size: 40px 20px, 40px 20px, 40px 20px; position: absolute; left: 0px; top: 0px; z-index: 1; animation: 1.5s FLAGANIME ease-out;}
@@ -78,7 +109,7 @@ strong {font-weight: 700;}
   100% {opacity: 1.00;}
 }
 
-.modal-c {width: calc(100% - 20px); max-width: 600px; background-color: rgba(255, 255, 255, 0.80); backdrop-filter: blur(5px); border-radius: 20px; padding: 40px; position: fixed; left: 50%; top: -500px; transform: translateX(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 0.25); z-index: 50; opacity: 0.00; transition: all 0.5s ease-in-out;}
+.modal-c {width: calc(100% - 20px); max-width: 600px; background-color: rgba(255, 255, 255, 0.90); backdrop-filter: blur(5px); border-radius: 20px; padding: 40px; position: fixed; left: 50%; top: -500px; transform: translateX(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 0.25); z-index: 50; opacity: 0.00; transition: all 0.5s ease-in-out;}
 .modal-c .icon-c {width: 80px; height: 80px; left: 50%; transform: translateX(-50%);}
 .modal-c .icon-c img {position: relative; float: left; top: 50%; transform: translateY(-50%);}
 .modal-c.show {top: 50%; transform: translateX(-50%) translateY(-50%); opacity: 1.00;}
@@ -258,6 +289,8 @@ strong {font-weight: 700;}
 
   .c-50 {width: calc(100% - 20px); margin: 0 10px 10px 10px;}
 	.c-33 {width: calc(100% - 20px); margin: 0 10px 10px 10px;}
+
+  .logo-c {width: 265px; height: 60px; left: 50%; transform: translateX(-50%) skew(-15deg) scale(0.7);}
 
   .modal-c {padding: 40px 20px;}
   .modal-c .circuit-c {width: 100%; text-align: center;}
