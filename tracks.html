@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>TypeR Tracks</title>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.90, height=device-height"/>
+<meta name="google" content="notranslate" />
+
+<title>TypeR</title>
+
+<!-- import the webpage's stylesheet -->
+<link rel="stylesheet" href="./style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,500;1,700&display=swap" rel="stylesheet">
+
+<!-- script that allows for seeding random numbers -> https://github.com/davidbau/seedrandom -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+
+<!-- import script for encryption -->
+<script src="./vendor/cypher.min.js"></script>
+
+<!-- import the webpage's javascript file -->
+<script src="./script.js" defer></script>
+
 </head>
 <body>
 
 <style type="text/css">
-
-body {background: #fff; display: -webkit-box; display: flex; align-items: center; justify-content: center; min-height: 100vh;}
-* {box-sizing: border-box;}
-
-.track-c {width: 200px; height: 200px; position: relative; float: left;}
 
 path {fill: none; stroke: rgba(200, 40, 40, 1.00); stroke-width: 5px;}
 
@@ -41,105 +57,105 @@ path {fill: none; stroke: rgba(200, 40, 40, 1.00); stroke-width: 5px;}
 
 </style>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/estoril.svg" />
   </object>
-  <div class="path portimão player-time"></div>
+  <div class="path estoril player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/fujispeedway.svg" />
   </object>
   <div class="path fujispeedway player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/gillesvilleneuve.svg" />
   </object>
   <div class="path gillesvilleneuve player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/hockenheimring.svg" />
   </object>
   <div class="path hockenheimring player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/lemans.svg" />
   </object>
   <div class="path lemans player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/limerockpark.svg" />
   </object>
   <div class="path limerockpark player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/monaco.svg" />
   </object>
   <div class="path monaco player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/monza.svg" />
   </object>
   <div class="path monza player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/nordschleife.svg" />
   </object>
   <div class="path nordschleife player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/portimao.svg" />
   </object>
   <div class="path portimao player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/silverstone.svg" />
   </object>
   <div class="path silverstone player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/spa.svg" />
   </object>
   <div class="path spa player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/suzuka.svg" />
   </object>
   <div class="path suzuka player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/testtrack.svg" />
   </object>
   <div class="path testtrack player-time"></div>
 </div>
 
-<div class="track-c">
+<div class="circuit-c">
   <object type="image/svg+xml" data="image.svg">
     <img width="200" height="140" src="svg/zolder.svg" />
   </object>
