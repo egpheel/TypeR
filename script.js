@@ -35,7 +35,7 @@ let startLightsTime = 7000;
 let startTime = 6000;
 let currentDistance = 0;
 let currentWord;
-let maxTime = 30000;
+let maxTime = 3000;
 let timeLeft;
 let lapTimeTimer;
 let lapTime = 0;
@@ -1237,7 +1237,7 @@ function generateRandomWithSeed() {
 
 function updateTrackPosition() {
   playerIcon.style["offset-distance"] = percentage + "%;";
-  console.log(playerIcon);
+  //console.log(playerIcon);
 }
 
 function startLightsSequence() {
