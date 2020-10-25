@@ -1242,6 +1242,9 @@ function startLightsSequence() {
   trackSelector.disabled = true;
   seedInput.disabled = true;
 
+  percentage = 0;
+  percentageBar.style["width"] = percentage + "%";
+
   lightsTimer = setTimeout(function () {
     startLights.classList.remove("show");
     clearTimeout(lightsTimer);
