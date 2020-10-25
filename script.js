@@ -29,12 +29,13 @@ const seedInput = document.querySelector("#seed");
 const percentageBar = document.querySelector("#percentageBar");
 const copyBtn = document.querySelector("#copyBtn");
 const textToCopy = document.querySelector("#textToCopy");
+const playerIcon = document.querySelector("#playerIcon");
 
 let startLightsTime = 7000;
 let startTime = 6000;
 let currentDistance = 0;
 let currentWord;
-let maxTime = 3000;
+let maxTime = 30000;
 let timeLeft;
 let lapTimeTimer;
 let lapTime = 0;
@@ -55,51 +56,56 @@ let data = {
 }
 
 let tracks = [
-  { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg" },
+  { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
   {
     name: "Circuit de Spa-Francorchamps",
     circuitLength: 7004,
     intendedLapTime: 137,
     flag: "./svg/flag-belgium.svg",
-    trackmap: "./svg/spa.svg"
+    trackmap: "./svg/spa.svg",
+    path: "spa"
   },
-  { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428, flag: "./svg/flag-germany.svg", trackmap: "./svg/nordschleife.svg" },
-  { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "./svg/flag-uk.svg", trackmap: "./svg/silverstone.svg" },
-  { name: "Lime Rock Park", circuitLength: 2410, intendedLapTime: 58, flag: "./svg/flag-usa.svg", trackmap: "./svg/limerockpark.svg" },
+  { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428, flag: "./svg/flag-germany.svg", trackmap: "./svg/nordschleife.svg", path: "nordschleife" },
+  { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "./svg/flag-uk.svg", trackmap: "./svg/silverstone.svg", path: "silverstone" },
+  { name: "Lime Rock Park", circuitLength: 2410, intendedLapTime: 58, flag: "./svg/flag-usa.svg", trackmap: "./svg/limerockpark.svg", path: "limerockpark" },
   {
     name: "Circuit 24 Hours of Le Mans",
     circuitLength: 13626,
     intendedLapTime: 173,
     flag: "./svg/flag-france.svg",
-    trackmap: "./svg/lemans.svg"
+    trackmap: "./svg/lemans.svg",
+    path: "lemans"
   },
   {
     name: "Circuit Gilles Villeneuve",
     circuitLength: 4361,
     intendedLapTime: 97,
     flag: "./svg/flag-canada.svg",
-    trackmap: "./svg/gillesvilleneuve.svg"
+    trackmap: "./svg/gillesvilleneuve.svg",
+    path: "gillesvilleneuve"
   },
-  { name: "Hockenheimring", circuitLength: 4574, intendedLapTime: 105, flag: "./svg/flag-germany.svg", trackmap: "./svg/hockenheimring.svg" },
+  { name: "Hockenheimring", circuitLength: 4574, intendedLapTime: 105, flag: "./svg/flag-germany.svg", trackmap: "./svg/hockenheimring.svg", path: "hockenheimring" },
   {
     name: "Autodromo Nazionale di Monza",
     circuitLength: 5793,
     intendedLapTime: 110,
     flag: "./svg/flag-italy.svg",
-    trackmap: "./svg/monza.svg"
+    trackmap: "./svg/monza.svg",
+    path: "monza"
   },
-  { name: "Circuit Zolder", circuitLength: 4011, intendedLapTime: 91, flag: "./svg/flag-belgium.svg", trackmap: "./svg/zolder.svg" },
-  { name: "Circuit de Monaco", circuitLength: 3337, intendedLapTime: 100, flag: "./svg/flag-monaco.svg", trackmap: "./svg/monaco.svg" },
+  { name: "Circuit Zolder", circuitLength: 4011, intendedLapTime: 91, flag: "./svg/flag-belgium.svg", trackmap: "./svg/zolder.svg", path: "zolder" },
+  { name: "Circuit de Monaco", circuitLength: 3337, intendedLapTime: 100, flag: "./svg/flag-monaco.svg", trackmap: "./svg/monaco.svg", path: "monaco" },
   {
     name: "Suzuka International Racing Course",
     circuitLength: 5807,
     intendedLapTime: 125,
     flag: "./svg/flag-japan.svg",
-    trackmap: "./svg/suzuka.svg"
+    trackmap: "./svg/suzuka.svg",
+    path: "suzuka"
   },
-  { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107, flag: "./svg/flag-japan.svg", trackmap: "./svg/fujispeedway.svg" },
-  { name: "Autódromo Internacional do Algarve (Portimao)", circuitLength: 4692, intendedLapTime: 115, flag: "./svg/flag-portugal.svg", trackmap: "./svg/portimao.svg" },
-  { name: "Autódromo do Estoril", circuitLength: 4182, intendedLapTime: 110, flag: "./svg/flag-portugal.svg", trackmap: "./svg/estoril.svg" }
+  { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107, flag: "./svg/flag-japan.svg", trackmap: "./svg/fujispeedway.svg", path: "fujispeedway" },
+  { name: "Autódromo Internacional do Algarve (Portimao)", circuitLength: 4692, intendedLapTime: 115, flag: "./svg/flag-portugal.svg", trackmap: "./svg/portimao.svg", path: "portimao" },
+  { name: "Autódromo do Estoril", circuitLength: 4182, intendedLapTime: 110, flag: "./svg/flag-portugal.svg", trackmap: "./svg/estoril.svg", path: "estoril" }
 ];
 
 const words = [
@@ -1119,6 +1125,9 @@ function updateCircuitInfo() {
   trackName.textContent = tracks[trackSelector.value].name;
   trackLength.textContent = tracks[trackSelector.value].circuitLength;
   modalTrack.textContent = tracks[trackSelector.value].name;
+  playerIcon.className = "";
+  playerIcon.classList.add("path");
+  playerIcon.classList.add(tracks[trackSelector.value].path);
 }
 
 function generateTrackSelection() {
@@ -1174,6 +1183,8 @@ function updateWord() {
   scoreDiv.textContent = percentage;
   gameOverPercentage.textContent = percentage;
   percentageBar.style["width"] = percentage + "%";
+  
+  updateTrackPosition();
 }
 
 function typeWord() {
@@ -1224,6 +1235,11 @@ function generateRandomWithSeed() {
   //history.pushState({ id: 'typer' }, 'TypeR', URLString);
 }
 
+function updateTrackPosition() {
+  playerIcon.style["offset-distance"] = percentage + "%;";
+  console.log(playerIcon);
+}
+
 function startLightsSequence() {
   generateRandomWithSeed();
 
@@ -1243,7 +1259,7 @@ function startLightsSequence() {
   seedInput.disabled = true;
 
   percentage = 0;
-  percentageBar.style["width"] = percentage + "%";
+  updateTrackPosition();
 
   lightsTimer = setTimeout(function () {
     startLights.classList.remove("show");
