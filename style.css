@@ -219,33 +219,6 @@ strong {font-weight: 700;}
 	100% {left: 100%; opacity: 1.00;}
 }
 
-@media only screen and (max-width: 610px) {
-  
-  .mc.main {padding-bottom: 0;}
-
-  .c-50 {width: calc(100% - 20px); margin: 0 10px 10px 10px;}
-	.c-33 {width: calc(100% - 20px); margin: 0 10px 10px 10px;}
-
-  .modal-c {padding: 40px 20px;}
-  .modal-c .circuit-c {width: 100%; text-align: center;}
-  .modal-c .seed-c {width: 100%; text-align: center;}
-
-  .modal-c .url-c {padding: 0;}
-  .modal-c .url-c .g-btn {width: 100%; position: initial; right: initial; top: initial;}
-
-  .modal-c .c-50.time {width: 50%; text-align: right; padding: 0 10px 0 0; margin: 0;}
-  .modal-c .c-50.complete {width: 50%; text-align: left; padding: 0 0 0 10px; margin: 0;}
-
-  .hidde-mob {display: none;}
-  .hidde-desk {display: block;}
-
-  .track-select-c {width: 100%; margin: 0 0 10px 0}
-  .seed-input-c {width: 100%;}
-
-  .track-c {margin: 40px 0 0 0; position: relative; left: initial; bottom: initial;}
-  #trackInfo .c-50.info {text-align: center; padding: 0 0 0 0;}
-  #trackInfo .c-50.circuit {text-align: center; padding: 0 0 0 0;}
-  #trackInfo .c-50.circuit:before {content: ''; width: 50%; height: 2px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: 50%; top: 12px; transform: translateX(-50%);}
 
   /* PATHS */
 
@@ -275,6 +248,34 @@ strong {font-weight: 700;}
     0% {offset-distance: 0%;}
     100% {offset-distance: 100%;}
   }
+
+@media only screen and (max-width: 610px) {
+  
+  .mc.main {padding-bottom: 0;}
+
+  .c-50 {width: calc(100% - 20px); margin: 0 10px 10px 10px;}
+	.c-33 {width: calc(100% - 20px); margin: 0 10px 10px 10px;}
+
+  .modal-c {padding: 40px 20px;}
+  .modal-c .circuit-c {width: 100%; text-align: center;}
+  .modal-c .seed-c {width: 100%; text-align: center;}
+
+  .modal-c .url-c {padding: 0;}
+  .modal-c .url-c .g-btn {width: 100%; position: initial; right: initial; top: initial;}
+
+  .modal-c .c-50.time {width: 50%; text-align: right; padding: 0 10px 0 0; margin: 0;}
+  .modal-c .c-50.complete {width: 50%; text-align: left; padding: 0 0 0 10px; margin: 0;}
+
+  .hidde-mob {display: none;}
+  .hidde-desk {display: block;}
+
+  .track-select-c {width: 100%; margin: 0 0 10px 0}
+  .seed-input-c {width: 100%;}
+
+  .track-c {margin: 40px 0 0 0; position: relative; left: initial; bottom: initial;}
+  #trackInfo .c-50.info {text-align: center; padding: 0 0 0 0;}
+  #trackInfo .c-50.circuit {text-align: center; padding: 0 0 0 0;}
+  #trackInfo .c-50.circuit:before {content: ''; width: 50%; height: 2px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: 50%; top: 12px; transform: translateX(-50%);}
 
 }
 
