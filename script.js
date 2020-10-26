@@ -47,6 +47,7 @@ let lapTimeScale = 1;
 let seededRng;
 let finishLapTime;
 let URLString;
+let percentage = 0;
 
 let msg = "Big 4x!";
 let data = {
@@ -1177,7 +1178,7 @@ function updateWord() {
     }, 1000);
   }
 
-  let percentage = Math.floor(
+  percentage = Math.floor(
     (currentDistance * 100) / selectedTrack.circuitLength
   );
   scoreDiv.textContent = percentage;
@@ -1237,7 +1238,6 @@ function generateRandomWithSeed() {
 
 function updateTrackPosition() {
   playerIcon.style["offset-distance"] = percentage + "%";
-  //console.log(playerIcon);
 }
 
 function startLightsSequence() {
@@ -1344,6 +1344,9 @@ function preGame() {
     seedInput.value = data.seed;
     trackSelector.value = data.track;
   }
+
+  percentage = 0;
+  updateTrackPosition();
   
   history.pushState({ id: 'typer' }, 'TyoeR', originalURL);
   lapTimeDiv.textContent = "00:00.000";
