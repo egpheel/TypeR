@@ -313,8 +313,8 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
   .track-c {margin: 20px 0 0 0; position: relative; left: initial; bottom: initial;}
   #trackInfo .c-50.info {min-height: initial; margin: 0px 10px; text-align: center; padding: 0 0 0 0;}
   #trackInfo .c-50.info .info-c {position: relative; float: left; top: initial; right: initial; left: 50%; transform: translateX(-50%);}
-  #trackInfo .c-50.circuit {width: 200px; min-width: 200px; max-width: 200px; text-align: center; padding: 0 0 0 0; margin: 0; left: 50%; transform: translateX(-50%);}
-  #trackInfo .c-50.circuit:before {content: ''; width: 50%; height: 2px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: 50%; top: 12px; transform: translateX(-50%);}
+  #trackInfo .c-50.circuit {width: 200px; min-width: 200px; max-width: 200px; text-align: center; padding: 0 0 0 0; margin: 10px 0; left: 50%; transform: translateX(-50%);}
+  #trackInfo .c-50.circuit:before {display: none;}
 
 }
 
