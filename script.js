@@ -1236,7 +1236,7 @@ function generateRandomWithSeed() {
 }
 
 function updateTrackPosition() {
-  playerIcon.style["offset-distance"] = percentage + "%;";
+  playerIcon.style["offset-distance"] = percentage + "%";
   //console.log(playerIcon);
 }
 

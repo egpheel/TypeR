@@ -255,7 +255,7 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 
   path {fill: none; stroke: rgba(200, 40, 40, 1.00); stroke-width: 5px;}
 
-  .path {width: 10px; height: 10px; border-radius: 100%; background: rgba(40,40,40,1.00); position: absolute; transform: translate(0, 0); top: 0px;}
+  .path {width: 10px; height: 10px; border-radius: 100%; background: rgba(40,40,40,1.00); position: absolute; transform: translate(0, 0); top: 0px; transition: all 0.3s;}
 
   .player-time-01 {animation: MOVE 58.458s infinite linear;}
   .player-time-02 {animation: MOVE 61.458s infinite ease-in; background: rgba(200,40,40,1.00);}
