@@ -30,6 +30,8 @@ const percentageBar = document.querySelector("#percentageBar");
 const copyBtn = document.querySelector("#copyBtn");
 const textToCopy = document.querySelector("#textToCopy");
 const playerIcon = document.querySelector("#playerIcon");
+const playerGhost = document.querySelector("#playerGhost");
+const opponentGhost = document.querySelector("#opponentGhost");
 
 let startLightsTime = 7000;
 let startTime = 6000;
@@ -53,8 +55,10 @@ let msg = "Big 4x!";
 let data = {
   seed: null,
   track: null,
-  laptime: null
+  laptime: null,
+  playername: null
 }
+let receivedData = data;
 
 let tracks = [
   { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
@@ -1120,6 +1124,20 @@ restartBtn.addEventListener("click", preGame);
 copyBtn.addEventListener("click", copyUrlToClipboard);
 trackSelector.addEventListener("change", updateCircuitInfo);
 
+function populateDataFromCookiesAndURL() {
+    playerGhost.hidden = true;
+
+    if (seedFromURL.has("s")) {
+        let encryptedDataString = decodeURIComponent(urlQueryString.substring(3));
+        receivedData = Object.decrypt(encryptedDataString, msg);
+        seedInput.value = receivedData.seed;
+        trackSelector.value = receivedData.track;
+        console.log(receivedData.laptime);
+    } else {
+        opponentGhost.hidden = true;
+    }
+}
+
 function updateCircuitInfo() {
   trackFlag.src = tracks[trackSelector.value].flag;
   trackMap.src = tracks[trackSelector.value].trackmap;
@@ -1129,6 +1147,13 @@ function updateCircuitInfo() {
   playerIcon.className = "";
   playerIcon.classList.add("path");
   playerIcon.classList.add(tracks[trackSelector.value].path);
+  opponentGhost.classList.add(tracks[trackSelector.value].path);
+
+  if (receivedData && receivedData.track === trackSelector.value) {
+      opponentGhost.hidden = false;
+  } else {
+      opponentGhost.hidden = true;
+  }
 }
 
 function generateTrackSelection() {
@@ -1230,10 +1255,12 @@ function generateRandomWithSeed() {
 
     modalSeed.textContent = rndNum;
   }
+}
 
-  let encryptedDataString = data.encrypt(msg)['encrypted-data'];
-  URLString = originalURL + "?s=" + encodeURIComponent(encryptedDataString);
-  //history.pushState({ id: 'typer' }, 'TypeR', URLString);
+function generateURL() {
+    let encryptedDataString = data.encrypt(msg)['encrypted-data'];
+    URLString = originalURL + "?s=" + encodeURIComponent(encryptedDataString);
+    //history.pushState({ id: 'typer' }, 'TypeR', URLString);
 }
 
 function updateTrackPosition() {
@@ -1283,6 +1310,11 @@ function startGame() {
 
   updateWord();
 
+  if (receivedData.laptime) {
+    opponentGhost.classList.add("player-time-03");
+    opponentGhost.style["animation-duration"] = receivedData.laptime + "ms";
+  }
+
   let start = new Date().getTime();
 
   lapTimeTimer = setInterval(function () {
@@ -1314,6 +1346,19 @@ function startGame() {
 function gameOver(isWin) {
   clearInterval(timeLeft);
   clearInterval(lapTimeTimer);
+
+  if (isWin) {
+    gameOverReasonTitle.textContent = "Congratulations!";
+    gameOverReason.textContent = "You have completed the lap!";
+    
+    data.laptime = finishLapTime;
+  } else {
+    gameOverReasonTitle.textContent = "Big 4x!";
+    gameOverReason.textContent = "You've got wheel damage!";
+  }
+
+  generateURL();
+  
   gameOverModal.classList.add("show");
   textToCopy.value = URLString;
   copyBtn.textContent = "Copy to clipboard";
@@ -1322,15 +1367,6 @@ function gameOver(isWin) {
   wordInput.hidden = true;
   randomWordDiv.hidden = true;
 
-  if (isWin) {
-    gameOverReasonTitle.textContent = "Congratulations!";
-    gameOverReason.textContent = "You have completed the lap!";
-
-    data.laptime = finishLapTime;
-  } else {
-    gameOverReasonTitle.textContent = "Big 4x!";
-    gameOverReason.textContent = "You've got wheel damage!";
-  }
 
   setTimeout(function () {
     restartBtn.hidden = false;
@@ -1338,17 +1374,15 @@ function gameOver(isWin) {
 }
 
 function preGame() {
-  if (seedFromURL.has("s")) {
-    let encryptedDataString = decodeURIComponent(urlQueryString.substring(3));
-    data = Object.decrypt(encryptedDataString, msg);
-    seedInput.value = data.seed;
-    trackSelector.value = data.track;
-  }
+  populateDataFromCookiesAndURL();
 
   percentage = 0;
   updateTrackPosition();
+  if (opponentGhost.classList.contains("player-time-03")) {
+    opponentGhost.classList.remove("player-time-03");
+  }
   
-  history.pushState({ id: 'typer' }, 'TyoeR', originalURL);
+  history.pushState({ id: 'typer' }, 'TypeR', originalURL);
   lapTimeDiv.textContent = "00:00.000";
   timeLeftDiv.textContent = "3";
   scoreDiv.textContent = "0";
