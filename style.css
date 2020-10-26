@@ -140,7 +140,7 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 #trackInfo .c-50.circuit:before {content: ''; width: 2px; height: 100%; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: -12px;}
 #trackFlag {box-shadow: 0 0 0 1px rgba(40, 40, 40, 0.15);}
 
-#randomWord {padding: 0 0 20px; font-size: 3rem; font-weight: 700; opacity: 0.50;}
+#randomWord {padding: 0 0 20px; font-size: 3rem; font-weight: 700; opacity: 0.50; pointer-events: none;}
 #wordInput {text-transform: lowercase;}
 
 
