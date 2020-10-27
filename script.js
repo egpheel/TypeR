@@ -1137,7 +1137,7 @@ function getRandom() {
 function shortenURL(){
     let longURL = URLString;
     let rndURL = getRandom();
-    shortURL = originalURL + "/#" + rndURL;
+    shortURL = originalURL + "/" + rndURL;
     sendRequest(longURL, rndURL);
 }
 
