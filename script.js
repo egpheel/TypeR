@@ -52,6 +52,8 @@ let finishLapTime;
 let URLString;
 let shortURL;
 let percentage = 0;
+let listeningForKeys = true;
+let isGameOver = false;
 
 let msg = "Big 4x!";
 let data = {
@@ -1125,6 +1127,17 @@ startBtn.addEventListener("click", startLightsSequence);
 restartBtn.addEventListener("click", preGame);
 copyBtn.addEventListener("click", copyUrlToClipboard);
 trackSelector.addEventListener("change", updateCircuitInfo);
+document.addEventListener("keydown", handleKeys);
+
+function handleKeys(e) {
+  if (listeningForKeys && (e.code === "Space" || e.code === "Enter")) {
+    if (isGameOver) {
+      preGame();
+    } else {
+      startLightsSequence();
+    }
+  }
+}
 
 function getRandom() {
     var randomString = Math.random().toString(32).substring(2, 5) + Math.random().toString(32).substring(2, 5);
@@ -1332,6 +1345,8 @@ function startLightsSequence() {
   trackSelector.disabled = true;
   seedInput.disabled = true;
 
+  listeningForKeys = false;
+
   percentage = 0;
   updateTrackPosition();
 
@@ -1414,10 +1429,11 @@ function gameOver(isWin) {
   wordInput.disabled = true;
   wordInput.hidden = true;
   randomWordDiv.hidden = true;
-
-
+  isGameOver = true;
+  
   setTimeout(function () {
     restartBtn.hidden = false;
+    listeningForKeys = true;
   }, 3000);
 }
 
@@ -1425,6 +1441,9 @@ function preGame() {
   populateDataFromCookiesAndURL();
 
   percentage = 0;
+  percentageBar.style["width"] = percentage + "%";
+  isGameOver = false;
+  listeningForKeys = true;
   updateTrackPosition();
   if (opponentGhost.classList.contains("player-time-02")) {
     opponentGhost.classList.remove("player-time-02");
