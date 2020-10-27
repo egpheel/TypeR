@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.90, height=device-height"/>
+  <meta name="google" content="notranslate" />
+
+  <title>TypeR</title>
+
+  <!-- import the webpage's stylesheet -->
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,500;1,700&display=swap" rel="stylesheet">
+
+  <!-- script that allows for seeding random numbers -> https://github.com/davidbau/seedrandom -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+
+  <!-- import script for encryption -->
+  <script src="./vendor/cypher.min.js"></script>
+
+  <!-- import the webpage's javascript file -->
+  <script src="./script.js" defer></script>
+</head>
+
+<style type="text/css">
+  input[type="radio"]:checked + .modal-c {top: 50%; transform: translateX(-50%) translateY(-50%); opacity: 1.00;}
+</style>
+
+<body>
+  <div class="hs-40"></div>
+  <div class="c-100 a-c">
+    <label for="Modal01" class="g-btn">Crash</label>&nbsp;&nbsp;
+    <label for="Modal02" class="g-btn">Finish</label>&nbsp;&nbsp;
+    <label for="Modal03" class="g-btn">Versus</label>
+  </div>
+
+  <input id="Modal01" type="radio" name="modals" class="hidde">
+  <div id="gameOverModal" class="modal-c a-c">
+    <div class="icon-c">
+      <object type="image/svg+xml" data="image.svg">
+        <img width="80" src="./svg/icon-crash.svg" />
+      </object>
+    </div>
+    <div class="c-100">
+      <strong>
+        <span id="gameOverReasonTitle" class="txt-b txt-hl">CRASHED!</span>
+        <br />
+        <span id="gameOverReason" class="txt-m">You've got wheel damage!</span>
+        
+        <div class="hs-l"></div>
+
+        <div class="c-50 a-l">
+          <span class="txt-hl">Circuit</span>
+          <br />
+          <span id="modalTrack">Autodromo Nazionale di Monza</span>
+        </div>
+        <div class="c-25">
+          <span class="txt-hl">Time</span>
+          <br />
+          <span id="gameOverLapTime">00:02.998</span>
+        </div>
+        <div class="c-25">
+          <span class="txt-hl">Completed</span>
+          <br />
+          <span id="gameOverPercentage">3</span><span>%</span></strong>
+        </div>
+
+        <div class="hs-l"></div>
+
+        <div class="c-100 a-c">
+          <strong>
+            <span class="txt-hl">Seed</span> <span id="modalSeed">284163435653714</span>
+          </strong>
+        </div>
+
+        <div class="hs-10"></div>
+        <div class="url-c">
+
+          <div class="get-info-c">
+            <div class="btn">?</div>
+            <div class="discript">
+              Using the same <strong>Seed</strong> will allow you to share the same group of words with your mates
+              <br /><br />
+              You can also share the link by <strong>COPY TO CLIPBOARD</strong>. By doing that your mates can Race directly agains your time.
+            </div>
+          </div>
+
+          <input id="textToCopy" value="https://egpheel.github.io/TypeR/?s=e!zm0gnN%25%23%40.%7D%7D38%23tm%22YUszz%23il.~5WSk!!%25tn~eVr%3D%3D8%3DVeVr.%7Crtn1Zcr!%2C%23V%7B1XzCA%3BJ%2C%3B%3EXV!~nE%244UeVa.%7D%23)4%60o%232CNF4%7B1XcqpA%3E-4%3ESDr" readonly />
+          <button id="copyBtn" class="g-btn">Copy to clipboard</button>
+        </div>
+      </strong>
+    </div>
+    <div class="hs-20"></div>
+    
+    <div class="hs-20"></div>
+    <div class="c-100">
+      <button id="restartBtn" class="g-btn go-c" style="display: block;">
+        Restart
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ---------------------------------------------------------------------------------------- -->
+
+
+  <input id="Modal02" type="radio" name="modals" class="hidde">
+  <div id="gameOverModal" class="modal-c a-c">
+    <div class="icon-c">
+      <object type="image/svg+xml" data="image.svg">
+        <img width="80" src="./svg/icon-finish.svg" />
+      </object>
+    </div>
+    <div class="c-100">
+      <strong>
+        <span id="gameOverReasonTitle" class="txt-b txt-hl">FINISH!</span>
+        <br />
+        <span id="gameOverReason" class="txt-m">Gongratulations!</span>
+        
+        <div class="hs-l"></div>
+
+        <div class="c-50 a-l">
+          <span class="txt-hl">Circuit</span>
+          <br />
+          <span id="modalTrack">Autodromo Nazionale di Monza</span>
+        </div>
+        <div class="c-25">
+          <span class="txt-hl">Time</span>
+          <br />
+          <span id="gameOverLapTime">00:02.998</span>
+        </div>
+        <div class="c-25">
+          <span class="txt-hl">Completed</span>
+          <br />
+          <span id="gameOverPercentage">3</span><span>%</span></strong>
+        </div>
+
+        <div class="hs-l"></div>
+
+        <div class="c-100 a-c">
+          <strong>
+            <span class="txt-hl">Seed</span> <span id="modalSeed">284163435653714</span>
+          </strong>
+        </div>
+
+        <div class="hs-10"></div>
+        <div class="url-c">
+
+          <div class="get-info-c">
+            <div class="btn">?</div>
+            <div class="discript">
+              Using the same <strong>Seed</strong> will allow you to share the same group of words with your mates
+              <br /><br />
+              You can also share the link by <strong>COPY TO CLIPBOARD</strong>. By doing that your mates can Race directly agains your time.
+            </div>
+          </div>
+
+          <input id="textToCopy" value="https://egpheel.github.io/TypeR/?s=e!zm0gnN%25%23%40.%7D%7D38%23tm%22YUszz%23il.~5WSk!!%25tn~eVr%3D%3D8%3DVeVr.%7Crtn1Zcr!%2C%23V%7B1XzCA%3BJ%2C%3B%3EXV!~nE%244UeVa.%7D%23)4%60o%232CNF4%7B1XcqpA%3E-4%3ESDr" readonly />
+          <button id="copyBtn" class="g-btn">Copy to clipboard</button>
+        </div>
+      </strong>
+    </div>
+    <div class="hs-20"></div>
+    
+    <div class="hs-20"></div>
+    <div class="c-100">
+      <button id="restartBtn" class="g-btn go-c" style="display: block;">
+        Restart
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ---------------------------------------------------------------------------------------- -->
+
+
+  <input id="Modal03" type="radio" name="modals" class="hidde" checked>
+  <div id="gameOverModal" class="modal-c a-c">
+    <div class="icon-c">
+      <object type="image/svg+xml" data="image.svg">
+        <img width="80" src="./svg/icon-versus.svg" />
+      </object>
+    </div>
+    <div class="c-100">
+      <strong>
+        <span id="gameOverReasonTitle" class="txt-b txt-hl">FINISH!</span>
+        <br />
+        <span id="gameOverReason" class="txt-m">You came up in</span> <span class="txt-m txt-hl">2</span><sup class="txt-hl">nd</sup>
+        
+        <div class="hs-l"></div>
+
+        <div class="c-100 a-c">
+          <span class="txt-hl">Circuit</span>
+          <br />
+          <span id="modalTrack">Autodromo Nazionale di Monza</span>
+        </div>
+        
+        <div class="hs-10"></div>
+
+        <table cellspacing="0" cellpadding="0">
+          <tr>
+            <th>Pos</th><th></th><th>Name</th><th>Time</th>
+          </tr>
+          <tr>
+            <td><strong>1<sup>st</sup></strong></td><td><div class="player-01"></div></td><td>Unknown player</td><td>01:28.998</td>
+          </tr>
+          <tr>
+            <td><strong>2<sup>nd</sup></strong></td><td><div class="player-02"></div></td><td>SrMizuki</td><td>01:48.723</td>
+          </tr>
+        </table>
+
+        <div class="hs-l"></div>
+
+        <div class="c-100 a-c">
+          <strong>
+            <span class="txt-hl">Seed</span> <span id="modalSeed">284163435653714</span>
+          </strong>
+        </div>
+
+        <div class="hs-10"></div>
+        <div class="url-c">
+
+          <div class="get-info-c">
+            <div class="btn">?</div>
+            <div class="discript">
+              Using the same <strong>Seed</strong> will allow you to share the same group of words with your mates
+              <br /><br />
+              You can also share the link by <strong>COPY TO CLIPBOARD</strong>. By doing that your mates can Race directly agains your time.
+            </div>
+          </div>
+
+          <input id="textToCopy" value="https://egpheel.github.io/TypeR/?s=e!zm0gnN%25%23%40.%7D%7D38%23tm%22YUszz%23il.~5WSk!!%25tn~eVr%3D%3D8%3DVeVr.%7Crtn1Zcr!%2C%23V%7B1XzCA%3BJ%2C%3B%3EXV!~nE%244UeVa.%7D%23)4%60o%232CNF4%7B1XcqpA%3E-4%3ESDr" readonly />
+          <button id="copyBtn" class="g-btn">Copy to clipboard</button>
+        </div>
+      </strong>
+    </div>
+    <div class="hs-20"></div>
+    
+    <div class="hs-20"></div>
+    <div class="c-100">
+      <button id="restartBtn" class="g-btn go-c" style="display: block;">
+        Restart
+      </button>
+    </div>
+  </div>
+
+  
+
+</body>
+
+</html>
