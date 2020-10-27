@@ -284,7 +284,7 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
   .path {width: 20px; height: 20px; border-radius: 100%; background: rgba(40,40,40,1.00); position: absolute; transform: translate(0, 0); top: 0px; transition: all 0.3s;}
 
   .player-time-01 {animation: MOVE 58.458s infinite linear;}
-  .player-time-02 {animation: MOVE 61.458s infinite ease-in; background: rgba(200,40,40,1.00);}
+  .player-time-02 {animation: MOVE linear; background: rgba(200,40,40,1.00);}
   .player-time-03 {animation: MOVE linear; background: rgba(255,255,255,1.00); box-shadow: inset 0 0 0 3px rgba(200, 40, 40, 1.00);}
   .player-time-04 {animation: MOVE 58.058s infinite ease-in-out; background: rgba(140,140,140,1.00);}
 

@@ -1,6 +1,7 @@
 const originalURL = window.location.href.split('?')[0];
-const urlQueryString = window.location.search;
-const seedFromURL = new URLSearchParams(urlQueryString);
+let urlQueryString = window.location.search;
+let seedFromURL = new URLSearchParams(urlQueryString);
+const hashh = window.location.hash.substr(1);
 
 const startLights = document.querySelector("#startLights");
 const trackSelectionDiv = document.querySelector("#trackSelection");
@@ -49,6 +50,7 @@ let lapTimeScale = 1;
 let seededRng;
 let finishLapTime;
 let URLString;
+let shortURL;
 let percentage = 0;
 
 let msg = "Big 4x!";
@@ -59,6 +61,8 @@ let data = {
   playername: null
 }
 let receivedData = data;
+
+let jsonboxEndpoint = "https://jsonbox.io/box_48878c90c848885a43f5";
 
 let tracks = [
   { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
@@ -1114,6 +1118,7 @@ const words = [
   "neck"
 ];
 
+getLongURL();
 generateTrackSelection();
 preGame();
 updateCircuitInfo();
@@ -1123,6 +1128,41 @@ startBtn.addEventListener("click", startLightsSequence);
 restartBtn.addEventListener("click", preGame);
 copyBtn.addEventListener("click", copyUrlToClipboard);
 trackSelector.addEventListener("change", updateCircuitInfo);
+
+function getRandom() {
+    var randomString = Math.random().toString(32).substring(2, 5) + Math.random().toString(32).substring(2, 5);
+    return randomString;
+}
+
+function shortenURL(){
+    let longURL = URLString;
+    let rndURL = getRandom();
+    shortURL = originalURL + "/#" + rndURL;
+    sendRequest(longURL, rndURL);
+}
+
+function getLongURL() {
+    if (window.location.hash != "") {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let res = JSON.parse(this.responseText);
+                history.pushState({ id: 'typer' }, 'TypeR', res.data);
+                urlQueryString = window.location.search;
+                seedFromURL = new URLSearchParams(urlQueryString);
+            }
+        }
+        xmlhttp.open("GET", jsonboxEndpoint + "/" + hashh, true);
+        xmlhttp.send();
+    }
+}
+
+function sendRequest(url, randomURL) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST", jsonboxEndpoint + "/" + randomURL, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify({data: url }));
+}
 
 function populateDataFromCookiesAndURL() {
     playerGhost.hidden = true;
@@ -1261,6 +1301,7 @@ function generateURL() {
     let encryptedDataString = data.encrypt(msg)['encrypted-data'];
     URLString = originalURL + "?s=" + encodeURIComponent(encryptedDataString);
     //history.pushState({ id: 'typer' }, 'TypeR', URLString);
+    shortenURL();
 }
 
 function updateTrackPosition() {
@@ -1311,7 +1352,7 @@ function startGame() {
   updateWord();
 
   if (receivedData.laptime) {
-    opponentGhost.classList.add("player-time-03");
+    opponentGhost.classList.add("player-time-02");
     opponentGhost.style["animation-duration"] = receivedData.laptime + "ms";
   }
 
@@ -1360,7 +1401,8 @@ function gameOver(isWin) {
   generateURL();
   
   gameOverModal.classList.add("show");
-  textToCopy.value = URLString;
+//   textToCopy.value = URLString;
+  textToCopy.value = shortURL;
   copyBtn.textContent = "Copy to clipboard";
   copyBtn.disabled = false;
   wordInput.disabled = true;
@@ -1378,8 +1420,8 @@ function preGame() {
 
   percentage = 0;
   updateTrackPosition();
-  if (opponentGhost.classList.contains("player-time-03")) {
-    opponentGhost.classList.remove("player-time-03");
+  if (opponentGhost.classList.contains("player-time-02")) {
+    opponentGhost.classList.remove("player-time-02");
   }
   
   history.pushState({ id: 'typer' }, 'TypeR', originalURL);
