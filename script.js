@@ -1147,7 +1147,7 @@ function getLongURL() {
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let res = JSON.parse(this.responseText);
-                history.pushState({ id: 'typer' }, 'TypeR', res.data);
+                history.pushState({ id: 'typer' }, 'TypeR', res[0].data);
                 urlQueryString = window.location.search;
                 seedFromURL = new URLSearchParams(urlQueryString);
             }
