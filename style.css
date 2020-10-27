@@ -128,7 +128,7 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 .modal-c .url-c {width: 100%; padding: 0 140px 0 0;}
 .modal-c .url-c input,
 .modal-c .url-c input:hover,
-.modal-c .url-c input:focus {height: 30px; padding: 0 10px; background-color: rgba(40, 40, 40, 0.20); font-size: 0.8rem; line-height: 30px; box-shadow: none;}
+.modal-c .url-c input:focus {height: 30px; padding: 0 10px; background-color: rgba(40, 40, 40, 0.20); font-size: 0.8rem; text-align: center; line-height: 30px; box-shadow: none;}
 .modal-c .url-c .g-btn {width: 140px; height: 30px; padding: 0; position: absolute; right: 0px; top: 0px; line-height: 30px; font-size: 0.8rem; text-align: center;}
 
 .modal-c table {width: 100%; font-weight: 500 !important; text-align: left;}
@@ -164,7 +164,7 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 #ShowReplay[type="checkbox"]:checked + .replay-c {opacity: 1.00; transform: scale(1);}
 
 .replay-c .btn-close {width: 50px; height: 50px; border-radius: 50px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: 50%; bottom: 50px; transform: translateX(-50%) rotate(45deg); transition: all 0.3s; cursor: pointer;}
-.replay-c .btn-close:hover {background-color: rgba(200, 40, 40, 1.00); box-shadow: 0 5px 25px 0 rgba(200, 40, 40, 1.00); transform: translateX(-50%) rotate(225deg);}
+.replay-c .btn-close:hover {background-color: rgba(200, 40, 40, 1.00); box-shadow: 0 0 40px 0 rgba(200, 40, 40, 1.00); transform: translateX(-50%) rotate(225deg);}
 .replay-c .btn-close:before,
 .replay-c .btn-close:after {content: ''; width: 20px; height: 3px; background-color: rgba(255, 255, 255, 1.00); position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%);}
 .replay-c .btn-close:after {transform: translateX(-50%) translateY(-50%) rotate(90deg);}
@@ -352,6 +352,8 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 
   .modal-c .c-50.time {width: 50%; text-align: right; padding: 0 10px 0 0; margin: 0;}
   .modal-c .c-50.complete {width: 50%; text-align: left; padding: 0 0 0 10px; margin: 0;}
+
+  .replay-c .track-c {transform: translateX(-50%) translateY(-50%) scale(1.3);}
 
   .start-lights-c.show {top: initial; bottom: 0; transform: translateX(-50%); opacity: 1.0;}
 
