@@ -1,7 +1,7 @@
-const originalURL = window.location.href.split('?')[0];
+let originalURL = window.location.href.split('?')[0];
 let urlQueryString = window.location.search;
 let seedFromURL = new URLSearchParams(urlQueryString);
-const hashh = window.location.hash.substr(1);
+let hashh = window.location.hash.substr(1);
 
 const startLights = document.querySelector("#startLights");
 const trackSelectionDiv = document.querySelector("#trackSelection");
@@ -1141,6 +1141,7 @@ function shortenURL(){
 function prepareGame() {
     if (window.location.hash != "") {
         // get long URL
+        originalURL = window.location.href.split('#')[0];
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
