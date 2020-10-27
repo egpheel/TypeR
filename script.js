@@ -1118,10 +1118,7 @@ const words = [
   "neck"
 ];
 
-getLongURL();
-generateTrackSelection();
-preGame();
-updateCircuitInfo();
+prepareGame();
 
 wordInput.addEventListener("input", typeWord);
 startBtn.addEventListener("click", startLightsSequence);
@@ -1141,8 +1138,9 @@ function shortenURL(){
     sendRequest(longURL, rndURL);
 }
 
-function getLongURL() {
+function prepareGame() {
     if (window.location.hash != "") {
+        // get long URL
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -1150,10 +1148,18 @@ function getLongURL() {
                 history.pushState({ id: 'typer' }, 'TypeR', res[0].data);
                 urlQueryString = window.location.search;
                 seedFromURL = new URLSearchParams(urlQueryString);
+
+                generateTrackSelection();
+                preGame();
+                updateCircuitInfo();
             }
         }
         xmlhttp.open("GET", jsonboxEndpoint + "/" + hashh, true);
         xmlhttp.send();
+    } else {
+        generateTrackSelection();
+        preGame();
+        updateCircuitInfo();
     }
 }
 
@@ -1172,7 +1178,6 @@ function populateDataFromCookiesAndURL() {
         receivedData = Object.decrypt(encryptedDataString, msg);
         seedInput.value = receivedData.seed;
         trackSelector.value = receivedData.track;
-        console.log(receivedData.laptime);
     } else {
         opponentGhost.hidden = true;
     }
