@@ -25,7 +25,9 @@
 
 <style type="text/css">
   .modal-c {top: -100%}
-  input[type="radio"]:checked + .modal-c {top: 50%; transform: translateX(-50%) translateY(-50%); opacity: 1.00;}
+  #Modal01[type="radio"]:checked + .modal-c,
+  #Modal02[type="radio"]:checked + .modal-c,
+  #Modal03[type="radio"]:checked + .modal-c {top: 50%; transform: translateX(-50%) translateY(-50%); opacity: 1.00;}
 </style>
 
 <body>
@@ -178,6 +180,34 @@
 
   <input id="Modal03" type="radio" name="modals" class="hidde" checked>
   <div id="gameOverModal" class="modal-c a-c">
+    <input id="ShowReplay" type="checkbox" class="hidde">
+    <div class="replay-c">
+      <label for="ShowReplay" class="btn-close"></label>
+      <div class="track-c">
+        <div class="labels a-c">
+          <span class="player">Player
+            <br />
+            <small>04:45.999</small>
+          </span>
+          <span class="opponent">Opponent
+            <br />
+            <small>04:02.992</small>
+          </span>
+          <span class="ghost">Ghost
+            <br />
+            <small>05:06.326</small>
+          </span>
+        </div>
+        <div class="circuit-c">
+          <object type="image/svg+xml" data="image.svg">
+            <img width="200" height="140" src="svg/estoril.svg" />
+          </object>
+          <div class="path estoril player"></div>
+          <div class="path estoril opponent"></div>
+          <div class="path estoril ghost"></div>
+        </div>
+      </div>
+    </div>
     <div class="icon-c">
       <object type="image/svg+xml" data="image.svg">
         <img width="80" src="./svg/icon-versus.svg" />
@@ -191,26 +221,30 @@
         
         <div class="hs-l"></div>
 
-        <div class="c-100 a-c">
+        <div class="c-50 a-l">
           <span class="txt-hl">Circuit</span>
           <br />
           <span id="modalTrack">Autodromo Nazionale di Monza</span>
         </div>
+
+        <div class="c-50 a-r">
+           <label for="ShowReplay" class="g-btn small">Watch Replay</label>
+        </div>
         
         <div class="hs-10"></div>
-
-        <table cellspacing="0" cellpadding="0">
-          <tr>
-            <th>Pos</th><th></th><th>Name</th><th>Time</th>
-          </tr>
-          <tr>
-            <td><strong>1<sup>st</sup></strong></td><td><div class="player-01"></div></td><td>Unknown player</td><td>01:28.998</td>
-          </tr>
-          <tr>
-            <td><strong>2<sup>nd</sup></strong></td><td><div class="player-02"></div></td><td>SrMizuki</td><td>01:48.723</td>
-          </tr>
-        </table>
-
+        <div class="c-100">
+          <table cellspacing="0" cellpadding="0">
+            <tr>
+              <th>Pos</th><th></th><th>Name</th><th>Time</th>
+            </tr>
+            <tr>
+              <td><strong>1<sup>st</sup></strong></td><td><div class="player-01"></div></td><td>Unknown player</td><td>01:28.998</td>
+            </tr>
+            <tr>
+              <td><strong>2<sup>nd</sup></strong></td><td><div class="player-02"></div></td><td>SrMizuki</td><td>01:48.723</td>
+            </tr>
+          </table>
+        </div>
         <div class="hs-l"></div>
 
         <div class="c-100 a-c">
