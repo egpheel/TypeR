@@ -1159,6 +1159,13 @@ trackSelector.addEventListener("change", updateCircuitInfo);
 document.addEventListener("keydown", handleKeys);
 showReplayCheckbox.addEventListener("change", showHideReplay);
 
+window.addEventListener("load",function() {
+  setTimeout(function(){
+      // This hides the address bar:
+      window.scrollTo(0, 1);
+  }, 0);
+});
+
 function showHideReplay() {
   if (isVersusMode) {
     if (showReplayCheckbox.checked) {
