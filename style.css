@@ -355,7 +355,7 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 
   .circuit-c .player span:nth-child(2):before,
   .circuit-c .opponent span:nth-child(2):before,
-  .circuit-c .ghost span:nth-child(2):before, {content: ''; width: 2px; height: 2px; background-color: inherit; border-radius: 6px; position: absolute; bottom: 8px ; transform: translate(0, 0); opacity: 0.00; animation: PARTICLE_C 0.4s linear infinite 0.2s;}
+  .circuit-c .ghost span:nth-child(2):before {content: ''; width: 2px; height: 2px; background-color: inherit; border-radius: 6px; position: absolute; bottom: 8px ; transform: translate(0, 0); opacity: 0.00; animation: PARTICLE_C 0.4s linear infinite 0.2s;}
 
   .circuit-c .player span:nth-child(2):after,
   .circuit-c .opponent span:nth-child(2):after,
