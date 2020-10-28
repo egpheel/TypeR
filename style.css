@@ -338,11 +338,11 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 
   .circuit-c .player span:nth-child(1),
   .circuit-c .opponent span:nth-child(1),
-  .circuit-c .ghost span:nth-child(1) {width: 4px; height: 4px; border-radius: 6px; position: absolute; top: 4px ; transform: translate(0, 0); animation: PARTICLE_MAIN_A 0.8s linear infinite;}
+  .circuit-c .ghost span:nth-child(1) {width: 2px; height: 2px; border-radius: 6px; position: absolute; top: 4px ; transform: translate(0, 0); animation: PARTICLE_MAIN_A 0.8s linear infinite;}
 
   .circuit-c .player span:nth-child(2),
   .circuit-c .opponent span:nth-child(2),
-  .circuit-c .ghost span:nth-child(2) {width: 4px; height: 4px; border-radius: 6px; position: absolute; bottom: 4px ; transform: translate(0, 0); animation: PARTICLE_MAIN_B 0.8s linear infinite 0.4s;}
+  .circuit-c .ghost span:nth-child(2) {width: 2px; height: 2px; border-radius: 6px; position: absolute; bottom: 4px ; transform: translate(0, 0); animation: PARTICLE_MAIN_B 0.8s linear infinite 0.4s;}
   
 
   .circuit-c .player span:nth-child(1):before,
@@ -368,37 +368,37 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
   @keyframes PARTICLE_MAIN_A {
     0% {transform: translate(0, 0); opacity: 0.00}
     20% {transform: translate(0, 0); opacity: 1.00}
-    100% {transform: translate(-20px, -2px); opacity: 0.00}
+    100% {transform: translate(-15px, -2px); opacity: 0.00}
   }
 
   @keyframes PARTICLE_MAIN_B {
     0% {transform: translate(0, 0); opacity: 0.00}
     20% {transform: translate(0, 0); opacity: 1.00}
-    100% {transform: translate(-20px, 2px); opacity: 0.00}
+    100% {transform: translate(-15px, 2px); opacity: 0.00}
   }
 
   @keyframes PARTICLE_A {
     0% {transform: translate(0, 0); opacity: 0.00}
     20% {transform: translate(0, 0); opacity: 1.00}
-    100% {transform: translate(-20px, -5px); opacity: 0.00}
+    100% {transform: translate(-15px, -5px); opacity: 0.00}
   }
 
   @keyframes PARTICLE_B {
     0% {transform: translate(0, 0); opacity: 0.00}
     20% {transform: translate(0, 0); opacity: 1.00}
-    100% {transform: translate(-20px, 5px); opacity: 0.00}
+    100% {transform: translate(-15px, 5px); opacity: 0.00}
   }
 
   @keyframes PARTICLE_C {
     0% {transform: translate(0, 0); opacity: 0.00}
     20% {transform: translate(0, 0); opacity: 1.00}
-    100% {transform: translate(-20px, -10px); opacity: 0.00}
+    100% {transform: translate(-15px, -10px); opacity: 0.00}
   }
 
   @keyframes PARTICLE_D {
     0% {transform: translate(0, 0); opacity: 0.00}
     20% {transform: translate(0, 0); opacity: 1.00}
-    100% {transform: translate(-20px, 10px); opacity: 0.00}
+    100% {transform: translate(-15px, 10px); opacity: 0.00}
   }
 
 @media only screen and (max-width: 610px) {
