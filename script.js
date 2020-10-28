@@ -1178,6 +1178,8 @@ function setPlayerName() {
 
   if (thisPlayerName) {
     playerNameInput.value = thisPlayerName;
+  } else {
+    thisPlayerName = "You";
   }
 }
 
