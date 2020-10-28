@@ -1134,6 +1134,10 @@ function handleKeys(e) {
     if (isGameOver) {
       preGame();
     } else {
+      if (seedInput === document.activeElement && e.code === "Space") {
+        return;
+      }
+      
       startLightsSequence();
     }
   }
@@ -1340,10 +1344,9 @@ function startLightsSequence() {
   startBtn.classList.remove("show");
   gameArea.hidden = false;
   gameArea.scrollIntoView(false);
-  wordInput.disabled = false;
+  wordInput.disabled = true;
   wordInput.hidden = false;
   wordInput.value = "";
-  wordInput.focus();
   trackSelector.disabled = true;
   seedInput.disabled = true;
 
@@ -1364,6 +1367,9 @@ function startLightsSequence() {
 }
 
 function startGame() {
+  wordInput.disabled = false;
+  wordInput.focus();
+
   currentDistance = 0;
 
   selectedTrack = tracks[trackSelector.value];
