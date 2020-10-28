@@ -50,6 +50,7 @@ const replayTrackmap = document.querySelector("#replayTrackmap");
 const replayPlayer = document.querySelector("#replayPlayer");
 const replayOpponent = document.querySelector("#replayOpponent");
 const showReplayCheckbox = document.querySelector("#ShowReplay");
+const playerNameInput = document.querySelector("#playerNameInput");
 
 let startLightsTime = 7000;
 let startTime = 6000;
@@ -72,6 +73,8 @@ let percentage = 0;
 let listeningForKeys = true;
 let isGameOver = false;
 let isVersusMode = false;
+let thisPlayerName = null;
+let changeNameTimeout = null;
 
 let msg = "Big 4x!";
 let data = {
@@ -1150,30 +1153,51 @@ const words = [
 ];
 
 prepareGame();
+setPlayerName();
 
 wordInput.addEventListener("input", typeWord);
 startBtn.addEventListener("click", startLightsSequence);
 restartBtn.addEventListener("click", preGame);
 copyBtn.addEventListener("click", copyUrlToClipboard);
 trackSelector.addEventListener("change", updateCircuitInfo);
-document.addEventListener("keydown", handleKeys);
 showReplayCheckbox.addEventListener("change", showHideReplay);
+playerNameInput.addEventListener("keydown", changeName);
+playerNameInput.addEventListener("focus", function() { listeningForKeys = false; });
+playerNameInput.addEventListener("blur", function() { listeningForKeys = true; });
+document.addEventListener("keydown", handleKeys);
 
-window.addEventListener("load",function() {
-  setTimeout(function(){
-      // This hides the address bar:
-      window.scrollTo(0, 1);
-  }, 0);
-});
+// window.addEventListener("load",function() {
+//   setTimeout(function(){
+//       // This hides the address bar:
+//       window.scrollTo(0, 1);
+//   }, 0);
+// });
+
+function setPlayerName() {
+  thisPlayerName = localStorage.getItem("playerName");
+
+  if (thisPlayerName) {
+    playerNameInput.value = thisPlayerName;
+  }
+}
+
+function changeName() {
+  clearTimeout(changeNameTimeout);
+
+  changeNameTimeout = setTimeout(function () {
+    localStorage.setItem("playerName", playerNameInput.value);
+    thisPlayerName = playerNameInput.value;
+  }, 1000);
+}
 
 function showHideReplay() {
   if (isVersusMode) {
     if (showReplayCheckbox.checked) {
-      replayPlInfo.innerHTML = "You<br /><small>" + textifyLapTime(finishLapTime) + "</small>";
+      replayPlInfo.innerHTML = thisPlayerName + "<br /><small>" + textifyLapTime(finishLapTime) + "</small>";
       replayPlayer.classList.add("player");
       replayPlayer.style["animation-duration"] = finishLapTime + "ms";
 
-      replayOppInfo.innerHTML = "Anonymous<br /><small>" + textifyLapTime(receivedData.laptime) + "</small>";
+      replayOppInfo.innerHTML = receivedData.playername + "<br /><small>" + textifyLapTime(receivedData.laptime) + "</small>";
       replayOpponent.classList.add("opponent");
       replayOpponent.style["animation-duration"] = receivedData.laptime + "ms";
     } else {
@@ -1486,30 +1510,31 @@ function gameOver(isWin) {
 
         firstPlIcon.className = "";
         firstPlIcon.classList.add(icons.class.player);
-        firstPlName.textContent = "You";
+        firstPlName.textContent = thisPlayerName;
         firstPlGap.textContent = "-";
         firstPlLaptime.textContent = textifyLapTime(finishLapTime);
 
         secondPlIcon.className = "";
         secondPlIcon.classList.add(icons.class.opponent);
-        secondPlName.textContent = "Anonymous";
+        secondPlName.textContent = receivedData.playername;
         secondPlGap.textContent = "+" + textifyLapTime(receivedData.laptime - finishLapTime);
         secondPlLaptime.textContent = textifyLapTime(receivedData.laptime);
         
         data.laptime = finishLapTime;
+        data.playername = thisPlayerName;
       } else if (finishLapTime > receivedData.laptime) {
         gameOverReasonTitle.textContent = "FINISH";
         gameOverReason.innerHTML = "You finished <span class=\"txt-m txt-hl\">2</span><sup class=\"txt-hl\">nd</sup>";
 
         firstPlIcon.className = "";
         firstPlIcon.classList.add(icons.class.opponent);
-        firstPlName.textContent = "Anonymous";
+        firstPlName.textContent = receivedData.playername;
         firstPlGap.textContent = "-";
         firstPlLaptime.textContent = textifyLapTime(receivedData.laptime);
 
         secondPlIcon.className = "";
         secondPlIcon.classList.add(icons.class.player);
-        secondPlName.textContent = "You";
+        secondPlName.textContent = thisPlayerName;
         secondPlGap.textContent = "+" + textifyLapTime(finishLapTime - receivedData.laptime);
         secondPlLaptime.textContent = textifyLapTime(finishLapTime);
       } else {
@@ -1518,13 +1543,13 @@ function gameOver(isWin) {
 
         firstPlIcon.className = "";
         firstPlIcon.classList.add(icons.class.player);
-        firstPlName.textContent = "You";
+        firstPlName.textContent = thisPlayerName;
         firstPlGap.textContent = "-";
         firstPlLaptime.textContent = textifyLapTime(finishLapTime);
 
         secondPlIcon.className = "";
         secondPlIcon.classList.add(icons.class.opponent);
-        secondPlName.textContent = "Anonymous";
+        secondPlName.textContent = receivedData.playername;
         secondPlGap.textContent = "+" + textifyLapTime(receivedData.laptime - finishLapTime);
         secondPlLaptime.textContent = textifyLapTime(receivedData.laptime);
       }
@@ -1537,13 +1562,13 @@ function gameOver(isWin) {
 
       firstPlIcon.className = "";
       firstPlIcon.classList.add(icons.class.opponent);
-      firstPlName.textContent = "Anonymous";
+      firstPlName.textContent = receivedData.playername;
       firstPlGap.textContent = "-";
       firstPlLaptime.textContent = textifyLapTime(receivedData.laptime);
 
       secondPlIcon.className = "";
       secondPlIcon.classList.add(icons.class.player);
-      secondPlName.textContent = "You";
+      secondPlName.textContent = thisPlayerName;
       secondPlGap.textContent = "-";
       secondPlLaptime.textContent = "DNF";
     }
@@ -1554,6 +1579,7 @@ function gameOver(isWin) {
       gameOverIcon.src = icons.finish;
       
       data.laptime = finishLapTime;
+      data.playername = thisPlayerName;
     } else {
       gameOverReasonTitle.textContent = "CRASH";
       gameOverReason.textContent = "You've got wheel damage!";
