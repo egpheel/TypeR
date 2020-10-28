@@ -24,8 +24,8 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 .g-btn:hover {background-color: rgba(200, 40, 40, 1.00); color: rgba(255, 255, 255, 1.00); box-shadow: 0 5px 25px 0 rgba(200, 40, 40, 1.00);}
 .g-btn:active {background-color: rgba(40, 40, 40, 1.00); box-shadow: 0 0 0 0 rgba(40, 40, 40, 0.00); transition: all 0.0s;}
 .g-btn.small {padding: 12px 24px; font-size: 1.2rem;}
-.g-btn.show-toggle {display: none;}
-.g-btn.show-toggle.show {display: inline-block;}
+.g-btn.show-toggle {display: inline-block; max-height: 0; padding: 0 40px; overflow: hidden; box-shadow: 0 5px 15px 0 rgba(40, 40, 40, 0.10); opacity: 0.00; transition: all 0.3s;}
+.g-btn.show-toggle.show {max-height: 100px; padding: 20px 40px; box-shadow: 0 5px 15px 0 rgba(40, 40, 40, 0.10); opacity: 1.00;}
 
 /* CONATINERS  */
 
