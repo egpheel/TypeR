@@ -44,6 +44,12 @@ const secondPlIcon = document.querySelector("#secondPlIcon");
 const secondPlName = document.querySelector("#secondPlName");
 const secondPlGap = document.querySelector("#secondPlGap");
 const secondPlLaptime = document.querySelector("#secondPlLaptime");
+const replayPlInfo = document.querySelector("#replayPlInfo");
+const replayOppInfo = document.querySelector("#replayOppInfo");
+const replayTrackmap = document.querySelector("#replayTrackmap");
+const replayPlayer = document.querySelector("#replayPlayer");
+const replayOpponent = document.querySelector("#replayOpponent");
+const showReplayCheckbox = document.querySelector("#ShowReplay");
 
 let startLightsTime = 7000;
 let startTime = 6000;
@@ -80,6 +86,7 @@ let jsonboxEndpoint = "https://jsonbox.io/box_48878c90c848885a43f5";
 
 let tracks = [
   { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
+  { name: "Test Track 2", circuitLength: 500, intendedLapTime: 10, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
   {
     name: "Circuit de Spa-Francorchamps",
     circuitLength: 7004,
@@ -1150,6 +1157,24 @@ restartBtn.addEventListener("click", preGame);
 copyBtn.addEventListener("click", copyUrlToClipboard);
 trackSelector.addEventListener("change", updateCircuitInfo);
 document.addEventListener("keydown", handleKeys);
+showReplayCheckbox.addEventListener("change", showHideReplay);
+
+function showHideReplay() {
+  if (isVersusMode) {
+    if (showReplayCheckbox.checked) {
+      replayPlInfo.innerHTML = "You<br /><small>" + textifyLapTime(finishLapTime) + "</small>";
+      replayPlayer.classList.add("player");
+      replayPlayer.style["animation-duration"] = finishLapTime + "ms";
+
+      replayOppInfo.innerHTML = "Anonymous<br /><small>" + textifyLapTime(receivedData.laptime) + "</small>";
+      replayOpponent.classList.add("opponent");
+      replayOpponent.style["animation-duration"] = receivedData.laptime + "ms";
+    } else {
+      replayPlayer.classList.remove("player");
+      replayOpponent.classList.remove("opponent");
+    }
+  }
+}
 
 function handleKeys(e) {
   if (listeningForKeys && (e.code === "Space" || e.code === "Enter")) {
@@ -1226,6 +1251,7 @@ function populateDataFromCookiesAndURL() {
 function updateCircuitInfo() {
   trackFlag.src = tracks[trackSelector.value].flag;
   trackMap.src = tracks[trackSelector.value].trackmap;
+  replayTrackmap.src = tracks[trackSelector.value].trackmap;
   trackName.textContent = tracks[trackSelector.value].name;
   trackLength.textContent = tracks[trackSelector.value].circuitLength;
   modalTrack.textContent = tracks[trackSelector.value].name;
@@ -1233,6 +1259,13 @@ function updateCircuitInfo() {
   playerIcon.classList.add("path");
   playerIcon.classList.add(tracks[trackSelector.value].path);
   opponentGhost.classList.add(tracks[trackSelector.value].path);
+
+  replayPlayer.className = "";
+  replayPlayer.classList.add("path");
+  replayPlayer.classList.add(tracks[trackSelector.value].path);
+  replayOpponent.className = "";
+  replayOpponent.classList.add("path");
+  replayOpponent.classList.add(tracks[trackSelector.value].path);
 
   if (receivedData && receivedData.track === trackSelector.value) {
       opponentGhost.hidden = false;
@@ -1411,7 +1444,7 @@ function startGame() {
   if (receivedData.laptime) {
     opponentGhost.classList.add("player-time-02");
     opponentGhost.style["animation-duration"] = receivedData.laptime + "ms";
-    isVersusMode = true;
+    // isVersusMode = true;
   } else {
     opponentGhost.hidden = true;
   }
@@ -1493,6 +1526,8 @@ function gameOver(isWin) {
       gameOverReason.textContent = "You've got wheel damage!";
       gameOverIcon.src = icons.crash;
 
+      showReplayCheckbox.disabled = true;
+
       firstPlIcon.className = "";
       firstPlIcon.classList.add(icons.class.opponent);
       firstPlName.textContent = "Anonymous";
@@ -1505,23 +1540,25 @@ function gameOver(isWin) {
       secondPlGap.textContent = "-";
       secondPlLaptime.textContent = "DNF";
     }
-  } else if (isWin) {
-    gameOverReasonTitle.textContent = "FINISH";
-    gameOverReason.textContent = "Congratulations!";
-    gameOverIcon.src = icons.finish;
-    
-    data.laptime = finishLapTime;
   } else {
-    gameOverReasonTitle.textContent = "CRASH";
-    gameOverReason.textContent = "You've got wheel damage!";
-    gameOverIcon.src = icons.crash;
+      if (isWin) {
+      gameOverReasonTitle.textContent = "FINISH";
+      gameOverReason.textContent = "Congratulations!";
+      gameOverIcon.src = icons.finish;
+      
+      data.laptime = finishLapTime;
+    } else {
+      gameOverReasonTitle.textContent = "CRASH";
+      gameOverReason.textContent = "You've got wheel damage!";
+      gameOverIcon.src = icons.crash;
+    }
   }
 
   generateURL();
   
   gameOverModal.classList.add("show");
   textToCopy.value = shortURL;
-  copyBtn.textContent = "Copy to clipboard";
+  copyBtn.textContent = "Copy";
   copyBtn.disabled = false;
   wordInput.disabled = true;
   wordInput.hidden = true;
@@ -1535,15 +1572,17 @@ function gameOver(isWin) {
 }
 
 function preGame() {
-  populateDataFromCookiesAndURL();
-
   hideModalContent();
+
+  populateDataFromCookiesAndURL();
 
   percentage = 0;
   percentageBar.style["width"] = percentage + "%";
   isGameOver = false;
   listeningForKeys = true;
+  
   updateTrackPosition();
+
   if (opponentGhost.classList.contains("player-time-02")) {
     opponentGhost.classList.remove("player-time-02");
   }
@@ -1563,19 +1602,20 @@ function preGame() {
 }
 
 function showModalContent() {
+  showReplayCheckbox.disabled = false;
+
   if (isVersusMode) {
     versusContent.classList.add("show");
+    crashFinishContent.classList.remove("show");
   } else {
     crashFinishContent.classList.add("show");
+    versusContent.classList.remove("show");
   }
 }
 
 function hideModalContent() {
-  if (isVersusMode) {
-    versusContent.classList.remove("show");
-  } else {
-    crashFinishContent.classList.remove("show");
-  }
+  versusContent.classList.remove("show");
+  crashFinishContent.classList.remove("show");
 }
 
 function textifyLapTime(lt) {

@@ -311,8 +311,8 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
   .replay-c .track-c .circuit-c .path {width: 14px; height: 14px;}
 
 
-  .circuit-c .player {animation: MOVE 48.458s infinite linear; z-index: 3;}
-  .circuit-c .opponent {animation: MOVE 38.458s infinite linear; background: rgba(255,255,255,1.00); box-shadow: inset 0 0 0 3px rgba(200, 40, 40, 1.00); z-index: 2;}
+  .circuit-c .player {animation: MOVE linear; z-index: 3;}
+  .circuit-c .opponent {animation: MOVE linear; background: rgba(255,255,255,1.00); box-shadow: inset 0 0 0 3px rgba(200, 40, 40, 1.00); z-index: 2;}
   .circuit-c .ghost {animation: MOVE 58.458s infinite linear; background: rgba(40, 100, 200, 0.50); box-shadow: inset 0 0 0 1px rgba(40, 100, 200, 0.50), 0 0 10px 0 rgba(40, 100, 200, 0.50); z-index: 1;}
   
   .player-time-01 {animation: MOVE 58.458s infinite linear;}
