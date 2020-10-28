@@ -25,7 +25,152 @@
 
 <body>
 
+  <!-- MODAL STARTS -->
   <div id="gameOverModal" class="modal-c a-c">
+
+    <!-- REPLAY CONTAINER STARTS -->
+    <input id="ShowReplay" type="checkbox" class="hidde">
+    <div class="replay-c">
+      <label for="ShowReplay" class="btn-close"></label>
+      <div class="track-c">
+        <div class="labels a-c">
+          <span class="player">Player
+            <br />
+            <small>04:45.999</small>
+          </span>
+          <span class="opponent">Opponent
+            <br />
+            <small>04:02.992</small>
+          </span>
+          <span class="ghost">Ghost
+            <br />
+            <small>05:06.326</small>
+          </span>
+        </div>
+        <div class="circuit-c">
+          <object type="image/svg+xml" data="image.svg">
+            <img width="200" height="140" src="svg/estoril.svg" />
+          </object>
+          <div class="path estoril player"></div>
+          <div class="path estoril opponent"></div>
+          <div class="path estoril ghost"></div>
+        </div>
+      </div>
+    </div>
+    <!-- REPLAY CONTAINER ENDS -->
+
+    <!-- HEADER STARTS -->
+    <div class="c-100">
+      <div class="icon-c">
+        <object type="image/svg+xml" data="image.svg">
+          <img width="80" src="./svg/icon-crash.svg" />
+        </object>
+      </div>
+      <div class="c-100-f">
+        <strong>
+          <span id="gameOverReasonTitle" class="txt-b txt-hl"></span>
+          <br />
+          <span id="gameOverReason" class="txt-m"></span>
+        </strong>
+      </div>
+    </div>
+    <!-- HEADER ENDS -->
+
+    <!-- CRASH/FINISH CONTENT STARTS -->
+    <div id="CrashFinishContent" class="c-100">
+      <strong>
+        <div class="hs-l"></div>
+
+        <div class="c-50 a-l">
+          <span class="txt-hl">Circuit</span>
+          <br />
+          <span id="modalTrack">Autodromo Nazionale di Monza</span>
+        </div>
+        <div class="c-25">
+          <span class="txt-hl">Time</span>
+          <br />
+          <span id="gameOverLapTime">00:02.998</span>
+        </div>
+        <div class="c-25">
+          <span class="txt-hl">Completed</span>
+          <br />
+          <span id="gameOverPercentage"></span><span>%</span>
+        </div>
+      </strong>
+      <div class="hs-l"></div>
+    </div>
+    <!-- CRASH/FINISH CONTENT ENDS -->
+
+    <!-- VERSUS CONTENT STARTS -->
+    <div id="VersusContent" class="c-100-f">
+      <div class="hs-l"></div>
+      <div class="c-50 a-l">
+        <strong>
+          <span class="txt-hl">Circuit</span>
+          <br />
+          <span id="modalTrack">Autodromo Nazionale di Monza</span>
+        </strong>
+      </div>
+
+      <div class="c-50 a-r">
+         <label for="ShowReplay" class="g-btn small">Watch Replay</label>
+      </div>
+      
+      <div class="hs-10"></div>
+      <div class="c-100">
+        <table cellspacing="0" cellpadding="0">
+          <tr>
+            <th>Pos</th><th></th><th>Name</th><th>Dif.</th><th>Time</th>
+          </tr>
+          <tr>
+            <td><strong>1<sup>st</sup></strong></td><td><div class="player-01"></div></td><td>Unknown player</td><td>0.00s</td><td>01:28.998</td>
+          </tr>
+          <tr>
+            <td><strong>2<sup>nd</sup></strong></td><td><div class="player-02"></div></td><td>SrMizuki</td><td>+10.275</td><td>01:48.723</td>
+          </tr>
+        </table>
+      </div>
+      <div class="hs-l"></div>
+    </div>
+    <!-- VERSUS CONTENT ENDS -->
+
+    <!-- SEED STARTS -->
+    <div class="c-100">
+      <div class="c-100 a-c">
+        <strong>
+          <span class="txt-hl">Seed</span> <span id="modalSeed"></span>
+        </strong>
+      </div>
+
+      <div class="hs-10"></div>
+      <div class="url-c">
+
+        <div class="get-info-c">
+          <div class="btn">?</div>
+          <div class="discript">
+            Using the same <strong>Seed</strong> will allow you to share the same group of words with your mates
+            <br /><br />
+            You can also share the link by <strong>COPY TO CLIPBOARD</strong>. By doing that your mates can Race directly agains your time.
+          </div>
+        </div>
+
+        <input id="textToCopy" readonly />
+        <button id="copyBtn" class="g-btn">Copy to clipboard</button>
+      </div>
+      <div class="hs-20"></div>
+    </div>
+    <!-- SEED ENDS -->
+
+    <div class="hs-20"></div>
+    <div class="c-100 a-c">
+      <button id="restartBtn" class="g-btn show-toggle">
+        Restart
+      </button>
+    </div>
+  </div>
+
+
+  <div id="gameOverModal" class="modal-c a-c" style="display: none;">
     <div class="icon-c">
       <object type="image/svg+xml" data="image.svg">
         <img width="80" src="./svg/icon-crash.svg" />
@@ -67,6 +212,7 @@
       </button>
     </div>
   </div>
+  <!-- MODAL ENDS -->
 
   <div class="mc main">
 

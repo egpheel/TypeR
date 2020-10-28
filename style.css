@@ -104,7 +104,7 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 .logo-c .flag {width: 100px; height: 60px; background-image: linear-gradient(90deg, #333 20px, white 20px), linear-gradient(90deg, white 20px, #333 20px), linear-gradient(90deg, #333 20px, white 20px); background-position: 0 0, 0 20px, 0 40px; background-repeat: repeat-x; background-size: 40px 20px, 40px 20px, 40px 20px; position: absolute; left: 0px; top: 0px; z-index: 1; animation: 1.5s FLAGANIME ease-out;}
 .logo-c .txt {font-size: 4rem; font-weight: 700;position: absolute; right: 0px; top: calc(50% - 6px); transform: translateY(-50%); animation: 2s TXTANIME ease-out;}
 .logo-c .txt span {color: rgba(200, 40, 40, 1.00);}
-.logo-c .txt:before {content: 'αlpha 0.03'; font-size: 0.8rem; color: rgba(200, 40, 40, 1.00); position: absolute; bottom: -3px; left: 72px;}
+.logo-c .txt:before {content: 'αlpha 0.05'; font-size: 0.8rem; color: rgba(200, 40, 40, 1.00); position: absolute; bottom: -3px; left: 72px;}
 
 @keyframes FLAGANIME {
   0% {transform: translateX(145px);}
@@ -118,9 +118,15 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 }
 
 .modal-c {width: calc(100% - 20px); max-width: 600px; background-color: rgba(255, 255, 255, 0.90); backdrop-filter: blur(5px); border-radius: 20px; padding: 40px; position: fixed; left: 50%; top: -500px; transform: translateX(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 0.25); z-index: 50; opacity: 0.00; transition: all 0.5s ease-in-out;}
-.modal-c .icon-c {width: 80px; height: 80px; left: 50%; transform: translateX(-50%);}
-.modal-c .icon-c img {position: relative; float: left; top: 50%; transform: translateY(-50%);}
+.modal-c .c-100 .icon-c {width: 80px; height: 80px; left: 50%; transform: translateX(-50%);}
+.modal-c .c-100 .icon-c img {position: relative; float: left; top: 50%; transform: translateY(-50%);}
 .modal-c.show {top: 50%; transform: translateX(-50%) translateY(-50%); opacity: 1.00;}
+
+.modal-c #CrashFinishContent {display: none}
+.modal-c #VersusContent {display: none}
+
+.modal-c #CrashFinishContent.show {display: block}
+.modal-c #VersusContent.show {display: block}
 
 .modal-c .circuit-c {width: 50%; text-align: left;}
 .modal-c .circuit-c span {width: 100%; display: inline-block;}
