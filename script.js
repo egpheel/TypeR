@@ -1479,7 +1479,7 @@ function startGame() {
   updateWord();
 
   if (receivedData.laptime) {
-    opponentGhost.classList.add("player-time-02");
+    opponentGhost.classList.add("opponent");
     opponentGhost.style["animation-duration"] = receivedData.laptime + "ms";
     // isVersusMode = true;
   } else {
