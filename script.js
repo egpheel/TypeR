@@ -1335,7 +1335,9 @@ function startLightsSequence() {
   randomWordDiv.textContent = "Get ready!";
   trackSelectorItem.classList.remove("show");
   //trackSelectorItem.hidden = true;
-  startBtn.hidden = true;
+  //startBtn.hidden = true;
+  //startBtn.style["display"] = "none";
+  startBtn.classList.remove("show");
   gameArea.hidden = false;
   gameArea.scrollIntoView(false);
   wordInput.disabled = false;
@@ -1432,7 +1434,8 @@ function gameOver(isWin) {
   isGameOver = true;
   
   setTimeout(function () {
-    restartBtn.hidden = false;
+    //restartBtn.disabled = false;
+    restartBtn.classList.add("show");
     listeningForKeys = true;
   }, 3000);
 }
@@ -1456,8 +1459,11 @@ function preGame() {
 
   trackSelectorItem.classList.add("show");
   //trackSelectorItem.hidden = false;
-  restartBtn.hidden = true;
-  startBtn.hidden = false;
+  //restartBtn.disabled = true;
+  restartBtn.classList.remove("show");
+  //startBtn.hidden = false;
+  //startBtn.style["display"] = "inline-block";
+  startBtn.classList.add("show");
   trackSelector.disabled = false;
   seedInput.disabled = false;
   gameArea.hidden = true;
