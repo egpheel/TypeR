@@ -1276,6 +1276,10 @@ function populateDataFromCookiesAndURL() {
         receivedData = Object.decrypt(encryptedDataString, msg);
         seedInput.value = receivedData.seed;
         trackSelector.value = receivedData.track;
+
+        if (!receivedData.playername) {
+          receivedData.playername = "Anonymous";
+        }
     } else {
         opponentGhost.hidden = true;
     }
@@ -1523,7 +1527,7 @@ function gameOver(isWin) {
         secondPlLaptime.textContent = textifyLapTime(receivedData.laptime);
         
         data.laptime = finishLapTime;
-        data.playername = thisPlayerName;
+        data.playername = playerNameInput.value;
       } else if (finishLapTime > receivedData.laptime) {
         gameOverReasonTitle.textContent = "FINISH";
         gameOverReason.innerHTML = "You finished <span class=\"txt-m txt-hl\">2</span><sup class=\"txt-hl\">nd</sup>";
@@ -1581,7 +1585,7 @@ function gameOver(isWin) {
       gameOverIcon.src = icons.finish;
       
       data.laptime = finishLapTime;
-      data.playername = thisPlayerName;
+      data.playername = playerNameInput.value;
     } else {
       gameOverReasonTitle.textContent = "CRASH";
       gameOverReason.textContent = "You've got wheel damage!";
