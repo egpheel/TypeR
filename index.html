@@ -49,7 +49,7 @@
         </div>
         <div class="circuit-c">
           <object type="image/svg+xml" data="image.svg">
-            <img width="200" height="140" src="svg/estoril.svg" />
+            <img width="200" height="140" src="./svg/estoril.svg" />
           </object>
           <div class="path estoril player"></div>
           <div class="path estoril opponent"></div>
@@ -63,7 +63,7 @@
     <div class="c-100">
       <div class="icon-c">
         <object type="image/svg+xml" data="image.svg">
-          <img width="80" src="./svg/icon-crash.svg" />
+          <img id="gameOverIcon" width="80" src="./svg/icon-crash.svg" />
         </object>
       </div>
       <div class="c-100-f">
@@ -123,10 +123,10 @@
             <th>Pos</th><th></th><th>Name</th><th>Dif.</th><th>Time</th>
           </tr>
           <tr>
-            <td><strong>1<sup>st</sup></strong></td><td><div class="player-01"></div></td><td>Unknown player</td><td>0.00s</td><td>01:28.998</td>
+            <td><strong>1<sup>st</sup></strong></td><td><div id="firstPlIcon" class="player-01"></div></td><td id="firstPlName">-</td><td id="firstPlGap">-</td><td id="firstPlLaptime">-</td>
           </tr>
           <tr>
-            <td><strong>2<sup>nd</sup></strong></td><td><div class="player-02"></div></td><td>SrMizuki</td><td>+10.275</td><td>01:48.723</td>
+            <td><strong>2<sup>nd</sup></strong></td><td><div id="secondPlIcon" class="player-02"></div></td><td id="secondPlName">-</td><td id="secondPlGap">-</td><td id="secondPlLaptime">-</td>
           </tr>
         </table>
       </div>
@@ -148,14 +148,14 @@
         <div class="get-info-c">
           <div class="btn">?</div>
           <div class="discript">
-            Using the same <strong>Seed</strong> will allow you to share the same group of words with your mates
+            The same word groups can be shared with friends by using a common <strong>seed</strong>.
             <br /><br />
-            You can also share the link by <strong>COPY TO CLIPBOARD</strong>. By doing that your mates can Race directly agains your time.
+            By clicking <strong>COPY</strong> and sharing this link with your friends, you can race against one another under the same condtions.
           </div>
         </div>
 
         <input id="textToCopy" readonly />
-        <button id="copyBtn" class="g-btn">Copy to clipboard</button>
+        <button id="copyBtn" class="g-btn">Copy</button>
       </div>
       <div class="hs-20"></div>
     </div>

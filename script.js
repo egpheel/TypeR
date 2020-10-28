@@ -24,6 +24,7 @@ const gameOverReasonTitle = document.querySelector("#gameOverReasonTitle");
 const gameOverReason = document.querySelector("#gameOverReason");
 const gameOverLapTime = document.querySelector("#gameOverLapTime");
 const gameOverPercentage = document.querySelector("#gameOverPercentage");
+const gameOverIcon = document.querySelector("#gameOverIcon");
 const modalTrack = document.querySelector("#modalTrack");
 const modalSeed = document.querySelector("#modalSeed");
 const seedInput = document.querySelector("#seed");
@@ -33,6 +34,16 @@ const textToCopy = document.querySelector("#textToCopy");
 const playerIcon = document.querySelector("#playerIcon");
 const playerGhost = document.querySelector("#playerGhost");
 const opponentGhost = document.querySelector("#opponentGhost");
+const crashFinishContent = document.querySelector("#CrashFinishContent");
+const versusContent = document.querySelector("#VersusContent");
+const firstPlIcon = document.querySelector("#firstPlIcon");
+const firstPlName = document.querySelector("#firstPlName");
+const firstPlGap = document.querySelector("#firstPlGap");
+const firstPlLaptime = document.querySelector("#firstPlLaptime");
+const secondPlIcon = document.querySelector("#secondPlIcon");
+const secondPlName = document.querySelector("#secondPlName");
+const secondPlGap = document.querySelector("#secondPlGap");
+const secondPlLaptime = document.querySelector("#secondPlLaptime");
 
 let startLightsTime = 7000;
 let startTime = 6000;
@@ -54,6 +65,7 @@ let shortURL;
 let percentage = 0;
 let listeningForKeys = true;
 let isGameOver = false;
+let isVersusMode = false;
 
 let msg = "Big 4x!";
 let data = {
@@ -118,6 +130,16 @@ let tracks = [
   { name: "Autódromo Internacional do Algarve (Portimao)", circuitLength: 4692, intendedLapTime: 115, flag: "./svg/flag-portugal.svg", trackmap: "./svg/portimao.svg", path: "portimao" },
   { name: "Autódromo do Estoril", circuitLength: 4182, intendedLapTime: 110, flag: "./svg/flag-portugal.svg", trackmap: "./svg/estoril.svg", path: "estoril" }
 ];
+
+let icons = { 
+  "crash": "./svg/icon-crash.svg",
+  "finish": "./svg/icon-finish.svg",
+  "versus": "./svg/icon-versus.svg",
+  "class": {
+    "player": "player-01",
+    "opponent": "player-02"
+  }
+}
 
 const words = [
   "the",
@@ -1214,8 +1236,14 @@ function updateCircuitInfo() {
 
   if (receivedData && receivedData.track === trackSelector.value) {
       opponentGhost.hidden = false;
+      if (receivedData.laptime) {
+        isVersusMode = true;
+      } else {
+        isVersusMode = false;
+      }
   } else {
       opponentGhost.hidden = true;
+      isVersusMode = false;
   }
 }
 
@@ -1383,6 +1411,9 @@ function startGame() {
   if (receivedData.laptime) {
     opponentGhost.classList.add("player-time-02");
     opponentGhost.style["animation-duration"] = receivedData.laptime + "ms";
+    isVersusMode = true;
+  } else {
+    opponentGhost.hidden = true;
   }
 
   let start = new Date().getTime();
@@ -1390,7 +1421,7 @@ function startGame() {
   lapTimeTimer = setInterval(function () {
     let now = new Date().getTime();
     let lapTime = now - start;
-    let currentLapTime = new Date(lapTime).toISOString().slice(14, -1);
+    let currentLapTime = textifyLapTime(lapTime);
 
     lapTimeDiv.textContent = currentLapTime;
     gameOverLapTime.textContent = currentLapTime;
@@ -1399,38 +1430,96 @@ function startGame() {
   }, 1);
 }
 
-// function finish() {
-//   clearInterval(timeLeft);
-//   clearInterval(lapTimeTimer);
-//   gameOverModal.classList.add("show");
-//   wordInput.disabled = true;
-//   wordInput.hidden = true;
-//   randomWordDiv.hidden = true;
-//   gameOverReasonTitle.textContent = "Congratulations!";
-//   gameOverReason.textContent = "You have completed the lap!";
-//   setTimeout(function () {
-//     restartBtn.hidden = false;
-//   }, 3000);
-// }
-
 function gameOver(isWin) {
   clearInterval(timeLeft);
   clearInterval(lapTimeTimer);
 
-  if (isWin) {
-    gameOverReasonTitle.textContent = "Congratulations!";
-    gameOverReason.textContent = "You have completed the lap!";
+  showModalContent();
+
+  if (isVersusMode) {
+    gameOverIcon.src = icons.versus;
+    
+    if (isWin) {  
+      if (finishLapTime < receivedData.laptime) {
+        gameOverReasonTitle.textContent = "FINISH";
+        gameOverReason.innerHTML = "You finished <span class=\"txt-m txt-hl\">1</span><sup class=\"txt-hl\">st</sup>";
+
+        firstPlIcon.className = "";
+        firstPlIcon.classList.add(icons.class.player);
+        firstPlName.textContent = "You";
+        firstPlGap.textContent = "-";
+        firstPlLaptime.textContent = textifyLapTime(finishLapTime);
+
+        secondPlIcon.className = "";
+        secondPlIcon.classList.add(icons.class.opponent);
+        secondPlName.textContent = "Anonymous";
+        secondPlGap.textContent = "+" + textifyLapTime(receivedData.laptime - finishLapTime);
+        secondPlLaptime.textContent = textifyLapTime(receivedData.laptime);
+        
+        data.laptime = finishLapTime;
+      } else if (finishLapTime > receivedData.laptime) {
+        gameOverReasonTitle.textContent = "FINISH";
+        gameOverReason.innerHTML = "You finished <span class=\"txt-m txt-hl\">2</span><sup class=\"txt-hl\">nd</sup>";
+
+        firstPlIcon.className = "";
+        firstPlIcon.classList.add(icons.class.opponent);
+        firstPlName.textContent = "Anonymous";
+        firstPlGap.textContent = "-";
+        firstPlLaptime.textContent = textifyLapTime(receivedData.laptime);
+
+        secondPlIcon.className = "";
+        secondPlIcon.classList.add(icons.class.player);
+        secondPlName.textContent = "You";
+        secondPlGap.textContent = "+" + textifyLapTime(finishLapTime - receivedData.laptime);
+        secondPlLaptime.textContent = textifyLapTime(finishLapTime);
+      } else {
+        gameOverReasonTitle.textContent = "PHOTO FINISH";
+        gameOverReason.textContent = "You finished at the same time!";
+
+        firstPlIcon.className = "";
+        firstPlIcon.classList.add(icons.class.player);
+        firstPlName.textContent = "You";
+        firstPlGap.textContent = "-";
+        firstPlLaptime.textContent = textifyLapTime(finishLapTime);
+
+        secondPlIcon.className = "";
+        secondPlIcon.classList.add(icons.class.opponent);
+        secondPlName.textContent = "Anonymous";
+        secondPlGap.textContent = "+" + textifyLapTime(receivedData.laptime - finishLapTime);
+        secondPlLaptime.textContent = textifyLapTime(receivedData.laptime);
+      }
+    } else {
+      gameOverReasonTitle.textContent = "CRASH";
+      gameOverReason.textContent = "You've got wheel damage!";
+      gameOverIcon.src = icons.crash;
+
+      firstPlIcon.className = "";
+      firstPlIcon.classList.add(icons.class.opponent);
+      firstPlName.textContent = "Anonymous";
+      firstPlGap.textContent = "-";
+      firstPlLaptime.textContent = textifyLapTime(receivedData.laptime);
+
+      secondPlIcon.className = "";
+      secondPlIcon.classList.add(icons.class.player);
+      secondPlName.textContent = "You";
+      secondPlGap.textContent = "-";
+      secondPlLaptime.textContent = "DNF";
+    }
+  } else if (isWin) {
+    gameOverReasonTitle.textContent = "FINISH";
+    gameOverReason.textContent = "Congratulations!";
+    gameOverIcon.src = icons.finish;
     
     data.laptime = finishLapTime;
   } else {
-    gameOverReasonTitle.textContent = "Big 4x!";
+    gameOverReasonTitle.textContent = "CRASH";
     gameOverReason.textContent = "You've got wheel damage!";
+    gameOverIcon.src = icons.crash;
   }
 
   generateURL();
   
   gameOverModal.classList.add("show");
-//   textToCopy.value = URLString;
   textToCopy.value = shortURL;
   copyBtn.textContent = "Copy to clipboard";
   copyBtn.disabled = false;
@@ -1440,7 +1529,6 @@ function gameOver(isWin) {
   isGameOver = true;
   
   setTimeout(function () {
-    //restartBtn.disabled = false;
     restartBtn.classList.add("show");
     listeningForKeys = true;
   }, 3000);
@@ -1448,6 +1536,8 @@ function gameOver(isWin) {
 
 function preGame() {
   populateDataFromCookiesAndURL();
+
+  hideModalContent();
 
   percentage = 0;
   percentageBar.style["width"] = percentage + "%";
@@ -1464,14 +1554,30 @@ function preGame() {
   scoreDiv.textContent = "0";
 
   trackSelectorItem.classList.add("show");
-  //trackSelectorItem.hidden = false;
-  //restartBtn.disabled = true;
   restartBtn.classList.remove("show");
-  //startBtn.hidden = false;
-  //startBtn.style["display"] = "inline-block";
   startBtn.classList.add("show");
   trackSelector.disabled = false;
   seedInput.disabled = false;
   gameArea.hidden = true;
   gameOverModal.classList.remove("show");
+}
+
+function showModalContent() {
+  if (isVersusMode) {
+    versusContent.classList.add("show");
+  } else {
+    crashFinishContent.classList.add("show");
+  }
+}
+
+function hideModalContent() {
+  if (isVersusMode) {
+    versusContent.classList.remove("show");
+  } else {
+    crashFinishContent.classList.remove("show");
+  }
+}
+
+function textifyLapTime(lt) {
+  return new Date(lt).toISOString().slice(14, -1);
 }
