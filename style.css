@@ -27,9 +27,12 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 .g-btn.show-toggle {display: inline-block; max-height: 0; padding: 0 40px; overflow: hidden; opacity: 0.00; transition: all 0.3s;}
 .g-btn.show-toggle.show {max-height: 100px; padding: 20px 40px; opacity: 1.00;}
 
-	/* CONATINERS  */
+	/* BUTTONS WITH ICONS */
+
 	.g-btn.i-btn {position: relative;}
 	.g-btn.i-btn:hover {padding-left: 100px;}
+
+	/* START ICON */
 	.g-btn.i-btn .i-start {width: 50px; height: 30px; position: absolute; left: 120px; top: 50%; transform: translateY(-50%) skew(-10deg); opacity: 0.00; transition: all 0.4s;}
 	.g-btn.i-btn:hover .i-start {left: 26px; opacity: 1.00;}
 
@@ -59,6 +62,26 @@ select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 	  0% {transform: scale(1.5); background-color: rgba(255, 255, 255, 1.00);}
 	  100% {transform: scale(1); background-color: rgba(255, 255, 255, 1.00);}
 	}
+
+	/* RESTART ICON */
+
+	.g-btn.i-btn .i-restart {width: 50px; height: 30px; border-radius: 10px; position: absolute; left: 120px; top: 50%; transform: translateY(-50%) skew(-10deg); box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 1.00); opacity: 0.00; transition: all 0.4s;}
+	.g-btn.i-btn:hover .i-restart {left: 26px; opacity: 1.00;}
+
+	.g-btn.i-btn .i-restart span:nth-child(1),
+	.g-btn.i-btn .i-restart span:nth-child(2) {display: block; width: 8px; height: 8px; background-color: rgba(200, 40, 40, 1.00); border-radius: 8px; position: absolute; transform: translate(0, 0); box-shadow: inherit; animation: MOVE_ICON_A 2s linear infinite; offset-path: path('M39,29H11C5.5,29,1,24.5,1,19v-8C1,5.5,5.5,1,11,1h28c5.5,0,10,4.5,10,10v8C49,24.5,44.5,29,39,29z'); z-index: 2;}
+	.g-btn.i-btn .i-restart span:nth-child(2) {animation: MOVE_ICON_B 2s linear infinite;}
+
+	@keyframes MOVE_ICON_A {
+	    0% {offset-distance: 0%;}
+	    100% {offset-distance: 100%;}
+	  }
+
+	  @keyframes MOVE_ICON_B {
+	    0% {offset-distance: 50%;}
+	    50% {offset-distance: 100%;}
+	    100% {offset-distance: 150%;}
+	  }
 
 /* CONATINERS  */
 
