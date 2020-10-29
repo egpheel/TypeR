@@ -215,9 +215,9 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 .replay-c .track-c .labels {width: 100%; background-color: rgba(255, 255, 255, 1.00); padding: 14px 10px 14px 10px; position: absolute; left: 0; top: -58px;}
 
 .replay-c .track-c .labels span {display: inline-block; position: relative; padding: 0 6px 0 14px; font-size: 0.8rem; text-align: left;}
-.replay-c .track-c .labels .player-lbl:before {content: ''; width: 12px; height: 12px; border-radius: 12px; background-color: rgba(200, 40, 40, 1.00); position: absolute; left: 0px; top: 1px;}
-.replay-c .track-c .labels .opponent-lbl:before {content: ''; width: 12px; height: 12px; border-radius: 12px; background: rgba(255,255,255,1.00); box-shadow: inset 0 0 0 3px rgba(200, 40, 40, 1.00); position: absolute; left: 0px; top: 1px;}
-.replay-c .track-c .labels .ghost-lbl:before {content: ''; width: 12px; height: 12px; border-radius: 14px; background: rgba(40, 100, 200, 0.50); box-shadow: inset 0 0 0 1px rgba(40, 100, 200, 0.50), 0 0 10px 0 rgba(40, 100, 200, 0.50); position: absolute; left: 0px; top: 1px;}
+.replay-c .track-c .labels .player:before {content: ''; width: 12px; height: 12px; border-radius: 12px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: 0px; top: 1px;}
+.replay-c .track-c .labels .opponent:before {content: ''; width: 12px; height: 12px; border-radius: 12px; background: rgba(255,255,255,1.00); box-shadow: inset 0 0 0 3px rgba(200, 40, 40, 1.00); position: absolute; left: 0px; top: 1px;}
+.replay-c .track-c .labels .ghost:before {content: ''; width: 12px; height: 12px; border-radius: 14px; background: rgba(40, 100, 200, 0.50); box-shadow: inset 0 0 0 1px rgba(40, 100, 200, 0.50), 0 0 10px 0 rgba(40, 100, 200, 0.50); position: absolute; left: 0px; top: 1px;}
 
 #trackInfo .c-50.info {min-height: 140px; text-align: right; padding: 0 40px 0 0;}
 #trackInfo .c-50.info .info-c {position: absolute; right: 40px; top: 50%; transform: translateY(-50%);}
