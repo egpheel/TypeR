@@ -1479,7 +1479,7 @@ function startGame() {
   updateWord();
 
   if (receivedData.laptime) {
-    opponentGhost.classList.add("player-time-02");
+    opponentGhost.classList.add("opponent");
     opponentGhost.style["animation-duration"] = receivedData.laptime + "ms";
     // isVersusMode = true;
   } else {
@@ -1622,8 +1622,8 @@ function preGame() {
   
   updateTrackPosition();
 
-  if (opponentGhost.classList.contains("player-time-02")) {
-    opponentGhost.classList.remove("player-time-02");
+  if (opponentGhost.classList.contains("opponent")) {
+    opponentGhost.classList.remove("opponent");
   }
   
   history.pushState({ id: 'typer' }, 'TypeR', originalURL);
