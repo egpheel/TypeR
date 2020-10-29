@@ -27,7 +27,7 @@ select + .s-arrow {display: block; width: 38px; height: 38px; background-color: 
 select:hover + .s-arrow {background-color: rgba(40, 40, 40, 1.00);}
 select + .s-arrow:after {content: ''; width: 6px; height: 6px; border-right: 2px solid; border-bottom: 2px solid; border-color: rgba(255, 255, 255, 1.00); position: absolute; right: 15px; top: 13px; transform: rotate(45deg); z-index: 1; transition: all 0.3s;}
 select:hover + .s-arrow:after {transform: rotate(45deg) scale(1.6); top: 11px;}
-select:focus + .s-arrow {transform: rotateX(180deg);}
+select:focus + .s-arrow {background-color: rgba(200, 40, 40, 1.00); transform: rotateX(180deg);}
 select:focus + .s-arrow:after {top: 14px; transform: rotate(45deg);}
 
 /* BUTTONS */
