@@ -227,10 +227,35 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 #trackSelectorItem {max-height: 0; transform: scale(0.5); opacity: 0.00; transition: all 0.5s;}
 #trackSelectorItem.show {max-height: 140px; transform: scale(1) rotateX(0deg); opacity: 1.00;}
 
-.track-select-c {width: calc(70% - 10px);}
-.seed-input-c {width: calc(30% - 10px); float: right;}
+.player-input-c {width: calc(25% - 10px); margin: 0 10px 0 0; float: left;}
+	.player-input-c input {padding-left: 50px;}
+	.player-input-c .i-user {width: 38px; height: 38px; background-color: rgba(255, 255, 255, 0.00); position: absolute; left: 6px; top: 6px; overflow: hidden; transition: all 0.3s;}
+	.player-input-c .i-user .user {position: absolute; left: 50%; bottom: 0px; transform: translateX(-50%); opacity: 0.50; filter: invert(0); transition: all 0.3s;}
+	.player-input-c .i-user .helmet {position: absolute; left: 50%; top: -20px; transform: translateX(-50%); transition: all 0.3s;}
+	.player-input-c .i-user .wheel {position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%); animation: WHEELANIME 2s infinite ease-in-out; transition: all 0.3s;}
+
+		@keyframes WHEELANIME {
+		  0% {transform: translateX(-50%) rotate(-30deg);}
+		  25% {transform: translateX(-50%) rotate(30deg);}
+		  50% {transform: translateX(-50%) rotate(-30deg);}
+		  75% {transform: translateX(-50%) rotate(30deg);}
+		  100% {transform: translateX(-50%) rotate(-30deg);}
+		}
+
+
+	.player-input-c:hover .i-user {background-color: rgba(40, 40, 40, 1.00);}
+	.player-input-c input:focus ~ .i-user {background-color: rgba(200, 40, 40, 1.00);}
+	.player-input-c:hover .i-user .user,
+	.player-input-c input:focus ~ .i-user .user {opacity: 1.00; filter: invert(1); }
+	.player-input-c:hover .i-user .helmet,
+	.player-input-c input:focus ~ .i-user .helmet {top: 0px; transform: translateX(-50%);}
+	.player-input-c:hover .i-user .wheel,
+	.player-input-c input:focus ~ .i-user .wheel {bottom: -10px;}
+
+.track-select-c {width: calc(50%); float: right;}
+.seed-input-c {width: calc(25% - 10px); margin: 0 0 0 10px; float: right;}
 .seed-input-c input {text-align: center;}
-.seed-input-c:before {content: 'leave empty for random seed'; width: 100%; position: absolute; left: 0; bottom: -15px; font-size: 12px; text-align: center;}
+/*.seed-input-c:before {content: 'leave empty for random seed'; width: 100%; position: absolute; left: 0; bottom: -15px; font-size: 12px; text-align: center;}*/
 
 .get-info-c {width: 100%; position: absolute; top: -35px;}
 .get-info-c .btn {width: 30px; height: 30px; background-color: rgba(40, 40, 40, 1.00); border-radius: 40px; position: absolute; top: 0px; left: 0px; font-size: 1.2rem; line-height: 28px; text-align: center; font-weight: 700; color: rgba(255, 255, 255, 1.00); box-shadow: inset 0 0 0 3px rgba(40, 40, 40, 1.00); transition: all 0.3s; z-index: 1; cursor: pointer;}
@@ -502,8 +527,11 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
   .hidde-mob {display: none;}
   .hidde-desk {display: block;}
 
-  .track-select-c {width: 100%; margin: 0 0 10px 0}
-  .seed-input-c {width: 100%;}
+  #trackSelectorItem {padding-top: 40px;}
+  .player-input-c {width: calc(50% - 5px); margin: 0 5px 0 0; float: left;}
+  .track-select-c {width: calc(100%); position: absolute; left: 0px; top: 0px;}
+  .seed-input-c {width: calc(50% - 5px); margin: 0 0 0 5px; float: right;}
+
 
   .track-c {margin: 20px 0 0 0; position: relative; left: initial; bottom: initial;}
   #trackInfo .c-50.info {min-height: initial; margin: 0px 10px; text-align: center; padding: 0 0 0 0;}
