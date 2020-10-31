@@ -197,7 +197,7 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 .modal-c #CrashFinishContent.show {display: block}
 .modal-c #VersusContent.show {display: block}
 
-.modal-c .circuit-c {width: 50%; text-align: left;}
+.modal-c .circuit-c {width: 200px; height: 140px; margin: 20px 0 0 0; left: 50%; float: left; transform: translateX(-50%); text-align: left;}
 .modal-c .circuit-c span {width: 100%; display: inline-block;}
 .modal-c .circuit-c span:nth-child(1) {font-size: 0.8rem;}
 .modal-c .seed-c {width: 50%; text-align: right;}
@@ -281,13 +281,22 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 .replay-c .btn-close:after {content: ''; width: 20px; height: 3px; background-color: rgba(255, 255, 255, 1.00); position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%);}
 .replay-c .btn-close:after {transform: translateX(-50%) translateY(-50%) rotate(90deg);}
 
-.replay-c .track-c {width: 240px; height: 180px; background-color: rgba(255, 255, 255, 1.00); padding: 20px; position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%) scale(1.5); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00);}
-.replay-c .track-c .labels {width: 100%; background-color: rgba(255, 255, 255, 1.00); padding: 14px 10px 14px 10px; position: absolute; left: 0; top: -58px;}
+.replay-c .track-c {width: calc(100% - 20px); max-width: 340px; background-color: rgba(255, 255, 255, 1.00); border-radius: 10px; padding: 40px 10px; position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 1.00);}
+.replay-c .track-c .labels {width: 100%; background-color: rgba(255, 255, 255, 0.00);}
 
-.replay-c .track-c .labels span {display: inline-block; position: relative; padding: 0 6px 0 14px; font-size: 0.8rem; text-align: left;}
-.replay-c .track-c .labels .player:before {content: ''; width: 12px; height: 12px; border-radius: 12px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: 0px; top: 1px;}
-.replay-c .track-c .labels .opponent:before {content: ''; width: 12px; height: 12px; border-radius: 12px; background: rgba(255,255,255,1.00); box-shadow: inset 0 0 0 3px rgba(200, 40, 40, 1.00); position: absolute; left: 0px; top: 1px;}
-.replay-c .track-c .labels .ghost:before {content: ''; width: 12px; height: 12px; border-radius: 14px; background: rgba(40, 100, 200, 0.50); box-shadow: inset 0 0 0 1px rgba(40, 100, 200, 0.50), 0 0 10px 0 rgba(40, 100, 200, 0.50); position: absolute; left: 0px; top: 1px;}
+.replay-c .track-c .labels span {display: inline-block; position: relative; padding: 0 14px 0 14px; font-size: 0.8rem; text-align: left;}
+.replay-c .track-c .labels span:last-of-type {padding: 0 0 0 14px;}
+.replay-c .track-c .labels .player:before {content: ''; width: 12px; height: 12px; border-radius: 12px; background-color: rgba(40, 40, 40, 1.00); position: absolute; left: -4px; top: 8px;}
+.replay-c .track-c .labels .opponent:before {content: ''; width: 12px; height: 12px; border-radius: 12px; background: rgba(255,255,255,1.00); box-shadow: inset 0 0 0 3px rgba(200, 40, 40, 1.00); position: absolute; left: -4px; top: 8px;}
+.replay-c .track-c .labels .ghost:before {content: ''; width: 12px; height: 12px; border-radius: 14px; background: rgba(40, 100, 200, 0.50); box-shadow: inset 0 0 0 1px rgba(40, 100, 200, 0.50), 0 0 10px 0 rgba(40, 100, 200, 0.50); position: absolute; left: -4px; top: 8px;}
+
+.replay-c .track-c .title {padding: 0 0 0 40px; height: 30px; position: absolute; left: 0; top: -40px; transform: skew(-15deg); font-size: 2rem; color: rgba(255, 255, 255, 1.00); font-weight: 300; line-height: 28px;}
+.replay-c .track-c .title .icon-c {width: 30px; height: 30px; position: absolute; left: 0px; top: 0px; animation: REPLAY_ANIME 5s linear infinite; opacity: 0.50;}
+
+	@keyframes REPLAY_ANIME {
+		  0% {transform: rotate(0deg);}
+		  100% {transform: rotate(-360deg);}
+		}
 
 #trackInfo .c-50.info {min-height: 140px; text-align: right; padding: 0 40px 0 0;}
 #trackInfo .c-50.info .info-c {position: absolute; right: 40px; top: 50%; transform: translateY(-50%);}
@@ -517,10 +526,10 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
   .c-50 {width: calc(100% - 20px); margin: 0 10px 10px 10px; text-align: center;}
 	
 
-  .logo-c {width: 265px; height: 60px; left: 50%; transform: translateX(-50%) skew(-15deg) scale(0.7);}
+  .logo-c {width: 265px; height: 60px; left: 50%; transform: translateX(-50%) skew(-15deg);}
 
   .modal-c {padding: 40px 20px;}
-  .modal-c .circuit-c {width: 100%; text-align: center;}
+
   .modal-c .seed-c {width: 100%; text-align: center;}
 
   .modal-c .url-c {padding: 0;}
@@ -528,8 +537,6 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 
   .modal-c .c-50.time {width: 50%; text-align: right; padding: 0 10px 0 0; margin: 0;}
   .modal-c .c-50.complete {width: 50%; text-align: left; padding: 0 0 0 10px; margin: 0;}
-
-  .replay-c .track-c {transform: translateX(-50%) translateY(-50%) scale(1.3);}
 
   .start-lights-c.show {top: initial; bottom: 0; transform: translateX(-50%); opacity: 1.0;}
 
