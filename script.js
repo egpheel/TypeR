@@ -75,13 +75,19 @@ let isGameOver = false;
 let isVersusMode = false;
 let thisPlayerName = null;
 let changeNameTimeout = null;
+let replayArray = [];
+let timeElapsedPerWord = 0;
+let timeUpdatedWord = 0;
+let playerReplayIterator = 0;
+let opponentReplayIterator = 0;
 
 let msg = "Big 4x!";
 let data = {
   seed: null,
   track: null,
   laptime: null,
-  playername: null
+  playername: null,
+  replay: null
 }
 let receivedData = data;
 
@@ -1194,19 +1200,45 @@ function changeName() {
 
 function showHideReplay() {
   if (isVersusMode) {
+    playerReplayIterator = 0;
+    opponentReplayIterator = 0;
+    
     if (showReplayCheckbox.checked) {
       replayPlInfo.innerHTML = thisPlayerName + "<br /><small>" + textifyLapTime(finishLapTime) + "</small>";
       replayPlayer.classList.add("player");
-      replayPlayer.style["animation-duration"] = finishLapTime + "ms";
+      replayPlayer.style["offset-distance"] = "0%";
+
+      playPlayerReplay(replayArray, replayPlayer);
 
       replayOppInfo.innerHTML = receivedData.playername + "<br /><small>" + textifyLapTime(receivedData.laptime) + "</small>";
       replayOpponent.classList.add("opponent");
-      replayOpponent.style["animation-duration"] = receivedData.laptime + "ms";
+      replayOpponent.style["offset-distance"] = "0%";
+      playOpponentReplay(receivedData.replay, replayOpponent);
     } else {
       replayPlayer.classList.remove("player");
       replayOpponent.classList.remove("opponent");
     }
   }
+}
+
+function playPlayerReplay(arr, obj) {
+  setTimeout(function() {
+    obj.style["offset-distance"] = arr[playerReplayIterator].percentage + "%";
+    playerReplayIterator++;
+    if (playerReplayIterator < arr.length) {
+      playPlayerReplay(arr, obj);
+    }
+  }, arr[playerReplayIterator].elapsed);
+}
+
+function playOpponentReplay(arr, obj) {
+  setTimeout(function() {
+    obj.style["offset-distance"] = arr[opponentReplayIterator].percentage + "%";
+    opponentReplayIterator++;
+    if (opponentReplayIterator < arr.length) {
+      playOpponentReplay(arr, obj);
+    }
+  }, arr[opponentReplayIterator].elapsed);
 }
 
 function handleKeys(e) {
@@ -1347,6 +1379,7 @@ function updateWord() {
     let date = new Date();
     let now = date.getTime();
     let origTime = now + maxTime;
+    timeUpdatedWord = now;
 
     timeLeftDiv.textContent = maxTime / 1000;
 
@@ -1382,6 +1415,10 @@ function typeWord() {
     wordInput.value = "";
     clearInterval(timeLeft);
 
+    let date = new Date();
+    let now = date.getTime();
+    timeElapsedPerWord = now - timeUpdatedWord;
+
     //----- NOTE TO SELF: HIGHLIGHT WORD LETTERS AS THEY'RE TYPED   -----
 
     currentDistance += Math.floor(distancePerWord + currentWord.length);
@@ -1390,6 +1427,13 @@ function typeWord() {
       currentDistance = selectedTrack.circuitLength;
     }
 
+    let newPercentage = Math.floor(
+      (currentDistance * 100) / selectedTrack.circuitLength
+    );
+
+    replayArray.push({ "percentage" : newPercentage, "elapsed" : timeElapsedPerWord});
+
+    timeElapsedPerWord = 0;
     updateWord();
   }
 }
@@ -1480,7 +1524,9 @@ function startGame() {
 
   if (receivedData.laptime) {
     opponentGhost.classList.add("opponent");
-    opponentGhost.style["animation-duration"] = receivedData.laptime + "ms";
+    opponentGhost.style["offset-distance"] = "0%";
+    playOpponentReplay(receivedData.replay, opponentGhost);
+
     // isVersusMode = true;
   } else {
     opponentGhost.hidden = true;
@@ -1503,6 +1549,7 @@ function startGame() {
 function gameOver(isWin) {
   clearInterval(timeLeft);
   clearInterval(lapTimeTimer);
+  timeElapsedPerWord = 0;
 
   showModalContent();
 
@@ -1528,6 +1575,7 @@ function gameOver(isWin) {
         
         data.laptime = finishLapTime;
         data.playername = playerNameInput.value;
+        data.replay = replayArray;
       } else if (finishLapTime > receivedData.laptime) {
         gameOverReasonTitle.textContent = "FINISH";
         gameOverReason.innerHTML = "You finished <span class=\"txt-m txt-hl\">2</span><sup class=\"txt-hl\">nd</sup>";
@@ -1586,6 +1634,7 @@ function gameOver(isWin) {
       
       data.laptime = finishLapTime;
       data.playername = playerNameInput.value;
+      data.replay = replayArray;
     } else {
       gameOverReasonTitle.textContent = "CRASH";
       gameOverReason.textContent = "You've got wheel damage!";
@@ -1619,6 +1668,11 @@ function preGame() {
   percentageBar.style["width"] = percentage + "%";
   isGameOver = false;
   listeningForKeys = true;
+
+  // empty replay array
+  replayArray = [];
+  playerReplayIterator = 0;
+  opponentReplayIterator = 0;
   
   updateTrackPosition();
 
