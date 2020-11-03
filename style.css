@@ -186,7 +186,7 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
   100% {opacity: 1.00;}
 }
 
-.modal-c {width: calc(100% - 20px); max-width: 600px; background-color: rgba(255, 255, 255, 0.90); backdrop-filter: blur(5px); border-radius: 20px; padding: 40px; position: fixed; left: 50%; top: -500px; transform: translateX(-50%); box-shadow: 0 5px 25px 0 rgba(40, 40, 40, 0.25); z-index: 50; opacity: 0.00; transition: all 0.5s ease-in-out;}
+.modal-c {width: calc(100% - 20px); max-width: 600px; background-color: rgba(255, 255, 255, 0.90); backdrop-filter: blur(5px); border-radius: 20px; padding: 40px; position: fixed; left: 50%; top: -500px; transform: translateX(-50%); box-shadow: 0 1px 3px 0 rgba(40, 40, 40, 0.05), 0 2px 6px 0 rgba(40, 40, 40, 0.05), 0 4px 12px 0 rgba(40, 40, 40, 0.05), 0 8px 24px 0 rgba(40, 40, 40, 0.05), 0 16px 48px 0 rgba(40, 40, 40, 0.05), 0 32px 96px 0 rgba(40, 40, 40, 0.05); z-index: 50; opacity: 0.00; transition: all 0.5s ease-in-out;}
 .modal-c .c-100 .icon-c {width: 80px; height: 80px; left: 50%; transform: translateX(-50%);}
 .modal-c .c-100 .icon-c img {position: relative; float: left; top: 50%; transform: translateY(-50%);}
 .modal-c.show {top: 50%; transform: translateX(-50%) translateY(-50%); opacity: 1.00;}
@@ -227,7 +227,7 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 #trackSelectorItem {max-height: 0; transform: scale(0.5); opacity: 0.00; transition: all 0.5s;}
 #trackSelectorItem.show {max-height: 140px; transform: scale(1) rotateX(0deg); opacity: 1.00; z-index: 5;}
 
-.player-input-c {width: calc(25% - 10px); margin: 0 10px 0 0; float: left;}
+.player-input-c {width: calc(25% - 10px); margin: 0 5px; float: left;}
 	.player-input-c input {padding-left: 50px;}
 	.player-input-c .i-user {width: 38px; height: 38px; background-color: rgba(255, 255, 255, 0.00); position: absolute; left: 6px; top: 6px; overflow: hidden; transition: all 0.3s;}
 	.player-input-c .i-user .user {position: absolute; left: 50%; bottom: 0px; transform: translateX(-50%); opacity: 0.50; filter: invert(0); transition: all 0.3s;}
@@ -253,11 +253,45 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
 	.player-input-c input:focus ~ .i-user .wheel {bottom: -10px;}
 
 .track-select-c {width: calc(50%); float: right;}
-.seed-input-c {width: calc(25% - 10px); margin: 0 0 0 10px; float: right;}
+
+.seed-input-c {width: calc(25% - 10px); margin: 0 5px; float: right;}
 .seed-input-c input {text-align: center;}
 /*.seed-input-c:before {content: 'leave empty for random seed'; width: 100%; position: absolute; left: 0; bottom: -15px; font-size: 12px; text-align: center;}*/
 
+.tracks-c,
+.cars-c {width: calc(25% - 10px); height: 50px; background-color: rgba(200, 40, 40, 1.00); margin: 0 5px; float: left; box-shadow: 0 1px 1px 0 rgba(40, 40, 40, 0.02), 0 2px 2px 0 rgba(40, 40, 40, 0.02), 0 4px 4px 0 rgba(40, 40, 40, 0.02), 0 8px 8px 0 rgba(40, 40, 40, 0.02), 0 16px 16px 0 rgba(40, 40, 40, 0.02); cursor: pointer; transition: all 0.3s;}
 
+.tracks-c:hover,
+.cars-c:hover {box-shadow: 0 1px 3px 0 rgba(200, 40, 40, 0.40), 0 2px 6px 0 rgba(200, 40, 40, 0.40), 0 4px 12px 0 rgba(200, 40, 40, 0.40), 0 8px 24px 0 rgba(200, 40, 40, 0.40), 0 16px 48px 0 rgba(200, 40, 40, 0.40); transition: all 0.3s;}
+
+.tracks-c:after,
+.cars-c:after {content: ''; width: 6px; height: 6px; border-right: 2px solid; border-bottom: 2px solid; border-color: rgba(255, 255, 255, 1.00); position: absolute; right: 15px; top: calc(50% - 3px); transform: translateY(-50%) rotate(45deg); z-index: 1; transition: all 0.3s;}
+
+.tracks-c:hover:after,
+.cars-c:hover:after {top: calc(50% - 3px); transform: translateY(-50%) rotate(45deg) scale(1.6); box-shadow: 1px 1px 0 0 rgba(40, 40, 40, 0.20);}
+
+.tracks-c .selected,
+.cars-c .selected {width: calc(100% - 40px); max-height: 30px; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: rgba(255, 255, 255, 1.00); overflow: hidden; line-height: 1rem;}
+
+.tracks-c .content,
+.cars-c .content {width: auto; min-width: 760px; max-width: 760px; max-height: 0px; background-color: rgba(255, 255, 255, 1.00); padding: 0 20px; border-radius: 10px; position: absolute; left: 50%; top: 40px; transform: translateY(10px) translateX(-50%) scale(0.5); box-shadow: 0 1px 3px 0 rgba(40, 40, 40, 0.00), 0 2px 6px 0 rgba(40, 40, 40, 0.00), 0 4px 12px 0 rgba(40, 40, 40, 0.00), 0 8px 24px 0 rgba(40, 40, 40, 0.00), 0 16px 48px 0 rgba(40, 40, 40, 0.05); overflow: hidden; transition: all 0.3s; z-index: 10;}
+
+.tracks-c:hover .content,
+.cars-c:hover .content {max-height: 600px; padding: 20px; transform: translateY(0) translateX(-50%) scale(1); box-shadow: 0 1px 3px 0 rgba(40, 40, 40, 0.05), 0 2px 6px 0 rgba(40, 40, 40, 0.05), 0 4px 12px 0 rgba(40, 40, 40, 0.05), 0 8px 24px 0 rgba(40, 40, 40, 0.05), 0 16px 48px 0 rgba(40, 40, 40, 0.05); z-index: 10;}
+
+.tracks-c .content .track-s {width: 110px; height: 110px; background-color: rgba(255, 255, 255, 1.00); padding: 5px; border-radius: 5px; display: block; position: relative; float: left; margin: 5px; cursor: pointer; box-shadow: 0 0 0 1px rgba(40, 40, 40, 0.20); transition: all 0.3s;}
+.tracks-c .content .track-s:hover {box-shadow: 0 5px 20px 0 rgba(40, 40, 40, 0.20); z-index: 10;}
+.tracks-c .content .track-s .t-name {width: 100px; height: 40px; font-size: 0.8rem;}
+.tracks-c .content .track-s .t-name span {width: 100%; position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%); transition: all 0.3s;}
+.tracks-c .content .track-s .t-distance {position: absolute; right: 5px; bottom: 6px; font-size: 0.8rem; font-weight: 700; color: rgba(200, 40, 40, 1.00); transition: all 0.3s;}
+.tracks-c .content .track-s object:first-of-type {filter: initial; transition: all 0.3s;}
+.tracks-c .content .track-s object:last-of-type {position: absolute; left: 5px; left: 5px;}
+.tracks-c .content .track-s object:last-of-type img {box-shadow: 0 0 0 1px rgba(40, 40, 40, 0.20); transition: all 0.3s;}
+
+.tracks-c .content input[type="radio"]:checked + .track-s {background-color: rgba(200, 40, 40, 1.00);}
+.tracks-c .content input[type="radio"]:checked + .track-s * {color: rgba(255, 255, 255, 1.00);}
+.tracks-c .content input[type="radio"]:checked + .track-s object:first-of-type {filter: grayscale(1) brightness(5);}
+.tracks-c .content input[type="radio"]:checked + .track-s object:last-of-type img {box-shadow: 0 0 0 1px rgba(255, 255, 255, 1.00);} 
 
 .get-info-c {width: 100%; position: absolute; top: -35px;}
 .get-info-c .btn {width: 30px; height: 30px; background-color: rgba(40, 40, 40, 1.00); border-radius: 40px; position: absolute; top: 0px; left: 0px; font-size: 1.2rem; line-height: 28px; text-align: center; font-weight: 700; color: rgba(255, 255, 255, 1.00); box-shadow: inset 0 0 0 3px rgba(40, 40, 40, 1.00); transition: all 0.3s; z-index: 1; cursor: pointer;}
