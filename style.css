@@ -577,12 +577,12 @@ input[type="checkbox"]:checked ~ .menu-ic {max-height: 600px; background-color: 
   .hidde-mob {display: none;}
   .hidde-desk {display: block;}
 
-  #trackSelectorItem {padding-top: 40px;}
+  #trackSelectorItem {padding-top: 40px; margin-top: 20px;}
   .player-input-c {width: calc(50% - 5px); margin: 0 5px 0 0; float: left;}
   .track-select-c {width: calc(100%); position: absolute; left: 0px; top: 0px;}
   .seed-input-c {width: calc(50% - 5px); margin: 0 0 0 5px; float: right;}
 
-
+.circuit-c {width: 200px; left: 50%; transform: translateX(-50%);} 
   .track-c {margin: 20px 0 0 0; position: relative; left: initial; bottom: initial;}
   #trackInfo .c-50.info {min-height: initial; margin: 0px 10px; text-align: center; padding: 0 0 0 0;}
   #trackInfo .c-50.info .info-c {position: relative; float: left; top: initial; right: initial; left: 50%; transform: translateX(-50%);}
