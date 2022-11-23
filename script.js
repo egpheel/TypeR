@@ -91,7 +91,7 @@ let data = {
 }
 let receivedData = data;
 
-let jsonboxEndpoint = "https://jsonbox.io/box_48878c90c848885a43f5";
+let jsonboxEndpoint = "https://jsonbase.com/typeR_json_stuff";
 
 let tracks = [
   { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
@@ -1295,7 +1295,7 @@ function prepareGame() {
 
 function sendRequest(url, randomURL) {
     let xhttp = new XMLHttpRequest();
-    xhttp.open("POST", jsonboxEndpoint + "/" + randomURL, true);
+    xhttp.open("XPUT", jsonboxEndpoint + "/" + randomURL, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify({data: url }));
 }
