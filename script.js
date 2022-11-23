@@ -91,7 +91,7 @@ let data = {
 }
 let receivedData = data;
 
-let jsonboxEndpoint = "https://jsonbase.com/typeR_json_stuff";
+let jsonboxEndpoint = "https://krat.es/3d816de13a80263a2312";
 
 let tracks = [
   { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
@@ -1295,7 +1295,9 @@ function prepareGame() {
 
 function sendRequest(url, randomURL) {
     let xhttp = new XMLHttpRequest();
-    xhttp.open("XPUT", jsonboxEndpoint + "/" + randomURL, true);
+    xhttp.open("POST", jsonboxEndpoint + "/" + randomURL, true);
+    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify({data: url }));
 }
