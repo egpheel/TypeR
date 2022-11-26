@@ -80,6 +80,8 @@ let timeElapsedPerWord = 0;
 let timeUpdatedWord = 0;
 let playerReplayIterator = 0;
 let opponentReplayIterator = 0;
+let playerReplayTimeout;
+let opponentReplayTimeout;
 
 let msg = "Big 4x!";
 let data = {
@@ -91,26 +93,28 @@ let data = {
 }
 let receivedData = data;
 
-let jsonboxEndpoint = "https://krat.es/3d816de13a80263a2312";
+let lapTimeMultiplier = 0.5;
+
+// let jsonboxEndpoint = "https://krat.es/3d816de13a80263a2312";
 
 let tracks = [
-  { name: "Test Track", circuitLength: 1000, intendedLapTime: 20, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
-  { name: "Test Track 2", circuitLength: 500, intendedLapTime: 10, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
+  { name: "Test Track", circuitLength: 1000, intendedLapTime: 20*lapTimeMultiplier, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
+  { name: "Test Track 2", circuitLength: 500, intendedLapTime: 10*lapTimeMultiplier, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
   {
     name: "Circuit de Spa-Francorchamps",
     circuitLength: 7004,
-    intendedLapTime: 137,
+    intendedLapTime: 137*lapTimeMultiplier,
     flag: "./svg/flag-belgium.svg",
     trackmap: "./svg/spa.svg",
     path: "spa"
   },
-  { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428, flag: "./svg/flag-germany.svg", trackmap: "./svg/nordschleife.svg", path: "nordschleife" },
-  { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120, flag: "./svg/flag-uk.svg", trackmap: "./svg/silverstone.svg", path: "silverstone" },
-  { name: "Lime Rock Park", circuitLength: 2410, intendedLapTime: 58, flag: "./svg/flag-usa.svg", trackmap: "./svg/limerockpark.svg", path: "limerockpark" },
+  { name: "Nordschleife", circuitLength: 20832, intendedLapTime: 428*lapTimeMultiplier, flag: "./svg/flag-germany.svg", trackmap: "./svg/nordschleife.svg", path: "nordschleife" },
+  { name: "Silverstone", circuitLength: 5891, intendedLapTime: 120*lapTimeMultiplier, flag: "./svg/flag-uk.svg", trackmap: "./svg/silverstone.svg", path: "silverstone" },
+  { name: "Lime Rock Park", circuitLength: 2410, intendedLapTime: 58*lapTimeMultiplier, flag: "./svg/flag-usa.svg", trackmap: "./svg/limerockpark.svg", path: "limerockpark" },
   {
     name: "Circuit 24 Hours of Le Mans",
     circuitLength: 13626,
-    intendedLapTime: 173,
+    intendedLapTime: 173*lapTimeMultiplier,
     flag: "./svg/flag-france.svg",
     trackmap: "./svg/lemans.svg",
     path: "lemans"
@@ -118,33 +122,33 @@ let tracks = [
   {
     name: "Circuit Gilles Villeneuve",
     circuitLength: 4361,
-    intendedLapTime: 97,
+    intendedLapTime: 97*lapTimeMultiplier,
     flag: "./svg/flag-canada.svg",
     trackmap: "./svg/gillesvilleneuve.svg",
     path: "gillesvilleneuve"
   },
-  { name: "Hockenheimring", circuitLength: 4574, intendedLapTime: 105, flag: "./svg/flag-germany.svg", trackmap: "./svg/hockenheimring.svg", path: "hockenheimring" },
+  { name: "Hockenheimring", circuitLength: 4574, intendedLapTime: 105*lapTimeMultiplier, flag: "./svg/flag-germany.svg", trackmap: "./svg/hockenheimring.svg", path: "hockenheimring" },
   {
     name: "Autodromo Nazionale di Monza",
     circuitLength: 5793,
-    intendedLapTime: 110,
+    intendedLapTime: 110*lapTimeMultiplier,
     flag: "./svg/flag-italy.svg",
     trackmap: "./svg/monza.svg",
     path: "monza"
   },
-  { name: "Circuit Zolder", circuitLength: 4011, intendedLapTime: 91, flag: "./svg/flag-belgium.svg", trackmap: "./svg/zolder.svg", path: "zolder" },
-  { name: "Circuit de Monaco", circuitLength: 3337, intendedLapTime: 100, flag: "./svg/flag-monaco.svg", trackmap: "./svg/monaco.svg", path: "monaco" },
+  { name: "Circuit Zolder", circuitLength: 4011, intendedLapTime: 91*lapTimeMultiplier, flag: "./svg/flag-belgium.svg", trackmap: "./svg/zolder.svg", path: "zolder" },
+  { name: "Circuit de Monaco", circuitLength: 3337, intendedLapTime: 100*lapTimeMultiplier, flag: "./svg/flag-monaco.svg", trackmap: "./svg/monaco.svg", path: "monaco" },
   {
     name: "Suzuka International Racing Course",
     circuitLength: 5807,
-    intendedLapTime: 125,
+    intendedLapTime: 125*lapTimeMultiplier,
     flag: "./svg/flag-japan.svg",
     trackmap: "./svg/suzuka.svg",
     path: "suzuka"
   },
-  { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107, flag: "./svg/flag-japan.svg", trackmap: "./svg/fujispeedway.svg", path: "fujispeedway" },
-  { name: "Autódromo Internacional do Algarve (Portimao)", circuitLength: 4692, intendedLapTime: 115, flag: "./svg/flag-portugal.svg", trackmap: "./svg/portimao.svg", path: "portimao" },
-  { name: "Autódromo do Estoril", circuitLength: 4182, intendedLapTime: 110, flag: "./svg/flag-portugal.svg", trackmap: "./svg/estoril.svg", path: "estoril" }
+  { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107*lapTimeMultiplier, flag: "./svg/flag-japan.svg", trackmap: "./svg/fujispeedway.svg", path: "fujispeedway" },
+  { name: "Autódromo Internacional do Algarve (Portimao)", circuitLength: 4692*lapTimeMultiplier, intendedLapTime: 115, flag: "./svg/flag-portugal.svg", trackmap: "./svg/portimao.svg", path: "portimao" },
+  { name: "Autódromo do Estoril", circuitLength: 4182, intendedLapTime: 110*lapTimeMultiplier, flag: "./svg/flag-portugal.svg", trackmap: "./svg/estoril.svg", path: "estoril" }
 ];
 
 let icons = { 
@@ -1215,14 +1219,18 @@ function showHideReplay() {
       replayOpponent.style["offset-distance"] = "0%";
       playOpponentReplay(receivedData.replay, replayOpponent);
     } else {
+      replayPlayer.style["offset-distance"] = "0%";
       replayPlayer.classList.remove("player");
+      replayOpponent.style["offset-distance"] = "0%";
       replayOpponent.classList.remove("opponent");
     }
   }
 }
 
 function playPlayerReplay(arr, obj) {
-  setTimeout(function() {
+  clearTimeout(playerReplayTimeout);
+  
+  playerReplayTimeout = setTimeout(function() {
     obj.style["offset-distance"] = arr[playerReplayIterator].percentage + "%";
     playerReplayIterator++;
     if (playerReplayIterator < arr.length) {
@@ -1232,7 +1240,9 @@ function playPlayerReplay(arr, obj) {
 }
 
 function playOpponentReplay(arr, obj) {
-  setTimeout(function() {
+  clearTimeout(opponentReplayTimeout);
+
+  opponentReplayTimeout = setTimeout(function() {
     obj.style["offset-distance"] = arr[opponentReplayIterator].percentage + "%";
     opponentReplayIterator++;
     if (opponentReplayIterator < arr.length) {
