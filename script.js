@@ -147,7 +147,7 @@ let tracks = [
     path: "suzuka"
   },
   { name: "Fuji Speedway", circuitLength: 1475, intendedLapTime: 107*lapTimeMultiplier, flag: "./svg/flag-japan.svg", trackmap: "./svg/fujispeedway.svg", path: "fujispeedway" },
-  { name: "Autódromo Internacional do Algarve (Portimao)", circuitLength: 4692*lapTimeMultiplier, intendedLapTime: 115, flag: "./svg/flag-portugal.svg", trackmap: "./svg/portimao.svg", path: "portimao" },
+  { name: "Autódromo Internacional do Algarve (Portimao)", circuitLength: 4692, intendedLapTime: 115*lapTimeMultiplier, flag: "./svg/flag-portugal.svg", trackmap: "./svg/portimao.svg", path: "portimao" },
   { name: "Autódromo do Estoril", circuitLength: 4182, intendedLapTime: 110*lapTimeMultiplier, flag: "./svg/flag-portugal.svg", trackmap: "./svg/estoril.svg", path: "estoril" }
 ];
 
