@@ -1294,12 +1294,14 @@ function prepareGame() {
 }
 
 function sendRequest(url, randomURL) {
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("POST", jsonboxEndpoint + "/" + randomURL, true);
-    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-    xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify({data: url }));
+    // let xhttp = new XMLHttpRequest();
+    // xhttp.open("POST", jsonboxEndpoint + "/" + randomURL, true);
+    // // xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+    // // xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
+    // xhttp.setRequestHeader("Retry-After", "5"); 
+    // xhttp.setRequestHeader("Content-type", "application/json");
+    // xhttp.send(JSON.stringify({data: url }));
+    fetch(jsonboxEndpoint + "/" + randomURL, { method: "POST", headers: { "content-type" : "application/json" }, body: JSON.stringify({ data: url })});
 }
 
 function populateDataFromCookiesAndURL() {
