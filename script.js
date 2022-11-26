@@ -1263,8 +1263,9 @@ function getRandom() {
 function shortenURL(){
     let longURL = URLString;
     let rndURL = getRandom();
-    shortURL = originalURL + "#" + rndURL;
-    sendRequest(longURL, rndURL);
+    // shortURL = originalURL + "#" + rndURL;
+    shortURL = longURL;
+    // sendRequest(longURL, rndURL);
 }
 
 function prepareGame() {
