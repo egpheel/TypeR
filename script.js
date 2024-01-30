@@ -1,3 +1,5 @@
+// using https://jsonbox.cloud.exo-imaging.com for json storage for URL shortening
+
 let originalURL = window.location.href.split('?')[0];
 let urlQueryString = window.location.search;
 let seedFromURL = new URLSearchParams(urlQueryString);
@@ -95,7 +97,7 @@ let receivedData = data;
 
 let lapTimeMultiplier = 0.5;
 
-// let jsonboxEndpoint = "https://krat.es/3d816de13a80263a2312";
+let jsonboxEndpoint = "https://jsonbox.cloud.exo-imaging.com/box_4183706e486664f9ef90";
 
 let tracks = [
   { name: "Test Track", circuitLength: 1000, intendedLapTime: 20*lapTimeMultiplier, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
@@ -1273,9 +1275,9 @@ function getRandom() {
 function shortenURL(){
     let longURL = URLString;
     let rndURL = getRandom();
-    // shortURL = originalURL + "#" + rndURL;
-    shortURL = longURL;
-    // sendRequest(longURL, rndURL);
+    shortURL = originalURL + "#" + rndURL;
+    // shortURL = longURL;
+    sendRequest(longURL, rndURL);
 }
 
 function prepareGame() {
