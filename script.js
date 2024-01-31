@@ -1692,6 +1692,8 @@ function preGame() {
   replayArray = [];
   playerReplayIterator = 0;
   opponentReplayIterator = 0;
+  clearTimeout(playerReplayTimeout);
+  clearTimeout(opponentReplayTimeout);
   
   updateTrackPosition();
 
