@@ -58,7 +58,7 @@ let startLightsTime = 7000;
 let startTime = 6000;
 let currentDistance = 0;
 let currentWord;
-let maxTime = 3000;
+let maxTime = 5000;
 let timeLeft;
 let lapTimeTimer;
 let lapTime = 0;
@@ -1701,7 +1701,7 @@ function preGame() {
   
   history.pushState({ id: 'typer' }, 'TypeR', originalURL);
   lapTimeDiv.textContent = "00:00.000";
-  timeLeftDiv.textContent = "3";
+  timeLeftDiv.textContent = maxTime / 1000;
   scoreDiv.textContent = "0";
 
   trackSelectorItem.classList.add("show");
