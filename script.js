@@ -95,7 +95,7 @@ let data = {
 }
 let receivedData = data;
 
-let lapTimeMultiplier = 0.5;
+let lapTimeMultiplier = 0.2; // default 0.5
 
 let jsonboxEndpoint = "https://jsonbox.cloud.exo-imaging.com/typer_jsonbox_wolflynx";
 
