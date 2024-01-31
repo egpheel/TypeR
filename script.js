@@ -27,7 +27,7 @@ const gameOverReason = document.querySelector("#gameOverReason");
 const gameOverLapTime = document.querySelector("#gameOverLapTime");
 const gameOverPercentage = document.querySelector("#gameOverPercentage");
 const gameOverIcon = document.querySelector("#gameOverIcon");
-const modalTrack = document.querySelector("#modalTrack");
+const modalTrack = document.querySelectorAll("#modalTrack");
 const modalSeed = document.querySelector("#modalSeed");
 const seedInput = document.querySelector("#seed");
 const percentageBar = document.querySelector("#percentageBar");
@@ -97,7 +97,7 @@ let receivedData = data;
 
 let lapTimeMultiplier = 0.5;
 
-let jsonboxEndpoint = "https://jsonbox.cloud.exo-imaging.com/box_4183706e486664f9ef90";
+let jsonboxEndpoint = "https://jsonbox.cloud.exo-imaging.com/typer_jsonbox_wolflynx";
 
 let tracks = [
   { name: "Test Track", circuitLength: 1000, intendedLapTime: 20*lapTimeMultiplier, flag: "./svg/flag-portugal.svg", trackmap: "./svg/testtrack.svg", path: "testtrack" },
@@ -1340,7 +1340,9 @@ function updateCircuitInfo() {
   replayTrackmap.src = tracks[trackSelector.value].trackmap;
   trackName.textContent = tracks[trackSelector.value].name;
   trackLength.textContent = tracks[trackSelector.value].circuitLength;
-  modalTrack.textContent = tracks[trackSelector.value].name;
+  modalTrack.forEach((val) => {
+    val.textContent = tracks[trackSelector.value].name;
+  })
   playerIcon.className = "";
   playerIcon.classList.add("path");
   playerIcon.classList.add(tracks[trackSelector.value].path);
